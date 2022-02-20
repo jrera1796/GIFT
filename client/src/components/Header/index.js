@@ -1,41 +1,36 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
 
-const Header = () => {
+function Header(props) {
 	const { categories = [], setCurrentCategory, currentCategory } = props;
 
 	useEffect(() => {
 		document.title = currentCategory.name;
 	}, [currentCategory]);
+
 	return (
 		<header>
-			<div>
-				<Link to="/">
-					<h1>G.I.F.T</h1>
-				</Link>
-				<nav className="text-center">
-					<ul className="flex-row">
-						{categories.map(category => (
-							<li
-								className={`mx-2 ${
-									currentCategory.name === category.name && 'navActive'
-								}`}
-								key={category.name}
+			<nav>
+				<ul className="navbar">
+					{categories.map(category => (
+						<li
+							className={`mx-2 ${
+								currentCategory.name === category.name && 'navActive'
+							}`}
+							key={category.name}
+						>
+							<span
+								onClick={() => {
+									setCurrentCategory(category);
+								}}
 							>
-								<span
-									onClick={() => {
-										setCurrentCategory(category);
-									}}
-								>
-									{category.name}
-								</span>
-							</li>
-						))}
-					</ul>
-				</nav>
-			</div>
+								{category.name}
+							</span>
+						</li>
+					))}
+				</ul>
+			</nav>
 		</header>
 	);
-};
+}
 
 export default Header;

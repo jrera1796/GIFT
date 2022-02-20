@@ -2,23 +2,32 @@ import React, { useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-import PersonalityCheck from './pages/PersonailtyCheck'
-import GiftsIdea from './pages/GiftsIdeas'
-import Login from './pages/Login'
+import PersonailtyTest from './pages/PersonailtyTest';
+import GiftsIdea from './pages/GiftsIdeas';
+import Login from './pages/Login';
 
 import 'bulma/css/bulma.css';
 
 function App() {
 	const [categories] = useState([
 		{ name: 'Home' },
-		{ name: 'PersonailtyCheck' },
-		{ name: 'GiftsIdea' },
-		{ name: 'LoginLogout' },
+		{ name: 'Personailty Test' },
+		{ name: 'Gifts Idea' },
+		{ name: 'Login' },
 	]);
 
 	const renderPage = () => {
 		if (currentCategory.name === 'Home') {
 			return <Home currentCategory={currentCategory} />;
+		}
+		if (currentCategory.name === 'Personailty Test') {
+			return <PersonailtyTest currentCategory={currentCategory} />;
+		}
+		if (currentCategory.name === 'Gifts Idea') {
+			return <GiftsIdea currentCategory={currentCategory} />;
+		}
+		if (currentCategory.name === 'Login') {
+			return <Login currentCategory={currentCategory} />;
 		}
 	};
 
