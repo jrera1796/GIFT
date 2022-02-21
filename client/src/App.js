@@ -1,5 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
+//import logo from './logo.svg';
+//import './App.css';
+
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, } from '@apollo/client';
+import Navbar from './components/Navbar';
+import { setContext } from '@apollo/client/link/context';
 
 function App() {
   return (
