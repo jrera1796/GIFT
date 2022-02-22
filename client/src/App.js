@@ -27,8 +27,8 @@ function App() {
         <>
           <Navbar />
           <Switch>
-            <Route exact path="/" component={Gift} />
-            <Route exact path="/Dashboard" component={SavedGifts} />
+            {/* <Route exact path="/" component={Gift} />
+            <Route exact path="/Dashboard" component={SavedGifts} /> */}
             <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
           </Switch>
         </>
