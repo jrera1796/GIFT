@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-
 function Header(props) {
 	const { categories = [], setCurrentCategory, currentCategory } = props;
 
@@ -10,11 +9,11 @@ function Header(props) {
 	return (
 		<header>
 			<nav className="topnav">
-        <a className="active" href="#gift">GIFT</a>
+        <a className="active navbar-item" href="#gift">GIFT</a>
 				<ul>
 					{categories.map(category => (
 						<li
-							className={`mx-2 ${
+							className={`navbar-item ${
 								currentCategory.name === category.name && 'navActive'
 							}`}
 							key={category.name}

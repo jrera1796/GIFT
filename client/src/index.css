@@ -16,7 +16,9 @@ body {
   list-style-type: none;
 
 }
-
+html, body, #app, #app>div {
+  height: 100%
+}
 .topnav li {
   float: left;
   color: #f2f2f2;
