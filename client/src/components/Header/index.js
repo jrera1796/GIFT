@@ -9,8 +9,9 @@ function Header(props) {
 
 	return (
 		<header>
-			<nav>
-				<ul className="navbar">
+			<nav className="topnav">
+        <a className="active" href="#gift">GIFT</a>
+				<ul>
 					{categories.map(category => (
 						<li
 							className={`mx-2 ${
