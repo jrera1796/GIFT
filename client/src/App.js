@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-import PersonailtyTest from './pages/PersonailtyTest';
+import PersonailtyTest from './pages/PersonalityTest';
 import GiftsIdea from './pages/GiftsIdeas';
 import Login from './pages/Login';
 
