@@ -65,6 +65,21 @@ function App() {
 
 export default App
 
+
+// return (
+//     <ApolloProvider client={client}>
+//       <Router>
+//         <>
+//           <Navbar />
+//           <Switch>
+//             {/* <Route exact path="/" component={Gift} />
+//             <Route exact path="/Dashboard" component={SavedGifts} /> */}
+//             <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
+//           </Switch>
+//         </>
+//       </Router>
+//     </ApolloProvider>
+//   );
 // function App() {
 //   return (
 //     <div className="App">
