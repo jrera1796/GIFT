@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import PersonailtyTest from './pages/PersonalityTest';
 import GiftsIdea from './pages/GiftsIdeas';
 import Login from './pages/Login';
+import { Link } from 'react-router-dom';
 import 'bulma/css/bulma.css';
 
 const httpLink = createHttpLink({ uri: '/graphql' }); //graphQL endpoint
@@ -51,6 +52,8 @@ function App() {
 
 	const [currentCategory, setCurrentCategory] = useState(categories[0]);
 	return (
+		<ApolloProvider client={client}>
+			<Router>
 		<div>
 			<Header
 				categories={categories}
@@ -60,6 +63,8 @@ function App() {
 			<main className="container.is-fullhd">{renderPage()}</main>
 			<Footer />
 		</div>
+			</Router>
+		</ApolloProvider>
 	);
 }
 
