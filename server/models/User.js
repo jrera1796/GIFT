@@ -18,13 +18,11 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true,
-    },
-    // set savedGift to be an array of data that adheres to the GiftSchema
-    savedGift: [giftSchema],
+    }, 
+    savedGift: [giftSchema], //set savedGift to array of GiftSchema
   },
-  // set this to use virtual below
   {
-    toJSON: {
+    toJSON: { // set this to use virtual below
       virtuals: true,
     },
   }
