@@ -1,3 +1,22 @@
+/* color variables for themes */
+:root {
+  --Primary:#2994B8;
+  --Secondary:#ABDFE4;
+
+  --christmas-Primary: #A02929;
+  --christmas-Secondary: #3DA87D;
+
+  --valentine-Primary:#847DC0;
+  --valentine-Secondary:#CA92CA;
+
+  --halloween-Primary:black;
+  --halloween-Secondary:#D58823;
+
+
+  
+}
+
+
 * {
   margin: 0;
   padding: 0;
@@ -11,7 +30,8 @@ body {
 .topnav {
   display: flex;
   justify-content: space-between;
-  background-color: #333;
+  border:2px solid rgb(109, 47, 151);
+  background-color: var(--Secondary);;
   overflow: hidden;
 }
 
@@ -31,7 +51,7 @@ body {
 
 .topnav a.active {
   background-color: #FF8C69;
-  color: white;
+  color: rgb(109, 47, 151);
 }
 
 section{
@@ -39,18 +59,18 @@ section{
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: rgb(138, 225, 138);
+  background-color: var(--Primary);
 }
 
 .main-content{
-background-color: #FF8C69;
+background-color: white;
 width: 150px;
 height: 150px;
 
 }
 
 .main-aside{
-  background-color: aqua;
+  background-color: #83dfe7;
   height: 100vh;
   width: 100px;
 }
@@ -61,7 +81,8 @@ footer{
   bottom: 0;
   height: 100px;
   width: 100%;
-  background-color: #FF8C69;
-  color: white;
+  background-color:var(--Secondary);
+  color: rgb(82, 40, 150);
+  border:2px solid rgb(109, 47, 151);
   text-align: center;
 }
