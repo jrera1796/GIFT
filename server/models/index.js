@@ -1,4 +1,4 @@
 const User = require('./User');
-// const Recipient = require('./Recipient');
+const Recipient = require('./Recipient');
 
-module.exports = { User };
+module.exports = { User, Recipient };

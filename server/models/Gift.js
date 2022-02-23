@@ -7,7 +7,7 @@ const giftSchema = new Schema({ //user save gifts for recipient
     type: String,
     required: true,
   },
-  name: {
+  giftname: {
     type: String,
     required: true,
   },
@@ -21,7 +21,6 @@ const giftSchema = new Schema({ //user save gifts for recipient
   image: {
     type: String,
   },
-
   price: {
     type: String
   }

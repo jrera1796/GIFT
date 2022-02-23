@@ -19,7 +19,12 @@ const userSchema = new Schema(
       type: String,
       required: true,
     }, 
-    savedGift: [giftSchema], //set savedGift to array of GiftSchema
+    recipients: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Recipient'
+      }
+    ]
   },
   {
     toJSON: { // set this to use virtual below
@@ -39,11 +44,6 @@ userSchema.pre('save', async function (next) { //hash user password
 userSchema.methods.isCorrectPassword = async function (password) { //validate password for login
   return bcrypt.compare(password, this.password);
 };
-
-
-userSchema.virtual('giftCount').get(function () { //query user, `giftCount` field with # of saved gift
-  return this.savedGift.length;
-});
 
 const User = model('User', userSchema);
 
