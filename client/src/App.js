@@ -53,18 +53,19 @@ function App() {
 	const [currentCategory, setCurrentCategory] = useState(categories[0]);
 	return (
 		<ApolloProvider client={client}>
-			<Router>
-		<div>
+      <Router>
+        <>
 			<Header
+
 				categories={categories}
 				setCurrentCategory={setCurrentCategory}
 				currentCategory={currentCategory}
 			></Header>
 			<main className="container.is-fullhd">{renderPage()}</main>
 			<Footer />
-		</div>
-			</Router>
-		</ApolloProvider>
+      </>
+      </Router>
+      </ApolloProvider>
 	);
 }
 

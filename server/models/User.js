@@ -19,7 +19,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    // set savedBooks to be an array of data that adheres to the bookSchema
+    // set savedGift to be an array of data that adheres to the GiftSchema
     savedGift: [giftSchema],
   },
   // set this to use virtual below
@@ -44,7 +44,7 @@ userSchema.methods.isCorrectPassword = async function (password) { //validate pa
 
 
 userSchema.virtual('giftCount').get(function () { //query user, `giftCount` field with # of saved gift
-  return this.savedBooks.length;
+  return this.savedGift.length;
 });
 
 const User = model('User', userSchema);

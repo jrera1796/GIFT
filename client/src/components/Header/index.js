@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import Auth from '../../utils/auth';
+import React, { useEffect, useState } from 'react';
+
 function Header(props) {
 	const { categories = [], setCurrentCategory, currentCategory } = props;
 
