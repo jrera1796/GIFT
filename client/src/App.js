@@ -9,14 +9,9 @@ import Footer from './components/Footer';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
-<<<<<<< Updated upstream
-import { Link } from 'react-router-dom';
-=======
 import Signup from './pages/Signup';
 import NoMatch from './pages/NoMatch';
 
-
->>>>>>> Stashed changes
 import 'bulma/css/bulma.css';
 
 const httpLink = createHttpLink({ uri: '/graphql' }); //graphQL endpoint
