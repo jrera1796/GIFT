@@ -8,7 +8,7 @@ const resolvers = {
             if(context.user) {
                 const userData = await User.findOne({_id: context.user._id})
                 .select('-__v -password')
-                // .populate('saveGift');
+                .populate('savedGifts');
                 return userData;
             }
             throw new AuthenticationError('Not logged in');
@@ -28,16 +28,16 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        // saveGift: async (parent, { gift }, context) => { //save a gift
-        //     if(context.user) {
-        //         const updateGift = await User.findByIdAndUpdate(
-        //             { _id: context.user._id},
-        //             { $push: { savedGifts: gift }},
-        //             { new: true });
-        //         return updateGift;
-        //     }
-        //     throw new AuthenticationError('Please Log In.');
-        // },
+        saveGift: async (parent, { gift }, context) => { //save a gift
+            if(context.user) {
+                const updateGift = await User.findByIdAndUpdate(
+                    { _id: context.user._id},
+                    { $push: { savedGifts: gift }},
+                    { new: true });
+                return updateGift;
+            }
+            throw new AuthenticationError('Please Log In.');
+        },
         // removeGift: async (parent, { giftId }, context) => { //remove a gift
         //     if(context.user) {
         //         const userData = await User.findByIdAndDelete(

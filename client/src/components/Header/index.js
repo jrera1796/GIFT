@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+
 function Header(props) {
 	const { categories = [], setCurrentCategory, currentCategory } = props;
 

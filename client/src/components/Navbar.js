@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
@@ -11,21 +11,21 @@ const AppNavbar = () => { //set modal display state
     <>
       <Navbar bg='dark' variant='dark' expand='lg'>
         <Container fluid>
-          <Navbar.Brand as={Link} to='/'>
+          {/* <Navbar.Brand as={Link} to='/'>
             GIFT
-          </Navbar.Brand>
+          </Navbar.Brand> */}
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
-              <Nav.Link as={Link} to='/'>
+              {/* <Nav.Link as={Link} to='/'>
                 Personality Check
-              </Nav.Link>
+              </Nav.Link> */}
               {/* if user is logged in show saved books and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to='/Dashboard'>
+                  {/* <Nav.Link as={Link} to='/Dashboard'>
                     Saved Gift Ideas
-                  </Nav.Link>
+                  </Nav.Link> */}
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
               ) : (
@@ -35,7 +35,7 @@ const AppNavbar = () => { //set modal display state
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      {/* set modal data up */}
+      set modal data up
       <Modal
         size='lg'
         show={showModal}
