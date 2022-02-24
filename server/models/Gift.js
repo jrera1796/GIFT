@@ -1,32 +1,29 @@
+//import GraphQLDecimal from 'graphql-type-decimal';
 const { Schema } = require('mongoose');
 
-const giftSchema = new Schema({ //used for User's to saveGifts and savePersonality
+const giftSchema = new Schema({ //user save gifts for recipient
 
-  //not actual schema, just stub out for examples
-
-  // gifts: [
-  //   {
-  //     type: String,
-  //   },
-  // ],
-  // name: {
-  //   type: String,
-  //   required: true,
-  // },
-  // description: {
-  //   type: String,
-  //   required: true,
-  // },
-  // giftId: {
-  //   type: String,
-  //   required: true,
-  // },
-  // image: {
-  //   type: String,
-  // },
-  // link: {
-  //   type: String,
-  // },
+  giftId: {
+    type: String,
+    required: true,
+  },
+  giftname: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    trim: true
+  },
+  link: {
+    type: String,
+  },
+  image: {
+    type: String,
+  },
+  price: {
+    type: String
+  }
 });
 
 module.exports = giftSchema;

@@ -3,22 +3,29 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
   type User {
     _id: ID!
-    username: String!
-    email: String!
+    username: String
+    email: String
+    recipients: [Recipient]
+    recipientCount: Int
+  }
+
+  type Recipient {
+    _id: ID
+    lastname: String
+    firstname: String
+    traits: String
+    gifts: [Gift]
     giftCount: Int
-    savedGifts: [Gift]
   }
 
   type Gift {
     _id: ID
-    giftId: String
-    recieverName: String
-    personality: [String]
-    gifts: [String]
-    experiences: [String]
-    title: String
-    image: String
+    giftId: String!
+    giftname: String
+    description: String
     link: String
+    image: String
+    price: String
   }
 
   type Auth {
@@ -27,25 +34,28 @@ const typeDefs = gql`
   }
 
   input storeGift {
-    giftId: String
-    recieverName: String
-    personality: [String]
-    gifts: [String]
-    experiences: [String]
-    title: String
-    image: String
+    giftId: String!
+    giftname: String
+    description: String
     link: String
+    image: String
+    price: String
   }
 
   type Query {
     me: User
+    users: [User]
+    user(username: String!): User
+    recipients(firstname: String, lastname: String): [Recipient]
+    recipient(_id: ID!): Recipient
   }
 
   type Mutation {
     loginUser(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    saveGift(gift: storeGift ): User
-    removeGift(giftId: String!): User
+    addRecipient(firstname: String!, lastname: String!): User
+    saveGift(gift: storeGift!): Recipient
+    removeGift(giftId: ID!): Recipient
   }
 `;
 
