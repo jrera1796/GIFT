@@ -18,13 +18,16 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true,
-    },
-    // set savedGift to be an array of data that adheres to the GiftSchema
-    savedGift: [giftSchema],
+    }, 
+    recipients: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Recipient'
+      }
+    ]
   },
-  // set this to use virtual below
   {
-    toJSON: {
+    toJSON: { // set this to use virtual below
       virtuals: true,
     },
   }
@@ -42,9 +45,8 @@ userSchema.methods.isCorrectPassword = async function (password) { //validate pa
   return bcrypt.compare(password, this.password);
 };
 
-
-userSchema.virtual('giftCount').get(function () { //query user, `giftCount` field with # of saved gift
-  return this.savedGift.length;
+userSchema.virtual('recipientCount').get(function() {
+  return this.recipients.length;
 });
 
 const User = model('User', userSchema);

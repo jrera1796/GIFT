@@ -1,17 +1,18 @@
 const { AuthenticationError } = require('apollo-server-express'); //import auth
-const { User} = require('../models'); //import User model
+const { User, Recipient} = require('../models'); //import User model
 const { signToken } = require('../utils/auth'); //import sign token form auth
 
 const resolvers = {
     Query: { //get the user
         me: async (parent, args, context) => {
             if(context.user) {
-                const userData = await User.findOne({_id: context.user._id})
+                const userData = await User.findOne({})
                 .select('-__v -password')
-                .populate('savedGifts');
+                .populate('recipients')
+                .populate('gifts');
                 return userData;
             }
-            throw new AuthenticationError('Not logged in');
+            throw new AuthenticationError('User Not Logged In');
         }
     },
     Mutation: {
@@ -28,27 +29,38 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        saveGift: async (parent, { gift }, context) => { //save a gift
+        addRecipient: async (parent, args, context) => {
+            if (context.user) {
+                const recipient = await Recipient.create({ ...args, username: context.user.username });
+                await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $push: { recipients: recipient._id } },
+                    { new: true }
+                );
+                return recipient;
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        saveGift: async (parent, { recipientId, giftId }, context) => { //save a gift
             if(context.user) {
-                const updateGift = await User.findByIdAndUpdate(
-                    { _id: context.user._id},
-                    { $push: { savedGifts: gift }},
-                    { new: true });
-                return updateGift;
+                const updateRecipient = await Recipient.findByIdAndUpdate(
+                    { _id: recipientId},
+                    { $push: { recipients: { savedGifts: gift }}},
+                    { new: true, runValidators: true });
+                return updateRecipient;
             }
             throw new AuthenticationError('Please Log In.');
         },
-        // removeGift: async (parent, { giftId }, context) => { //remove a gift
-        //     if(context.user) {
-        //         const userData = await User.findByIdAndDelete(
-        //             { _id: context.user._id},
-        //             { $pull: { savedGifts: giftId}},
-        //             { new: true });
-        //         return userData;
-        //     }
-        // }
+        removeGift: async (parent, { giftId }, context) => { //remove a gift
+            if(context.user) {
+                const updateRecipient = await User.findOneAndUpdate(
+                    { _id: context.user._id},
+                    { $pull: { savedGifts: {giftId}}},
+                    { new: true });
+                return updateRecipient;
+            }
+        }
     }
-
 };
 
 module.exports = resolvers;
