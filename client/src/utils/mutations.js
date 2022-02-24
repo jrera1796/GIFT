@@ -24,3 +24,21 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+// export const ADD_RECIPIENT = gql `
+// mutation addRecipient($firstname: String!, $lastname: String!) {
+//   addRecipient(firstname: $firstname, lastname: $lastname) {
+//     token
+//     user{
+//       _id
+//       username
+//       email
+//     }
+//   }
+// }
+// `;
+
+
+// addRecipient(firstname: String!, lastname: String!): Recipient
+// saveGift(gift: storeGift!): Recipient
+// removeGift(giftId: ID!): Recipient

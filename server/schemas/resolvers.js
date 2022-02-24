@@ -51,17 +51,16 @@ const resolvers = {
             }
             throw new AuthenticationError('Please Log In.');
         },
-        // removeGift: async (parent, { giftId }, context) => { //remove a gift
-        //     if(context.user) {
-        //         const userData = await User.findByIdAndDelete(
-        //             { _id: context.user._id},
-        //             { $pull: { savedGifts: giftId}},
-        //             { new: true });
-        //         return userData;
-        //     }
-        // }
+        removeGift: async (parent, { giftId }, context) => { //remove a gift
+            if(context.user) {
+                const updateRecipient = await User.findOneAndUpdate(
+                    { _id: context.user._id},
+                    { $pull: { savedGifts: {giftId}}},
+                    { new: true });
+                return updateRecipient;
+            }
+        }
     }
-
 };
 
 module.exports = resolvers;
