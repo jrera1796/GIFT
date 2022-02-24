@@ -16,7 +16,7 @@ const recipientSchema = new Schema(
     traits: {
       type: String,
       required: true,
-      maxlength: 50,
+      maxlength: 150,
       trim: true
     },
     gifts: [giftSchema]
