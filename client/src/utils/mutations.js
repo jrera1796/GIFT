@@ -40,7 +40,39 @@ mutation addRecipient($firstname: String!, $lastname: String!) {
 }
 `;
 
+export const SAVE_GIFT = gql`
+  mutation saveGift($gift: storeGift!) {
+    saveBook(gift: $gift) {
+      _id
+      username
+      email
+      savedGifts {
+        giftId
+        giftname
+        description
+        link
+        image
+        price
+      }
+    }
+  }
+`;
 
-// addRecipient(firstname: String!, lastname: String!): Recipient
-// saveGift(gift: storeGift!): Recipient
-// removeGift(giftId: ID!): Recipient
+export const REMOVE_GIFT = gql`
+  mutation removeGift($giftId: ID!) {
+    removeGift(giftId: $giftId) {
+      _id
+      username
+      email
+      savedGifts {
+        giftId
+        giftname
+        description
+        link
+        image
+        price
+      }
+    }
+  }
+`;
+
