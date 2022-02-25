@@ -1,3 +1,21 @@
+/* color variables for themes */
+:root {
+  --Primary:#2994B8;
+  --Secondary:#ABDFE4;
+
+  --christmas-Primary: #A02929;
+  --christmas-Secondary: #3DA87D;
+
+  --valentine-Primary:#847DC0;
+  --valentine-Secondary:#CA92CA;
+
+  --halloween-Primary:black;
+  --halloween-Secondary:#D58823;
+
+
+
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,6 +24,7 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--Secondary);
 }
 
 .topnav {
@@ -65,7 +84,9 @@ footer{
   bottom: 0;
   height: 100px;
   width: 100%;
-  background-color: #FF8C69;
+  background-color: var(--Primary);
+  font-weight: bolder;
+  font-size: 1.25rem;
   color: white;
   text-align: center;
 }
