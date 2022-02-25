@@ -8,12 +8,11 @@ const giftSchema = new Schema({ //user save gifts for recipient
     required: true,
   },
   giftname: {
-    type: String,
-    required: true,
+    type: String
   },
   description: {
     type: String,
-    trim: true
+    trim: true,
   },
   link: {
     type: String,
