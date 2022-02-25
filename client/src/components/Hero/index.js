@@ -1,33 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Hero = () => {
-  const buttons = document.querySelectorAll("[data-carousel-button]");
+  const [activeIndex, setActiveIndex] = useState(0);
+  const array = ["present1", "valentines1", "christmas1"];
+  function updateIndex(newIndex) {
+    if (newIndex < 0) {
+      newIndex = array.length - 1;
+    } else if (newIndex > array.length - 1) {
+      newIndex = 0;
+    }
+    setActiveIndex(newIndex)
+  };
 
-  buttons.forEach(button => {
-    button.addEventListener("click", () => {
-      const offset = button.dataset.carouselButton === "next" ? 1 : -1
-      const slides = button
-        .closest("[data-carousel]")
-        .querySelector("[data-slides]")
-
-      const activeSlide = slides.querySelector("[data-active]")
-      let newIndex = [...slides.children].indexOf(activeSlide) + offset
-      if (newIndex < 0) newIndex = slides.children.length - 1
-      if (newIndex >= slides.children.length) newIndex = 0
-      slides.children[newIndex].dataset.active = true
-      delete activeSlide.dataset.active
-    })
-  })
   return (
-    <div class="carousel" data-carousel>
-      <button class="carousel-button prev" data-carousel-button="prev">&#8656;</button>
-      <button class="carousel-button next" data-carousel-button="next">&#8658;</button>
+    <div className="carousel" data-carousel>
+      <button className="carousel-button prev" data-carousel-button="prev" onClick={() => { updateIndex(activeIndex - 1) }}>&#8656;</button>
+      <button className="carousel-button next" data-carousel-button="next" onClick={() => { updateIndex(activeIndex + 1) }}>&#8658;</button>
       <ul data-slides>
-        <li class="slide" data-active>
-          <img src={require('../../assets/images/present1.jpeg')} alt="xmas"></img>
-        </li>
-        <li class="slide">
-          <img src={require('../../assets/images/valentines1.jpeg')} alt="xmas"></img>
+        <li>
+          <img alt={array[activeIndex]} src={require(`../../assets/images/${array[activeIndex]}.jpeg`)}></img>
         </li>
       </ul>
     </div>
