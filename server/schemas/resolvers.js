@@ -41,12 +41,12 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
-        saveGift: async (parent, { recipientId, giftId }, context) => { //save a gift
+        saveGift: async (parent, { recipientId, giftData }, context) => { //save a gift
             if(context.user) {
                 const updateRecipient = await Recipient.findByIdAndUpdate(
                     { _id: recipientId},
-                    { $push: { recipients: { savedGifts: gift }}},
-                    { new: true, runValidators: true });
+                    { $push: { savedGifts: giftData, username: context.user.username }},
+                    { new: true });
                 return updateRecipient;
             }
             throw new AuthenticationError('Please Log In.');

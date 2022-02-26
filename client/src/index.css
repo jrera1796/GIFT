@@ -1,3 +1,21 @@
+/* color variables for themes */
+:root {
+  --Primary:#2994B8;
+  --Secondary:#ABDFE4;
+
+  --christmas-Primary: #A02929;
+  --christmas-Secondary: #3DA87D;
+
+  --valentine-Primary:#847DC0;
+  --valentine-Secondary:#CA92CA;
+
+  --halloween-Primary:black;
+  --halloween-Secondary:#D58823;
+
+
+
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,8 +24,9 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--Secondary);
 }
-
+/* Nav */
 .topnav {
   display: flex;
   justify-content: space-between;
@@ -37,7 +56,7 @@ html, body, #app, #app>div {
   background-color: #FF8C69;
   color: white;
 }
-
+/* Section */
 section{
   display: flex;
   flex-direction: row;
@@ -58,14 +77,69 @@ height: 150px;
   height: 100vh;
   width: 100px;
 }
-
+/* Footer */ 
 footer{
   position: fixed;
   left: 0;
   bottom: 0;
   height: 100px;
   width: 100%;
-  background-color: #FF8C69;
+  background-color: var(--Primary);
+  font-weight: bolder;
+  font-size: 1.25rem;
   color: white;
   text-align: center;
+}
+
+/* Hero Carousel Things*/
+.carousel{
+  width: 100%;
+  height: 50vh;
+  position: relative;
+  margin-top: 3%;
+}
+
+.carousel > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.carousel > ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.carousel-button {
+  position: absolute;
+  /* opacity: 0; */
+  background: none;
+  z-index: 2;
+  border: none;
+  font-size: 4rem;
+  top: 50%;
+  width: 50%;
+  height: 100%;
+  transform: translateY(-50%);
+  color: rgb(255, 255, 255, .5);
+  border-radius: .25rem;
+  padding: 0 .5rem;
+  /* background-color: rgba(0, 0, 0, .1); */
+}
+
+/* .carousel-button:hover{
+  color: white;
+  background-color: rgba(0, 0, 0, .05);
+} */
+
+/* .carousel-button:focus{
+  outline: 1px solid black;
+} */
+.carousel-button.prev{
+  left: 1rem;;
+}
+.carousel-button.next{
+  right: 1rem;;
 }
