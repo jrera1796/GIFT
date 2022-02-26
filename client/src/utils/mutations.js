@@ -27,7 +27,7 @@ export const ADD_USER = gql`
 
 export const ADD_RECIPIENT = gql `
 mutation addRecipient($traits: String!, $lastname: String!, $firstname: String!) {
-  addRecipient(traits: $traits) {
+  addRecipient(traits: $traits, lastname: $lastname, firstname: $firstname) {
     _id
      traits
     lastname
@@ -42,7 +42,7 @@ mutation addRecipient($traits: String!, $lastname: String!, $firstname: String!)
 
 export const SAVE_GIFT = gql`
   mutation saveGift($recipientId: String!, $giftData: storeGift!) {
-    saveGift(giftData: $giftData) {
+    saveGift(recipientId: $recipientId, giftData: $giftData) {
       _id
       username
       email
