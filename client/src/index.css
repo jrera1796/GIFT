@@ -28,11 +28,13 @@ body {
 }
 
 .topnav {
+  line-height: 3;
   display: flex;
   justify-content: space-between;
   background-color: #333;
   overflow: hidden;
   list-style-type: none;
+  padding-right: 10px;
 
 }
 html, body, #app, #app>div {
@@ -55,6 +57,8 @@ html, body, #app, #app>div {
 .topnav a.active {
   background-color: #FF8C69;
   color: white;
+  padding-right: 20px;
+  padding-left: 10px;
 }
 
 section{
@@ -149,4 +153,12 @@ transition-delay: 200ms;
 }
 .carousel-button.next{
   right: 1rem;;
+}
+
+
+/* Mobile Responsive */
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
 }
