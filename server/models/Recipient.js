@@ -17,7 +17,7 @@ const recipientSchema = new Schema(
       required: true,
       trim: true
     },
-    gifts: [giftSchema]
+    savedGifts: [giftSchema]
   },
   {
     toJSON: {

@@ -41,8 +41,8 @@ mutation addRecipient($traits: String!, $lastname: String!, $firstname: String!)
 `;
 
 export const SAVE_GIFT = gql`
-  mutation saveGift($gift: storeGift!) {
-    saveGift(gift: $gift) {
+  mutation saveGift($recipientId: String!, $giftData: storeGift!) {
+    saveGift(giftData: $giftData) {
       _id
       username
       email

@@ -15,7 +15,7 @@ const typeDefs = gql`
     lastname: String
     firstname: String
     giftCount: Int
-    gifts: [Gift]
+    savedGifts: [Gift]
   }
 
   type Gift {
@@ -54,7 +54,7 @@ const typeDefs = gql`
     loginUser(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addRecipient(traits: String, lastname: String!, firstname: String!): Recipient
-    saveGift(gift: storeGift!): Recipient
+    saveGift(recipientId: String!, giftData: storeGift!): Recipient
     removeGift(giftId: ID!): Recipient
   }
 `;
