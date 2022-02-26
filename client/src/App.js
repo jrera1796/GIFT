@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Singup';
+import SearchPage from './pages/SearchPage'
 import NoMatch from './pages/NoMatch';
 
 import 'bulma/css/bulma.css';
@@ -39,6 +40,7 @@ function App() {
 				<Route exact path="/" component={Home} />
 				<Route exact path="/login" component={Login} />
 				<Route exact path="/signup" component={Signup} />
+				<Route exact path="/search" component={SearchPage}/>
 				<Route component={NoMatch} />
 			  </Switch>
 			</div>
