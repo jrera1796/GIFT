@@ -20,11 +20,12 @@ const Header = () => {
               <a href="/" onClick={logout}>
                 Logout
               </a>
+              <a href="/search">GiftSearch</a>
             </>
           ) : (
             <>
               <Link to="/login">Login/Signup</Link>
-              <Link to="/search">GiftIdeas</Link>
+              <Link to="/search">GiftSearch</Link>
             </>
           )}
         </nav>
