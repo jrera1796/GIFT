@@ -21,7 +21,7 @@ const SignupForm = () => {
   };
 
   const handleFormSubmit = async (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
     const form = event.currentTarget; //check form (as per react-bootstrap docs)
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -34,6 +34,30 @@ const SignupForm = () => {
     } catch (err) { console.error(err); }
     setUserFormData({ username: '', email: '', password: '', }); //set values to empty
   };
+
+  const checkReq = (inputReq) => { 
+    switch (inputReq) {
+      case 'username':
+        if (userFormData.username.length <= 0) {
+          return (<Form.Control.Feedback type='invalid'>Username is required!</Form.Control.Feedback>);
+        }
+        break;
+      case 'email':
+        if (userFormData.email.length <= 0) {
+          return (<Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>);
+        }
+        break;
+      case 'password':
+        if (userFormData.password.length <= 0) {
+          return (<Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>);
+        }
+        break;
+      default:
+        break;
+    }
+
+  }
+
 
   return (
     <>
@@ -55,7 +79,7 @@ const SignupForm = () => {
             value={userFormData.username}
             required
           />
-          <Form.Control.Feedback type='invalid'>Username is required!</Form.Control.Feedback>
+          {checkReq ('username')}
         </Form.Group>
 
         <Form.Group>
@@ -68,7 +92,7 @@ const SignupForm = () => {
             value={userFormData.email}
             required
           />
-          <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
+          {checkReq ('email')}
         </Form.Group>
 
         <Form.Group>
@@ -81,7 +105,7 @@ const SignupForm = () => {
             value={userFormData.password}
             required
           />
-          <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
+           {checkReq ('password')}
         </Form.Group>
         <Button
           className='button is-small is-success mt-2'

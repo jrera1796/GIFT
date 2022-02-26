@@ -51,10 +51,10 @@ const resolvers = {
             }
             throw new AuthenticationError('Please Log In.');
         },
-        removeGift: async (parent, { giftId }, context) => { //remove a gift
+        removeGift: async (parent, { recipientId, giftId }, context) => { //remove a gift
             if(context.user) {
-                const updateRecipient = await User.findOneAndUpdate(
-                    { _id: context.user._id},
+                const updateRecipient = await Recipient.findByIdAndUpdate(
+                    { _id: recipientId},
                     { $pull: { savedGifts: {giftId}}},
                     { new: true });
                 return updateRecipient;

@@ -9,8 +9,9 @@ import Footer from './components/Footer';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Signup from './pages/Singup';
+
 import SearchPage from './pages/SearchPage'
+import Signup from './pages/Signup';
 import NoMatch from './pages/NoMatch';
 
 import 'bulma/css/bulma.css';
