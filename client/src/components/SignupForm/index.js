@@ -38,7 +38,7 @@ const SignupForm = () => {
   return (
     <>
       {/* This is needed for the validation functionality above */}
-      <div>
+      <div className='box column is-4 mt-5 ml-3 pt-3 pb-3 has-background-dark'>
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         {/* show alert if server response is bad */}
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='warning'>
@@ -46,7 +46,7 @@ const SignupForm = () => {
         </Alert>
 
         <Form.Group>
-          <Form.Label htmlFor='username'>Username</Form.Label>
+          <Form.Label htmlFor='username'>Username: </Form.Label>
           <Form.Control
             type='text'
             placeholder='Your username'
@@ -59,7 +59,7 @@ const SignupForm = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor='email'>Email</Form.Label>
+          <Form.Label htmlFor='email'>Email: </Form.Label>
           <Form.Control
             type='email'
             placeholder='Your email address'
@@ -72,7 +72,7 @@ const SignupForm = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor='password'>Password</Form.Label>
+          <Form.Label htmlFor='password'>Password: </Form.Label>
           <Form.Control
             type='password'
             placeholder='Your password'
@@ -84,7 +84,7 @@ const SignupForm = () => {
           <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
         </Form.Group>
         <Button
-          
+          className='button is-small is-success mt-2'
           disabled={!(userFormData.username && userFormData.email && userFormData.password)}
           type='submit'
           variant='success'>
