@@ -15,7 +15,7 @@ const Header = () => {
         <a className="active" href="/"> GIFT</a>
           {Auth.loggedIn() ? (
             <>
-              <Link to="/profile">Me</Link>
+              <Link to="/dashboard">Dashboard</Link>
              
               <a href="/" onClick={logout}>
                 Logout
