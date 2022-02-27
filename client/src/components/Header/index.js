@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth';
 
 const Header = () => {
-  const logout = event => {
-    event.preventDefault();
-    Auth.logout();
-  };
+	const logout = event => {
+		event.preventDefault();
+		Auth.logout();
+	};
 
   return (
     <header>
@@ -24,7 +24,7 @@ const Header = () => {
           </>
         ) : (
           <>
-            <div>
+            <div className='nav-options has-text-weight-bold'>
               <Link to="/search" className='ml-3 mr-3'>GiftSearch</Link>
               <Link to="/test" className='ml-3 mr-3'>Personality Test</Link>
               <Link to="/login" className='ml-3 mr-3'>Login</Link>

@@ -36,7 +36,6 @@ const categories = [
   { 'Toys & Games': 165795011 },
   { 'Vehicles': 10677470011 },
   { 'Video Games': 11846801 }
-
 ]
 
 const searchProducts = function (category, keyword) {

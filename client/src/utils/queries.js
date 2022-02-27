@@ -9,3 +9,14 @@ export const GET_USER = gql`
     }
   }
 `;
+
+
+export const GET_RECIPIENT = gql`
+  {
+    me {
+      _id
+      username
+      email
+    }
+  }
+`;
