@@ -11,8 +11,8 @@ const Header = () => {
 
   return (
     <header>
-      <nav className="topnav">
-        <a className="active" href="/"> GIFT</a>
+      <nav className="topnav">        
+        <a className="active" href="/"> GIFT</a>        
         {Auth.loggedIn() ? (
           <>
             <Link to="/profile">Me</Link>
@@ -24,10 +24,12 @@ const Header = () => {
           </>
         ) : (
           <>
-            <Link to="/search">GiftSearch</Link>
-            <Link to="/test">Personality Test</Link>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Signup</Link>
+            <div>
+              <Link to="/search" className='ml-3 mr-3'>GiftSearch</Link>
+              <Link to="/test" className='ml-3 mr-3'>Personality Test</Link>
+              <Link to="/login" className='ml-3 mr-3'>Login</Link>
+              <Link to="/signup" className='ml-3 mr-3'>Signup</Link>
+            </div>
           </>
         )}
       </nav>
