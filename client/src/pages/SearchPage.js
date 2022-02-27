@@ -34,6 +34,17 @@ import 'bulma/css/bulma.css';
 
 const SearchPage = () => {
 
+  const [showResults, setShowResults] = useState(false)
+  const [toggleLoading, setToggleLoading] = useState(false)
+
+  function loadingScreen() {
+    if (toggleLoading === true) {
+      setToggleLoading(true)
+    } else {
+      console.log('Loading results')
+    }
+  }
+
   function searchMore(keywords, category) { return searchProducts(keywords, category) };
   const [searchGift, setSearchGift] = useState('');
   const [searchGiftCategory, setSearchGiftCategory] = useState(1000);
@@ -43,7 +54,9 @@ const SearchPage = () => {
     event.preventDefault();
 
     try {
+      setToggleLoading(true); loadingScreen()
       const data = await searchMore(searchGift, searchGiftCategory);
+      setShowResults(true);
       setSearchedData(data);
       setSearchGift('');
       setSearchGiftCategory(1000)
@@ -81,8 +94,8 @@ const SearchPage = () => {
                 placeholder='Search by Category'
               >
                 <option defaultValue={1000}>Search by category</option>
-                {/* {categories.map(({ key, value }) => (
-                  <option key={value} value={value}>{key}</option>
+                {/* {categories.map((c) => (
+                  <option key={c.value} value={value}>{key}</option>
                 ))} */}
                 {/* Can't get this to display */}
               </select>
@@ -95,45 +108,52 @@ const SearchPage = () => {
           </div>
         </form>
       </div>
-
-      <div className='container card-grid results'>
-        {searchedData.map((netData) => (
-          <div key={netData.asin} className="card card-max-height">
-            <div className="card-image">
-              <figure className="image is-half">
-                <img src={netData.image} alt={netData.asin} />
-              </figure>
-            </div>
-            <div className="card-content">
-              <div className="media">
-                <div className="media-content">
-                  <p className="title is-4">{netData.title}</p>
+      {showResults ? (
+        <div className='container card-grid results'>
+          {searchedData.map((netData) => (
+            <div key={netData.asin} className="card card-max-height">
+              <div className="card-image">
+                <figure className="image is-half">
+                  <img src={netData.image} alt={netData.asin} />
+                </figure>
+              </div>
+              <div className="card-content">
+                <div className="media">
+                  <div className="media-content">
+                    <p className="title is-4">{netData.title}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="card-footer">
-                <p className="card-footer-item">
-                  <span>
-                    View on <a href={netData.link}>Amazon</a>
-                  </span>
-                </p>
-                {Auth.loggedIn() ? (<p class="card-footer-item">
-                  <button className='button is-medium'>
-                    Save
-                  </button>
-                </p>
-                ) : (
-                  <></>
-                )}
-              </div>
+                <div className="card-footer">
+                  <p className="card-footer-item">
+                    <span>
+                      View on <a href={netData.link}>Amazon</a>
+                    </span>
+                  </p>
+                  {Auth.loggedIn() ? (<p class="card-footer-item">
+                    <button className='button is-medium'>
+                      Save
+                    </button>
+                  </p>
+                  ) : (
+                    <></>
+                  )}
+                </div>
 
+              </div>
             </div>
-          </div>
 
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <>
+          {toggleLoading ? (
+            <div className="loader">I'm Loading</div>
+          ) : (
+            <></>
+          )}
+        </>
+      )}
     </div>
-
-
   )
 }
 

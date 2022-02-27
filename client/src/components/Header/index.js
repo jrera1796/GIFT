@@ -11,24 +11,26 @@ const Header = () => {
 
   return (
     <header>
-        <nav className="topnav">
+      <nav className="topnav">
         <a className="active" href="/"> GIFT</a>
-          {Auth.loggedIn() ? (
-            <>
-              <Link to="/dashboard">Dashboard</Link>
-             
-              <a href="/" onClick={logout}>
-                Logout
-              </a>
-              <a href="/search">GiftSearch</a>
-            </>
-          ) : (
-            <>
-              <Link to="/login">Login/Signup</Link>
-              <Link to="/search">GiftSearch</Link>
-            </>
-          )}
-        </nav>
+        {Auth.loggedIn() ? (
+          <>
+            <Link to="/profile">Me</Link>
+
+            <a href="/" onClick={logout}>
+              Logout
+            </a>
+            <a href="/search">GiftSearch</a>
+          </>
+        ) : (
+          <>
+            <Link to="/search">GiftSearch</Link>
+            <Link to="/test">Personality Test</Link>
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Signup</Link>
+          </>
+        )}
+      </nav>
     </header>
   );
 };
