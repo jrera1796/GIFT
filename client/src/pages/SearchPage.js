@@ -94,8 +94,8 @@ const SearchPage = () => {
                 placeholder='Search by Category'
               >
                 <option defaultValue={1000}>Search by category</option>
-                {/* {categories.map(({ key, value }) => (
-                  <option key={value} value={value}>{key}</option>
+                {/* {categories.map((c) => (
+                  <option key={c.value} value={value}>{key}</option>
                 ))} */}
                 {/* Can't get this to display */}
               </select>

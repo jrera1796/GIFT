@@ -42,7 +42,7 @@ const axios = require('axios');
 const searchProducts = function (keyword, category) {
 
   const params = {
-    api_key: "API_KEY" ,// .env isn't working
+    api_key: "",// .env isn't working
     type: "search",
     category_id: category,
     amazon_domain: "amazon.com",
