@@ -37,9 +37,9 @@ export default function Dashboard() {
 				<label>Last Name:</label>
 				<input
 					className="input"
-					type="email"
-					type="email"
-					name="email"
+					type="text"
+					type="text"
+					name="name"
 					defaultValue={lastName}
 				/>
 			</div>
