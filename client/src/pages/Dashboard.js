@@ -8,20 +8,26 @@ export default function Dashboard() {
 	const { loading, data } = useQuery(GET_USER); //useQuery Hook exe. GET_ME to save+load userData
 	const UserData = data?.me || {};
 	const [addRecipient, { error }] = useMutation(ADD_RECIPIENT);
-	const [errorMessage, setErrorMessage] = useState('');
-	const [formState, setFormState] = useState({
+	const [userFormData, setUserFormData] = useState({
+		traits: 'test',
+		lastName: '',
 		firstName: '',
-		lastName: ''
 	});
-	const { firstName, lastName } = formState;
-	const handleSubmit = e => {
+
+	const handleSubmit = async e => {
 		e.preventDefault();
-		if (!errorMessage) {
-			console.log('Submit Form', formState);
+		try {
+			//wait for a response from addUser for data
+			const { data } = await addRecipient({ variables: { ...userFormData } });
+			Auth.login(data.addUser.token); //token given to the new user (addUser)
+		} catch (err) {
+			console.error(err);
 		}
+		setUserFormData({ traits: '', lastName: '', firstName: '' }); //set values to empty
 	};
 
 	return (
+		<>
 		<form onSubmit={handleSubmit}>
 			<div>
 				<label>First Name:</label>
@@ -30,7 +36,7 @@ export default function Dashboard() {
 					type="text"
 					type="text"
 					name="name"
-					defaultValue={firstName}
+					defaultValue={setUserFormData.firstName}
 				/>
 			</div>
 			<div>
@@ -40,7 +46,7 @@ export default function Dashboard() {
 					type="text"
 					type="text"
 					name="name"
-					defaultValue={lastName}
+					defaultValue={setUserFormData.lastName}
 				/>
 			</div>
 			<br></br>
@@ -48,6 +54,10 @@ export default function Dashboard() {
 				Submit
 			</button>
 		</form>
+		<section>
+		
+		</section>
+		</>
 	);
 }
 
