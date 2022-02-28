@@ -17,7 +17,7 @@ export const GET_ME = gql`
 			username
 			email
 			recipientCount
-			recipients{
+			recipients {
 				_id
 				lastname
 				firstname
@@ -26,10 +26,9 @@ export const GET_ME = gql`
 	}
 `;
 
-
 export const GET_RECIPIENTS = gql`
-	query recipients($username: String) {
-		recipients(username: $username) {
+	query recipients($_id: ID!) {
+		recipients(_id: $_id) {
 			_id
 			traits
 			lastname
