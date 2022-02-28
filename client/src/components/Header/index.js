@@ -17,12 +17,14 @@ const Header = () => {
 				</a>
 				{Auth.loggedIn() ? (
 					<>
-						<Link to="/dashboard">Dashboard</Link>
+            <div className="nav-options has-text-weight-bold">
+              <Link to="/dashboard" className="ml-3 mr-3">Dashboard</Link>
 
-						<a href="/" onClick={logout}>
-							Logout
-						</a>
-						<a href="/search">GiftSearch</a>
+              <a href="/" onClick={logout} className="ml-3 mr-3">
+                Logout
+              </a>
+              <a href="/search" className="ml-3 mr-3">GiftSearch</a>
+            </div>
 					</>
 				) : (
 					<>
