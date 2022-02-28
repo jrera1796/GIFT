@@ -5,11 +5,11 @@ import RecipientList from '../components/RecipientList';
 
 import { ADD_RECIPIENT } from '../utils/mutations';
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_ME, GET_RECIPIENTS } from '../utils/queries';
+import { GET_USER, GET_RECIPIENTS } from '../utils/queries';
 import Auth from '../utils/auth';
 
 export default function Dashboard() {
-	const { loading, data } = useQuery(GET_ME);
+	const { loading, data } = useQuery(GET_USER);
 	const [userFormData, setUserFormData] = useState({
 		traits: 'test',
 		lastname: 'last',
@@ -31,9 +31,9 @@ export default function Dashboard() {
 			}
 
 			// update me object's cache
-			const { me } = cache.readQuery({ query: GET_ME });
+			const { me } = cache.readQuery({ query: GET_USER });
 			cache.writeQuery({
-				query: GET_ME,
+				query: GET_USER,
 				data: { me: { ...me, recipients: [...me.recipients, addRecipient] } },
 			});
 		},
@@ -42,10 +42,11 @@ export default function Dashboard() {
 	const handleSubmit = async e => {
 		e.preventDefault();
 		try {
-			const { data } = await addRecipient({ variables: { userFormData } });
-			Auth.login(data.addRecipient.token);
+			const { data } = await addRecipient({ variables: { ...userFormData } });
+			console(data);
+			// Auth.login(data.addRecipient.token);
 		} catch (err) {
-			console.error(err);
+			console.log(err);
 		}
 		setUserFormData({ traits: '', lastname: '', firstname: '' }); //set values to empty
 	};

@@ -26,16 +26,12 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_RECIPIENT = gql `
-mutation addRecipient($traits: String, $lastname: String!, $firstname: String!) {
-  addRecipient(traits: $traits, lastname: $lastname, firstname: $firstname) {
+mutation addRecipient($firstname: String!, $lastname: String!, $traits: String!) {
+  addRecipient(firstname: $firstname, lastname: $lastname, traits: $traits) {
     _id
      traits
     lastname
     firstname
-    giftCount
-    gifts {
-      _id
-    }
   }
 }
 `;

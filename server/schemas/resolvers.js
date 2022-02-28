@@ -28,12 +28,12 @@ const resolvers = {
 				.populate('friends')
 				.populate('thoughts');
 		},
-		recipients: async (parent, { username }) => {
-			const params = username ? { username } : {};
-			return Thought.find(params).sort({ createdAt: -1 });
+		recipients: async (parent, { _id}) => {
+			const params = _id ? { _id } : {};
+			return Recipient.find(params);
 		},
 		recipient: async (parent, { _id }) => {
-			return Thought.findOne({ _id });
+			return Recipient.findOne({ _id });
 		},
 	},
 	Mutation: {

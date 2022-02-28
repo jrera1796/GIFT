@@ -46,14 +46,14 @@ const typeDefs = gql`
     me: User
     users: [User]
     user(username: String!): User
-    recipients(traits: String): [Recipient]
+    recipients(_id: ID!): [Recipient]
     recipient(_id: ID!): Recipient
   }
 
   type Mutation {
     loginUser(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addRecipient(traits: String, lastname: String!, firstname: String!): Recipient
+    addRecipient(firstname: String!, lastname: String!, traits: String!): Recipient
     saveGift(recipientId: String!, giftData: storeGift!): Recipient
     removeGift(recipientId: String!, giftId: String!): Recipient
   }
