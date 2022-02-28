@@ -6,6 +6,7 @@ import 'bulma/css/bulma.css';
 
 
 export default function PersonalityTest() {
+	
 	const [userFormData, setUserFormData] = useState({
 		traitOne: '', traitTwo: '', traitThree: '', traiFour: ''
 	}); //init state form
@@ -31,14 +32,16 @@ export default function PersonalityTest() {
 		}
 	}
 
-	const [name, setName] = useState('');
-	const [traits, setTraits] = useState('');
-	const [blah, setBlah] = useState(false);
+
+	const [traitOne, setTraitOne] = useState('');
+	const [traitTwo, setTraitTwo] = useState('');
+	const [traitThree, setTraitThree] = useState('');
+	const [traitFour, setTraitFour] = useState('');
 
 	function testResult(e)
 	{
 		e.preventDefault()
-		console.warn("all data", name, traits, blah)
+		console.warn("all data", traitOne, traitTwo, traitThree, traitFour)
 	}
 
 
@@ -47,13 +50,41 @@ export default function PersonalityTest() {
 		<>
 			<h1>Your Personality Test</h1>
 			<form onSubmit={testResult}>
-				<input type="text" placeholder='Enter result' onChange={(e) => setName(e.target.value)}/> <br /> < br />
-				<select onChange={(e) => setTraits(e.target.value)}>
-					<option>Introverted</option>
-					<option>Extroverted</option>
+				<p>Is your recipient introverted or extroverted?</p>
+				<select onChange={(e) => setTraitOne(e.target.value)}>
+					<option>Introverted: Shy, Reserve, Passive</option>
+					<option>Extroverted: Social, Outgoing </option>
 				</select> <br />
-				<input type="checkbox" onChange={(e) => setBlah(e.target.checked)}/> <span> Afdsfsdfsdfsdfsdfsdfsdfsd</span> <br /> <br />
-				<button type="submit ">Submit</button>
+
+				<p>Is your recipient intutitive or observant?</p>
+				<select onChange={(e) => setTraitTwo(e.target.value)}>
+					<option>Intutitive: using imagination or seeking new ideas</option>
+					<option>observant: in touch with present, the here and now</option>
+				</select> <br />
+
+				<p>Is your recipient feeling ( ) or thinking ()?</p>
+				<select onChange={(e) => setTraitThree(e.target.value)}>
+					<option>feeling</option>
+					<option>thinking</option>
+				</select> <br />
+
+				<p>Is your recipient judging ( ) or prospecting ()?</p>
+				<select onChange={(e) => setTraitFour(e.target.value)}>
+					<option>prospecting</option>
+					<option>judging</option>
+				</select> <br />
+
+
+
+				{/* <input type="checkbox" onChange={(e) => setBlah(e.target.checked)}/> <span> Afdsfsdfsdfsdfsdfsdfsdfsd</span> <br /> <br /> */}
+				{/* <button type="submit ">Submit</button> */}
+				<Button
+						className='button is-small is-success mt-2'
+						// disabled={!(userFormData.username && userFormData.email && userFormData.password)}
+						type='submit'
+						variant='success'>
+						Submit
+					</Button>
 			</form>
 
 			{/* This is needed for the validation functionality above */}
