@@ -16,48 +16,39 @@ export default function Dashboard() {
 		firstname: 'first',
 	});
 	const user = data?.me || {};
-	console.log(data);
 	const [addRecipient, { error }] = useMutation(ADD_RECIPIENT, {
-		update(cache, { data: { addThought } }) {
-		  try {
-			// update thought array's cache
-			// could potentially not exist yet, so wrap in a try/catch
-			const { recipients } = cache.readQuery({ query: GET_RECIPIENTS });
+		update(cache, { data: { addRecipient } }) {
+			try {
+				// update thought array's cache
+				// could potentially not exist yet, so wrap in a try/catch
+				const { recipients } = cache.readQuery({ query: GET_RECIPIENTS });
+				cache.writeQuery({
+					query: GET_RECIPIENTS,
+					data: { recipients: [addRecipient, ...recipients] },
+				});
+			} catch (e) {
+				console.error(e);
+			}
+
+			// update me object's cache
+			const { me } = cache.readQuery({ query: GET_ME });
 			cache.writeQuery({
-			  query: GET_RECIPIENTS,
-			  data: { recipients: [addRecipient, ...recipients] },
+				query: GET_ME,
+				data: { me: { ...me, recipients: [...me.recipients, addRecipient] } },
 			});
-		  } catch (e) {
-			console.error(e);
-		  }
-	
-		  // update me object's cache
-		  const { me } = cache.readQuery({ query: GET_ME });
-		  cache.writeQuery({
-			query:GET_ME,
-			data: { me: { ...me, recipients: [...me.recipients, addRecipient] } },
-		  });
 		},
-	  });
-
-
-
-
-
+	});
 
 	const handleSubmit = async e => {
 		e.preventDefault();
-		console.log(userFormData);
 		try {
-			const { data } = await addRecipient({ variables: { ...userFormData } });
+			const { data } = await addRecipient({ variables: { userFormData } });
 			Auth.login(data.addRecipient.token);
 		} catch (err) {
 			console.error(err);
 		}
 		setUserFormData({ traits: '', lastname: '', firstname: '' }); //set values to empty
 	};
-
-	
 
 	if (loading) {
 		return <div>Loading...</div>;

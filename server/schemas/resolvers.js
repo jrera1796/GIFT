@@ -7,16 +7,33 @@ const resolvers = {
 		//get the user
 		me: async (parent, args, context) => {
 			if (context.user) {
-				console.log('context', context.user);
-				const userData = await User.findOne({ _id: context.user._id }).select(
-					'-__v -password'
-				);
-				// .populate('recipients')
-				// .populate('gifts');
-				console.log(userData);
+				const userData = await User.findOne({ _id: context.user._id })
+					.select('-__v -password')
+					.populate('thoughts')
+					.populate('friends');
+
 				return userData;
 			}
 			throw new AuthenticationError('User Not Logged In');
+		},
+		users: async () => {
+			return User.find()
+				.select('-__v -password')
+				.populate('thoughts')
+				.populate('friends');
+		},
+		user: async (parent, { username }) => {
+			return User.findOne({ username })
+				.select('-__v -password')
+				.populate('friends')
+				.populate('thoughts');
+		},
+		recipients: async (parent, { username }) => {
+			const params = username ? { username } : {};
+			return Thought.find(params).sort({ createdAt: -1 });
+		},
+		recipient: async (parent, { _id }) => {
+			return Thought.findOne({ _id });
 		},
 	},
 	Mutation: {
@@ -40,6 +57,7 @@ const resolvers = {
 			return { token, user };
 		},
 		addRecipient: async (parent, args, context) => {
+			console.log('trying to addRecipeint');
 			if (context.user) {
 				const recipient = await Recipient.create({
 					...args,
