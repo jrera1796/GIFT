@@ -16,11 +16,18 @@ export const GET_ME = gql`
 			_id
 			username
 			email
+			recipientCount
+			recipients{
+				_id
+				lastname
+				firstname
+			}
 		}
 	}
 `;
 
-export const QUERY_RECIPIENTS = gql`
+
+export const GET_RECIPIENTS = gql`
 	query recipients($username: String) {
 		recipients(username: $username) {
 			_id

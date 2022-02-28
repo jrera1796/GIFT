@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
+
+import RecipientList from '../components/RecipientList';
+
+
 import { ADD_RECIPIENT } from '../utils/mutations';
 import { useQuery, useMutation } from '@apollo/client';
+import { GET_ME, GET_RECIPIENTS } from '../utils/queries';
 import Auth from '../utils/auth';
-import { GET_ME, QUERY_RECIPIENTS } from '../utils/queries';
 
 export default function Dashboard() {
 	const { username: userParam } = useParams();
@@ -17,45 +21,44 @@ export default function Dashboard() {
 	});
 	const user = data?.me || data?.user || {};
 
-	const [addRecipient, { error }] = useMutation(ADD_RECIPIENT, {
-		update(cache, { data: { addRecipient } }) {
-			try {
-				// update thought array's cache
-				// could potentially not exist yet, so wrap in a try/catch
-				const { recipients } = cache.readQuery({ query: QUERY_RECIPIENTS });
-				cache.writeQuery({
-					query: QUERY_RECIPIENTS,
-					data: { recipients: [addRecipient, ...recipients] },
-				});
-			} catch (e) {
-				console.error(e);
-			}
+	// const [addRecipient, { error }] = useMutation(ADD_RECIPIENT, {
+	// 	update(cache, { data: { addRecipient } }) {
+	// 		try {
+	// 			// update thought array's cache
+	// 			// could potentially not exist yet, so wrap in a try/catch
+	// 			const { recipients } = cache.readQuery({ query: GET_RECIPIENTS });
+	// 			cache.writeQuery({
+	// 				query: GET_RECIPIENTS,
+	// 				data: { recipients: [addRecipient, ...recipients] },
+	// 			});
+	// 		} catch (e) {
+	// 			console.error(e);
+	// 		}
 
-			// update me object's cache
-			const { me } = cache.readQuery({ query: GET_ME });
-			cache.writeQuery({
-				query: GET_ME,
-				data: { me: { ...me, recipients: [...me.recipients, addRecipient] } },
-			});
-		},
-	});
-
+	// 		// update me object's cache
+	// 		const { me } = cache.readQuery({ query: GET_ME });
+	// 		cache.writeQuery({
+	// 			query: GET_ME,
+	// 			data: { me: { ...me, recipients: [...me.recipients, addRecipient] } },
+	// 		});
+	// 	},
+	// });
+	const [addRecipient, { error }] = useMutation(ADD_RECIPIENT);
+	console.log(user)
 	const handleSubmit = async e => {
 		e.preventDefault();
 		try {
-			//wait for a response from addUser for data
-			const { user } = await addRecipient({ variables: { ...userFormData } });
-			Auth.login(data.addUser.token); //token given to the new user (addUser)
+			const {data} = await addRecipient({ variables: { ...userFormData } });
+			Auth.login(data.addRecipient.token)
 		} catch (err) {
 			console.error(err);
 		}
-		setUserFormData({ traits: '', lastName: '', firstName: '' }); //set values to empty
+		setUserFormData({ traits: '', lastname: '', firstname: '' }); //set values to empty
 	};
 
 	if (loading) {
 		return <div>Loading...</div>;
 	}
-	// console.log(user);
 
 	if (!user?.username) {
 		return (
@@ -65,7 +68,6 @@ export default function Dashboard() {
 			</h4>
 		);
 	}
-
 	return (
 		<>
 			<h2 className="bg-dark text-secondary p-3 display-inline-block">
@@ -101,7 +103,13 @@ export default function Dashboard() {
 					Submit
 				</button>
 			</form>
-			<section></section>
+			<div className="col-12 col-lg-3 mb-3">
+					<RecipientList
+						username={user.username}
+						recipientsCount={user.recipientsCount}
+						recipients={user.recipients}
+					/>
+				</div>
 		</>
 	);
 }
