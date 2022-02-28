@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button, Alert, Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 
 import 'bulma/css/bulma.css';
-
-
+import LoginForm from '../components/LoginForm';
+import SignUpForm from '../components/SignupForm';
 export default function PersonalityTest() {
-	
+	const [showModal, setShowModal] = useState(false);
 	const [userFormData, setUserFormData] = useState({
 		traitOne: '', traitTwo: '', traitThree: '', traiFour: ''
 	}); //init state form
@@ -41,7 +41,7 @@ export default function PersonalityTest() {
 	function testResult(e)
 	{
 		e.preventDefault()
-		console.warn("all data", traitOne, traitTwo, traitThree, traitFour)
+		console.log("all data", traitOne, traitTwo, traitThree, traitFour);
 	}
 
 
@@ -49,29 +49,30 @@ export default function PersonalityTest() {
 	return (
 		<>
 			<h1>Your Personality Test</h1>
-			<form onSubmit={testResult}>
-				<p>Is your recipient introverted or extroverted?</p>
+			<Form className='box column is-4 mt-5 ml-3 pt-3 pb-3 has-background-light' onSubmit={testResult}>
+				<p>Is your recipient introverted (I) or extroverted (E)?</p>
+				
 				<select onChange={(e) => setTraitOne(e.target.value)}>
-					<option>Introverted: Shy, Reserve, Passive</option>
-					<option>Extroverted: Social, Outgoing </option>
+					<option value='I'>Introverted: Private, Reserve, Passive</option>
+					<option value='E'>Extroverted: Social, Talkative, Assertive </option>
 				</select> <br />
 
-				<p>Is your recipient intutitive or observant?</p>
+				<p>Is your recipient intutitive (N) or observant (S)?</p>
 				<select onChange={(e) => setTraitTwo(e.target.value)}>
-					<option>Intutitive: using imagination or seeking new ideas</option>
-					<option>observant: in touch with present, the here and now</option>
+					<option value='N'>Intutitive: Imaginative, Inventive, Idealistic</option>
+					<option value='S'>Observant: Practical, Factual, Realistic</option>
 				</select> <br />
 
-				<p>Is your recipient feeling ( ) or thinking ()?</p>
+				<p>Is your recipient feeling (F) or thinking (T)?</p>
 				<select onChange={(e) => setTraitThree(e.target.value)}>
-					<option>feeling</option>
-					<option>thinking</option>
+					<option value='F'>Feeling: Empathetic, Passionate, Caring</option>
+					<option value='T'>Thinking: Logical, Objective, Rational</option>
 				</select> <br />
 
-				<p>Is your recipient judging ( ) or prospecting ()?</p>
+				<p>Is your recipient judging (J) or prospecting (P)?</p>
 				<select onChange={(e) => setTraitFour(e.target.value)}>
-					<option>prospecting</option>
-					<option>judging</option>
+					<option value='P'>Prospecting: Relaxed, Spontaneous, Flexible</option>
+					<option value='J'>Judging: Decisive, Structured, Organized</option>
 				</select> <br />
 
 
@@ -85,8 +86,39 @@ export default function PersonalityTest() {
 						variant='success'>
 						Submit
 					</Button>
-			</form>
-
+			</Form>
+			set modal data up
+      <Modal
+        size='lg'
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        aria-labelledby='signup-modal'>
+        {/* tab container to do either signup or login component */}
+        <Tab.Container defaultActiveKey='login'>
+          <Modal.Header closeButton>
+            <Modal.Title id='signup-modal'>
+              <Nav variant='pills'>
+                <Nav.Item>
+                  <Nav.Link eventKey='login'>Login</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey='signup'>Sign Up</Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Tab.Content>
+              <Tab.Pane eventKey='login'>
+                <LoginForm handleModalClose={() => setShowModal(false)} />
+              </Tab.Pane>
+              <Tab.Pane eventKey='signup'>
+                <SignUpForm handleModalClose={() => setShowModal(false)} />
+              </Tab.Pane>
+            </Tab.Content>
+          </Modal.Body>
+        </Tab.Container>
+      </Modal>
 			{/* This is needed for the validation functionality above */}
 			<div className='box column is-4 mt-5 ml-3 pt-3 pb-3 has-background-dark'>
 				<Form noValidate validated={validated} onSubmit={handleFormSubmit}>
