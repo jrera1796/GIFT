@@ -26,7 +26,7 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_RECIPIENT = gql `
-mutation addRecipient($traits: String!, $lastname: String!, $firstname: String!) {
+mutation addRecipient($traits: String, $lastname: String!, $firstname: String!) {
   addRecipient(traits: $traits, lastname: $lastname, firstname: $firstname) {
     _id
      traits
