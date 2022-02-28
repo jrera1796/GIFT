@@ -12,7 +12,7 @@ const Header = () => {
 	return (
 		<header>
 			<nav className="topnav">
-				<a className="active" href="/">
+				<a className="active" href="/"> GIFT
 					{' '}
 				</a>
 				{Auth.loggedIn() ? (
