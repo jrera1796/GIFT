@@ -1,24 +1,50 @@
 import React, { useState } from 'react';
+import { Redirect, useParams } from 'react-router-dom';
 import { ADD_RECIPIENT } from '../utils/mutations';
 import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
-import { GET_USER } from '../utils/queries';
+import { GET_ME, QUERY_RECIPIENTS } from '../utils/queries';
 
 export default function Dashboard() {
-	const { loading, data } = useQuery(GET_USER); //useQuery Hook exe. GET_ME to save+load userData
-	const UserData = data?.me || {};
-	const [addRecipient, { error }] = useMutation(ADD_RECIPIENT);
+	const { username: userParam } = useParams();
+	const { loading, data } = useQuery(GET_ME, {
+		variables: { username: userParam },
+	});
 	const [userFormData, setUserFormData] = useState({
 		traits: 'test',
-		lastName: '',
-		firstName: '',
+		lastname: '',
+		firstname: '',
+	});
+	const user = data?.me || data?.user || {};
+
+	const [addRecipient, { error }] = useMutation(ADD_RECIPIENT, {
+		update(cache, { data: { addRecipient } }) {
+			try {
+				// update thought array's cache
+				// could potentially not exist yet, so wrap in a try/catch
+				const { recipients } = cache.readQuery({ query: QUERY_RECIPIENTS });
+				cache.writeQuery({
+					query: QUERY_RECIPIENTS,
+					data: { recipients: [addRecipient, ...recipients] },
+				});
+			} catch (e) {
+				console.error(e);
+			}
+
+			// update me object's cache
+			const { me } = cache.readQuery({ query: GET_ME });
+			cache.writeQuery({
+				query: GET_ME,
+				data: { me: { ...me, recipients: [...me.recipients, addRecipient] } },
+			});
+		},
 	});
 
 	const handleSubmit = async e => {
 		e.preventDefault();
 		try {
 			//wait for a response from addUser for data
-			const { data } = await addRecipient({ variables: { ...userFormData } });
+			const { user } = await addRecipient({ variables: { ...userFormData } });
 			Auth.login(data.addUser.token); //token given to the new user (addUser)
 		} catch (err) {
 			console.error(err);
@@ -26,37 +52,56 @@ export default function Dashboard() {
 		setUserFormData({ traits: '', lastName: '', firstName: '' }); //set values to empty
 	};
 
+	if (loading) {
+		return <div>Loading...</div>;
+	}
+	// console.log(user);
+
+	if (!user?.username) {
+		return (
+			<h4>
+				You need to be logged in to see this. Use the navigation links above to
+				sign up or log in!
+			</h4>
+		);
+	}
+
 	return (
 		<>
-		<form onSubmit={handleSubmit}>
-			<div>
-				<label>First Name:</label>
-				<input
-					className="input"
-					type="text"
-					type="text"
-					name="name"
-					defaultValue={setUserFormData.firstName}
-				/>
-			</div>
-			<div>
-				<label>Last Name:</label>
-				<input
-					className="input"
-					type="text"
-					type="text"
-					name="name"
-					defaultValue={setUserFormData.lastName}
-				/>
-			</div>
-			<br></br>
-			<button className="button is-primary" data-testid="button" type="submit">
-				Submit
-			</button>
-		</form>
-		<section>
-		
-		</section>
+			<h2 className="bg-dark text-secondary p-3 display-inline-block">
+				Hello {`${user.username}`}!
+			</h2>
+			<form onSubmit={handleSubmit}>
+				<div>
+					<label>First Name:</label>
+					<input
+						className="input"
+						type="text"
+						type="text"
+						name="name"
+						defaultValue={setUserFormData.firstName}
+					/>
+				</div>
+				<div>
+					<label>Last Name:</label>
+					<input
+						className="input"
+						type="text"
+						type="text"
+						name="name"
+						defaultValue={setUserFormData.lastName}
+					/>
+				</div>
+				<br></br>
+				<button
+					className="button is-primary"
+					data-testid="button"
+					type="submit"
+				>
+					Submit
+				</button>
+			</form>
+			<section></section>
 		</>
 	);
 }
