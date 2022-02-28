@@ -1,33 +1,32 @@
 import React, { useState } from 'react';
-import { Redirect, useParams } from 'react-router-dom';
 
 import RecipientList from '../components/RecipientList';
-
-import { ADD_RECIPIENT } from '../utils/mutations';
 import { useQuery, useMutation } from '@apollo/client';
+import { ADD_RECIPIENT } from '../utils/mutations';
 import { GET_USER, GET_RECIPIENTS } from '../utils/queries';
-import Auth from '../utils/auth';
 
 export default function Dashboard() {
 	const { loading, data } = useQuery(GET_USER);
 	const [userFormData, setUserFormData] = useState({
-		traits: 'test',
+		firstname: 'first', 
 		lastname: 'last',
-		firstname: 'first',
+		traits: 'TEST'
 	});
 	const user = data?.me || {};
+
 	const [addRecipient, { error }] = useMutation(ADD_RECIPIENT, {
 		update(cache, { data: { addRecipient } }) {
 			try {
 				// update thought array's cache
 				// could potentially not exist yet, so wrap in a try/catch
 				const { recipients } = cache.readQuery({ query: GET_RECIPIENTS });
+				console.log(recipients);
 				cache.writeQuery({
 					query: GET_RECIPIENTS,
 					data: { recipients: [addRecipient, ...recipients] },
 				});
 			} catch (e) {
-				console.error(e);
+				console.log(e);
 			}
 
 			// update me object's cache
@@ -48,7 +47,7 @@ export default function Dashboard() {
 		} catch (err) {
 			console.log(err);
 		}
-		setUserFormData({ traits: '', lastname: '', firstname: '' }); //set values to empty
+		setUserFormData({ firstname: '', lastname: '', traits: '' }); //set values to empty
 	};
 
 	if (loading) {
@@ -74,8 +73,7 @@ export default function Dashboard() {
 					<input
 						className="input"
 						type="text"
-						type="text"
-						name="name"
+						name="firstname"
 						input={setUserFormData.firstname}
 						defaultValue={userFormData.firstname}
 					/>
@@ -85,8 +83,8 @@ export default function Dashboard() {
 					<input
 						className="input"
 						type="text"
-						type="text"
-						name="name"
+						name="lastname"
+						input={setUserFormData.lastname}
 						defaultValue={setUserFormData.lastname}
 					/>
 				</div>
@@ -95,8 +93,8 @@ export default function Dashboard() {
 					<input
 						className="input"
 						type="text"
-						type="text"
-						name="name"
+						name="traits" 
+						input={setUserFormData.traits}
 						defaultValue={setUserFormData.traits}
 					/>
 				</div>
