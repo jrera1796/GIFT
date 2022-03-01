@@ -17,7 +17,7 @@ export default function PersonalityTest() {
 	return (
 		<>
 			{/* Question 1 */}
-			<div style={{ display: "block" }} id="questionID1" className='box'>
+			<div style={{ display: "block" }} id="questionID1" className='box Personality-test-box'>
 				<h1>Is your recipient introverted (I) or extroverted (E)?</h1>
 				<div className='columns'>
 					<button onClick={() => handleHide(1, 'I')} className='column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light'>
@@ -44,7 +44,7 @@ export default function PersonalityTest() {
 				</div>
 			</div>
 			{/* Question 2 */}
-			<div style={{ display: "none" }} id="questionID2" className='box'>
+			<div style={{ display: "none" }} id="questionID2" className='box Personality-test-box'>
 				<h1>Is your recipient intutitive (N) or observant (S)?</h1>
 				<div className='columns'>
 					<button onClick={() => handleHide(2, 'N')} className='column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light'>
@@ -71,7 +71,7 @@ export default function PersonalityTest() {
 				</div>
 			</div>
 			{/* Question 3 */}
-			<div style={{ display: "none" }} id="questionID3" className='box'>
+			<div style={{ display: "none" }} id="questionID3" className='box Personality-test-box'>
 				<h1>Is your recipient feeling (F) or thinking (T)?</h1>
 				<div className='columns'>
 					<button onClick={() => handleHide(3, 'F')} className='column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light'>
@@ -98,7 +98,7 @@ export default function PersonalityTest() {
 				</div>
 			</div>
 			{/* Question 4 */}
-			<div style={{ display: "none" }} id="questionID4" className='box'>
+			<div style={{ display: "none" }} id="questionID4" className='box Personality-test-box'>
 				<h1>Is your recipient judging (J) or prospecting (P)?</h1>
 				<div className='columns'>
 					<button onClick={() => handleHide(4, 'J')} className='column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light'>

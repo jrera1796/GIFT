@@ -178,6 +178,13 @@ footer{
   padding: 2% !important;
 }
 
+/* Personality Test Page */
+.Personality-test-box h1{
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
 /* Mobile Responsive */
 @media only screen and (max-width: 600px) {
   body {
