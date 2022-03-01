@@ -6,6 +6,12 @@ export const GET_USER = gql`
 			_id
 			username
 			email
+			recipientCount
+			recipients {
+				_id
+				lastname
+				firstname
+			}
 		}
 	}
 `;
