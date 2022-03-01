@@ -23,7 +23,13 @@ const resolvers = {
 		},
 		recipients: async (parent, { _id}) => {
 			const params = _id ? { _id } : {};
-			return Recipient.find(params);
+			console.log(params);
+			console.log('got here');
+			
+			const test = await User.findOne(params)
+			.populate('recipients');
+			console.log("test ", test);
+			return test.recipients;
 		},
 		recipient: async (parent, { _id }) => {
 			return Recipient.findOne({ _id });

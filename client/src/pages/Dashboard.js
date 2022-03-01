@@ -11,14 +11,16 @@ export default function Dashboard() {
 		lastname: 'last',
 		traits: 'TEST'
 	});
+	console.log(data);
 	const user = data?.me || {};
-
+	const { loading: loadingRec, data: dataRec }  = useQuery(GET_RECIPIENTS, {variables: {_id: user._id}});
+	console.log(dataRec);
 	const [addRecipient, { error }] = useMutation(ADD_RECIPIENT, {
 		update(cache, { data: { addRecipient } }) {
 			try {
 				// update thought array's cache
 				// could potentially not exist yet, so wrap in a try/catch
-				const { recipients } = cache.readQuery({ query: GET_RECIPIENTS });
+				const { recipients } = cache.readQuery({ query: GET_RECIPIENTS, variables: {_id: user._id} });
 				console.log(recipients);
 				cache.writeQuery({
 					query: GET_RECIPIENTS,
@@ -32,7 +34,7 @@ export default function Dashboard() {
 			const { me } = cache.readQuery({ query: GET_USER });
 			cache.writeQuery({
 				query: GET_USER,
-				data: { me: { ...me, recipients: [...me.recipients, addRecipient] } },
+				data: { me: { ...me, recipients: [...dataRec.recipients, addRecipient] } },
 			});
 		},
 	});
@@ -40,8 +42,9 @@ export default function Dashboard() {
 	const handleSubmit = async e => {
 		e.preventDefault();
 		try {
+
 			const { data } = await addRecipient({ variables: { ...userFormData } });
-			console(data);
+			console.log(data);
 			// Auth.login(data.addRecipient.token);
 		} catch (err) {
 			console.log(err);
@@ -73,8 +76,8 @@ export default function Dashboard() {
 						className="input"
 						type="text"
 						name="firstname"
-						input={userFormData.firstname}
-						// defaultValue={userFormData.firstname}
+						value={userFormData.firstname}
+						onChange={(e) => setUserFormData({...userFormData, firstname: e.target.value})}
 					/>
 				</div>
 				<div>
@@ -83,8 +86,8 @@ export default function Dashboard() {
 						className="input"
 						type="text"
 						name="lastname"
-						input={userFormData.lastname}
-						// defaultValue={setUserFormData.lastname}
+						value={userFormData.lastname}
+						onChange={(e) => setUserFormData({...userFormData, lastname: e.target.value})}
 					/>
 				</div>
 				<div>
@@ -93,8 +96,8 @@ export default function Dashboard() {
 						className="input"
 						type="text"
 						name="traits" 
-						input={userFormData.traits}
-						// defaultValue={setUserFormData.traits}
+						value={userFormData.traits}
+						onChange={(e) => setUserFormData({...userFormData, traits: e.target.value})}
 					/>
 				</div>
 				<br></br>
