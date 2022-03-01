@@ -3,6 +3,8 @@ import RecipientList from '../components/RecipientList';
 import { useQuery, useMutation } from '@apollo/client';
 import { ADD_RECIPIENT } from '../utils/mutations';
 import { GET_USER, GET_RECIPIENTS } from '../utils/queries';
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faHandMiddleFinger } from '@fortawesome/free-solid-svg-icons';
 
 export default function Dashboard() {
 	const { loading, data } = useQuery(GET_USER);
@@ -64,7 +66,7 @@ export default function Dashboard() {
 	return (
 		<>
 			<h2 className="bg-dark text-secondary p-3 display-inline-block">
-				Hello {`${user.username}`}!
+				<FontAwesomeIcon icon={faHandMiddleFinger}></FontAwesomeIcon> Hello {`${user.username}`}!
 			</h2>
 			<form onSubmit={handleSubmit}>
 				<div>
