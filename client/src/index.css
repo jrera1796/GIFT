@@ -55,6 +55,9 @@ html, body, #app, #app>div {
   justify-content: space-between;
 }
 
+.nav-options a:hover{
+  color: white;
+}
 
 .topnav li:hover {
   background-color: #ddd;
