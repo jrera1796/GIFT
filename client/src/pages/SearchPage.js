@@ -88,6 +88,12 @@ const SearchPage = () => {
     } catch (e) {console.log('Cannot Save Gift'); }
   }
 
+  const params = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+  let value = params.personality;
+  console.log(value)
+  
   return (
 
     <div>
