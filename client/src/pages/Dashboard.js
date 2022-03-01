@@ -1,40 +1,42 @@
 import React, { useState } from 'react';
-import { Redirect, useParams } from 'react-router-dom';
-
 import RecipientList from '../components/RecipientList';
-
-import { ADD_RECIPIENT } from '../utils/mutations';
 import { useQuery, useMutation } from '@apollo/client';
+import { ADD_RECIPIENT } from '../utils/mutations';
 import { GET_USER, GET_RECIPIENTS } from '../utils/queries';
-import Auth from '../utils/auth';
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faHandMiddleFinger } from '@fortawesome/free-solid-svg-icons';
 
 export default function Dashboard() {
 	const { loading, data } = useQuery(GET_USER);
 	const [userFormData, setUserFormData] = useState({
-		traits: 'test',
+		firstname: 'first', 
 		lastname: 'last',
-		firstname: 'first',
+		traits: 'TEST'
 	});
+	console.log(data);
 	const user = data?.me || {};
+	const { loading: loadingRec, data: dataRec }  = useQuery(GET_RECIPIENTS, {variables: {_id: user._id}});
+	console.log(dataRec);
 	const [addRecipient, { error }] = useMutation(ADD_RECIPIENT, {
 		update(cache, { data: { addRecipient } }) {
 			try {
 				// update thought array's cache
 				// could potentially not exist yet, so wrap in a try/catch
-				const { recipients } = cache.readQuery({ query: GET_RECIPIENTS });
+				const { recipients } = cache.readQuery({ query: GET_RECIPIENTS, variables: {_id: user._id} });
+				console.log(recipients);
 				cache.writeQuery({
 					query: GET_RECIPIENTS,
 					data: { recipients: [addRecipient, ...recipients] },
 				});
 			} catch (e) {
-				console.error(e);
+				console.log(e);
 			}
 
 			// update me object's cache
 			const { me } = cache.readQuery({ query: GET_USER });
 			cache.writeQuery({
 				query: GET_USER,
-				data: { me: { ...me, recipients: [...me.recipients, addRecipient] } },
+				data: { me: { ...me, recipients: [...dataRec.recipients, addRecipient] } },
 			});
 		},
 	});
@@ -42,13 +44,14 @@ export default function Dashboard() {
 	const handleSubmit = async e => {
 		e.preventDefault();
 		try {
+
 			const { data } = await addRecipient({ variables: { ...userFormData } });
-			console(data);
+			console.log(data);
 			// Auth.login(data.addRecipient.token);
 		} catch (err) {
 			console.log(err);
 		}
-		setUserFormData({ traits: '', lastname: '', firstname: '' }); //set values to empty
+		setUserFormData({ firstname: '', lastname: '', traits: '' }); //set values to empty
 	};
 
 	if (loading) {
@@ -66,7 +69,7 @@ export default function Dashboard() {
 	return (
 		<>
 			<h2 className="bg-dark text-secondary p-3 display-inline-block">
-				Hello {`${user.username}`}!
+				<FontAwesomeIcon icon={faHandMiddleFinger}></FontAwesomeIcon> Hello {`${user.username}`}!
 			</h2>
 			<form onSubmit={handleSubmit}>
 				<div>
@@ -74,10 +77,9 @@ export default function Dashboard() {
 					<input
 						className="input"
 						type="text"
-						type="text"
-						name="name"
-						input={setUserFormData.firstname}
-						defaultValue={userFormData.firstname}
+						name="firstname"
+						value={userFormData.firstname}
+						onChange={(e) => setUserFormData({...userFormData, firstname: e.target.value})}
 					/>
 				</div>
 				<div>
@@ -85,9 +87,9 @@ export default function Dashboard() {
 					<input
 						className="input"
 						type="text"
-						type="text"
-						name="name"
-						defaultValue={setUserFormData.lastname}
+						name="lastname"
+						value={userFormData.lastname}
+						onChange={(e) => setUserFormData({...userFormData, lastname: e.target.value})}
 					/>
 				</div>
 				<div>
@@ -95,9 +97,9 @@ export default function Dashboard() {
 					<input
 						className="input"
 						type="text"
-						type="text"
-						name="name"
-						defaultValue={setUserFormData.traits}
+						name="traits" 
+						value={userFormData.traits}
+						onChange={(e) => setUserFormData({...userFormData, traits: e.target.value})}
 					/>
 				</div>
 				<br></br>
@@ -120,39 +122,3 @@ export default function Dashboard() {
 	);
 }
 
-{
-	/* <>
-<Jumbotron fluid className="text-light bg-dark">
-	<Container>
-		<h1>Viewing saved books!</h1>
-	</Container>
-</Jumbotron>
-<Container>
-	<h2>
-		{userData.savedBooks.length
-			? `Viewing ${userData.savedBooks.length} saved ${
-					userData.savedBooks.length === 1 ? 'book' : 'books'
-			  }:`
-			: 'You have no saved books!'}
-	</h2>
-	<CardColumns>
-		{userData.savedBooks.map(book => {
-			return (
-				<Card key={book.bookId} border="dark">
-					<Card.Body>
-						<Card.Title>{"book.title"}</Card.Title>
-						<p className="small">Authors: {"book.authors"}</p>
-						<Card.Text>{"book.description"}</Card.Text>
-						<Button
-							className="btn-block btn-danger"
-							onClick={() => console.log("Howdy")}
-						>
-							Delete this Book!
-						</Button>
-					</Card.Body>
-				</Card>
-			);
-		})}
-	</CardColumns>
-</Container> */
-}

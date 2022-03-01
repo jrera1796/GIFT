@@ -171,6 +171,9 @@ footer{
   right: 1rem;;
 }
 
+.pad-2{
+  padding: 2% !important;
+}
 
 /* Mobile Responsive */
 @media only screen and (max-width: 600px) {

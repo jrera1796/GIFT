@@ -27,21 +27,12 @@ export const GET_ME = gql`
 `;
 
 export const GET_RECIPIENTS = gql`
-	query recipients($_id: ID!) {
+	query recipients($_id: ID) {
 		recipients(_id: $_id) {
 			_id
 			traits
 			lastname
 			firstname
-			giftCount
-			savedGifts {
-				giftId
-				giftname
-				description
-				link
-				image
-				price
-			}
 		}
 	}
 `;
