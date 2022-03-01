@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import searchProducts from '../utils/searchAPI';
 import Auth from '../utils/auth';
 import 'bulma/css/bulma.css';
+import { saveGiftIds, getSavedGiftIds } from '../utils/savingGifts';
+import { useMutation } from '@apollo/client';
+import { SAVE_GIFT } from '../utils/mutations';
 
 // const categories = [
 //   { 'Apps & Games': 2350150011 },
@@ -50,6 +53,12 @@ const SearchPage = () => {
   const [searchGiftCategory, setSearchGiftCategory] = useState(1000);
   const [searchedData, setSearchedData] = useState([]);
 
+  //create state to hold saved giftId values
+  const [savedGiftIds, setSavedGiftIds] = useState(getSavedGiftIds());
+  const [saveGift] = useMutation(SAVE_GIFT);
+
+  useEffect(() => { return () => saveGiftIds(savedGiftIds); });
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -65,9 +74,19 @@ const SearchPage = () => {
     catch (error) {
       console.log(error)
     }
+  };
 
+  const handleSaveGift = async (giftId) => {
+    const giftToSave = searchedData.find((gift) => gift.giftId === giftId);
+    console.log(giftToSave);
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    if (!token) { return false; }
+    try {
+      const {resData} = await saveGift({ variables: { data: { ...giftToSave}}});
+      console.log(resData);
+      setSavedGiftIds([...savedGiftIds, giftToSave.giftId]);
+    } catch (e) {console.log('Cannot Save Gift'); }
   }
-
 
   return (
 
@@ -129,9 +148,13 @@ const SearchPage = () => {
                       View on <a href={netData.link}>Amazon</a>
                     </span>
                   </p>
-                  {Auth.loggedIn() ? (<p class="card-footer-item">
-                    <button className='button is-medium'>
-                      Save
+                  {Auth.loggedIn() ? (<p className="card-footer-item">
+                    <button 
+                    className='button is-medium'
+                    disabled={savedGiftIds?.some((savedId) => savedId === netData.giftId)}
+                    onClick= {() => handleSaveGift(netData.giftId)}>
+                      {savedGiftIds?.some((savedId) => savedId === netData.giftId)
+                      ? 'Save' : 'Already Saved'}
                     </button>
                   </p>
                   ) : (

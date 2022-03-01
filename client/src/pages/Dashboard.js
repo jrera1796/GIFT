@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import RecipientList from '../components/RecipientList';
 import { useQuery, useMutation } from '@apollo/client';
 import { ADD_RECIPIENT } from '../utils/mutations';
@@ -74,8 +73,8 @@ export default function Dashboard() {
 						className="input"
 						type="text"
 						name="firstname"
-						input={setUserFormData.firstname}
-						defaultValue={userFormData.firstname}
+						input={userFormData.firstname}
+						// defaultValue={userFormData.firstname}
 					/>
 				</div>
 				<div>
@@ -84,8 +83,8 @@ export default function Dashboard() {
 						className="input"
 						type="text"
 						name="lastname"
-						input={setUserFormData.lastname}
-						defaultValue={setUserFormData.lastname}
+						input={userFormData.lastname}
+						// defaultValue={setUserFormData.lastname}
 					/>
 				</div>
 				<div>
@@ -94,8 +93,8 @@ export default function Dashboard() {
 						className="input"
 						type="text"
 						name="traits" 
-						input={setUserFormData.traits}
-						defaultValue={setUserFormData.traits}
+						input={userFormData.traits}
+						// defaultValue={setUserFormData.traits}
 					/>
 				</div>
 				<br></br>
@@ -118,39 +117,3 @@ export default function Dashboard() {
 	);
 }
 
-{
-	/* <>
-<Jumbotron fluid className="text-light bg-dark">
-	<Container>
-		<h1>Viewing saved books!</h1>
-	</Container>
-</Jumbotron>
-<Container>
-	<h2>
-		{userData.savedBooks.length
-			? `Viewing ${userData.savedBooks.length} saved ${
-					userData.savedBooks.length === 1 ? 'book' : 'books'
-			  }:`
-			: 'You have no saved books!'}
-	</h2>
-	<CardColumns>
-		{userData.savedBooks.map(book => {
-			return (
-				<Card key={book.bookId} border="dark">
-					<Card.Body>
-						<Card.Title>{"book.title"}</Card.Title>
-						<p className="small">Authors: {"book.authors"}</p>
-						<Card.Text>{"book.description"}</Card.Text>
-						<Button
-							className="btn-block btn-danger"
-							onClick={() => console.log("Howdy")}
-						>
-							Delete this Book!
-						</Button>
-					</Card.Body>
-				</Card>
-			);
-		})}
-	</CardColumns>
-</Container> */
-}
