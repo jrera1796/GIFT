@@ -1,178 +1,128 @@
-import React, { useState } from 'react';
-
-import { Form, Button, Alert, Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
-
+import React from 'react';
 import 'bulma/css/bulma.css';
-import LoginForm from '../components/LoginForm';
-import SignUpForm from '../components/SignupForm';
+
 export default function PersonalityTest() {
-	const [showModal, setShowModal] = useState(false);
-	const [userFormData, setUserFormData] = useState({
-		traitOne: '', traitTwo: '', traitThree: '', traiFour: ''
-	}); //init state form
-	const [validated] = useState(false); //validate state form
-	const [showAlert, setShowAlert] = useState(false); //alert for state form
 
-	// useEffect(() => {
-	// 	if (error) { setShowAlert(true); }
-	// 	else { setShowAlert(false); }
-	// }, [error])
-
-	const handleInputChange = (event) => {
-		const { name, value } = event.target;
-		setUserFormData({ ...userFormData, [name]: value });
-	};
-
-	const handleFormSubmit = async (event) => {
-		event.preventDefault();
-		const form = event.currentTarget; //check form (as per react-bootstrap docs)
-		if (form.checkValidity() === false) {
-			event.preventDefault();
-			event.stopPropagation();
-		}
+	let formData = ''
+	function handleHide(iterate, data) {
+		const question = document.getElementById(`questionID${iterate}`);
+		question.style = "display: none"; formData+=data;
+		iterate = iterate + 1
+		if(iterate === 5){window.location.href = `/search?personality=${formData.split(',')}`;}
+		const question2 = document.getElementById(`questionID${iterate}`)
+		question2.style = "display: block"
+		
 	}
-
-
-	const [traitOne, setTraitOne] = useState('');
-	const [traitTwo, setTraitTwo] = useState('');
-	const [traitThree, setTraitThree] = useState('');
-	const [traitFour, setTraitFour] = useState('');
-
-	function testResult(e)
-	{
-		e.preventDefault()
-		console.log("all data", traitOne, traitTwo, traitThree, traitFour);
-	}
-
-
 
 	return (
 		<>
-			<h1>Your Personality Test</h1>
-			<Form className='box column is-4 mt-5 ml-3 pt-3 pb-3 has-background-light' onSubmit={testResult}>
-				<p>Is your recipient introverted (I) or extroverted (E)?</p>
-				
-				<select onChange={(e) => setTraitOne(e.target.value)}>
-					<option value='I'>Introverted: Private, Reserve, Passive</option>
-					<option value='E'>Extroverted: Social, Talkative, Assertive </option>
-				</select> <br />
+			{/* Question 1 */}
+			<div style={{ display: "block" }} id="questionID1" className='box'>
+				<h1>Is your recipient introverted (I) or extroverted (E)?</h1>
+				<div className='columns'>
+					<button onClick={() => handleHide(1, 'I')} className='column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light'>
+						<div id='Option1' className='Description'>
+							<h2>Introverted</h2>
+							<ul>
+								<ol>Private</ol>
+								<ol>Reserve</ol>
+								<ol>Passive</ol>
+							</ul>
+						</div>
+					</button>
 
-				<p>Is your recipient intutitive (N) or observant (S)?</p>
-				<select onChange={(e) => setTraitTwo(e.target.value)}>
-					<option value='N'>Intutitive: Imaginative, Inventive, Idealistic</option>
-					<option value='S'>Observant: Practical, Factual, Realistic</option>
-				</select> <br />
+					<button onClick={() => handleHide(1, 'E')} className='column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light'>
+						<div id='Option2' className='Description'>
+							<h2>Extroverted</h2>
+							<ul>
+								<ol>Social</ol>
+								<ol>Talkative</ol>
+								<ol>Assertive</ol>
+							</ul>
+						</div>
+					</button>
+				</div>
+			</div>
+			{/* Question 2 */}
+			<div style={{ display: "none" }} id="questionID2" className='box'>
+				<h1>Is your recipient intutitive (N) or observant (S)?</h1>
+				<div className='columns'>
+					<button onClick={() => handleHide(2, 'N')} className='column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light'>
+						<div id='Option1' className='Description'>
+							<h2>Intutitive</h2>
+							<ul>
+								<ol>Imaginative</ol>
+								<ol>Inventive</ol>
+								<ol>Idealistic</ol>
+							</ul>
+						</div>
+					</button>
 
-				<p>Is your recipient feeling (F) or thinking (T)?</p>
-				<select onChange={(e) => setTraitThree(e.target.value)}>
-					<option value='F'>Feeling: Empathetic, Passionate, Caring</option>
-					<option value='T'>Thinking: Logical, Objective, Rational</option>
-				</select> <br />
+					<button onClick={() => handleHide(2, 'S')} className='column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light'>
+						<div id='Option2' className='Description'>
+							<h2>Observant</h2>
+							<ul>
+								<ol>Practical</ol>
+								<ol>Factual</ol>
+								<ol>Realistic</ol>
+							</ul>
+						</div>
+					</button>
+				</div>
+			</div>
+			{/* Question 3 */}
+			<div style={{ display: "none" }} id="questionID3" className='box'>
+				<h1>Is your recipient feeling (F) or thinking (T)?</h1>
+				<div className='columns'>
+					<button onClick={() => handleHide(3, 'F')} className='column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light'>
+						<div id='Option1' className='Description'>
+							<h2>Feeling</h2>
+							<ul>
+								<ol>Empathetic</ol>
+								<ol>Passionate</ol>
+								<ol>Caring</ol>
+							</ul>
+						</div>
+					</button>
 
-				<p>Is your recipient judging (J) or prospecting (P)?</p>
-				<select onChange={(e) => setTraitFour(e.target.value)}>
-					<option value='P'>Prospecting: Relaxed, Spontaneous, Flexible</option>
-					<option value='J'>Judging: Decisive, Structured, Organized</option>
-				</select> <br />
+					<button onClick={() => handleHide(3, 'T')} className='column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light'>
+						<div id='Option2' className='Description'>
+							<h2>Thinking</h2>
+							<ul>
+								<ol>Logical</ol>
+								<ol>Objective</ol>
+								<ol>Rational</ol>
+							</ul>
+						</div>
+					</button>
+				</div>
+			</div>
+			{/* Question 4 */}
+			<div style={{ display: "none" }} id="questionID4" className='box'>
+				<h1>Is your recipient judging (J) or prospecting (P)?</h1>
+				<div className='columns'>
+					<button onClick={() => handleHide(4, 'J')} className='column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light'>
+						<div id='Option1' className='Description'>
+							<h2>Judging</h2>
+							<ul>
+								<ol>Decisive</ol>
+								<ol>Structured</ol>
+								<ol>Organized</ol>
+							</ul>
+						</div>
+					</button>
 
-
-
-				{/* <input type="checkbox" onChange={(e) => setBlah(e.target.checked)}/> <span> Afdsfsdfsdfsdfsdfsdfsdfsd</span> <br /> <br /> */}
-				{/* <button type="submit ">Submit</button> */}
-				<Button
-						className='button is-small is-success mt-2'
-						// disabled={!(userFormData.username && userFormData.email && userFormData.password)}
-						type='submit'
-						variant='success'>
-						Submit
-					</Button>
-			</Form>
-			set modal data up
-      <Modal
-        size='lg'
-        show={showModal}
-        onHide={() => setShowModal(false)}
-        aria-labelledby='signup-modal'>
-        {/* tab container to do either signup or login component */}
-        <Tab.Container defaultActiveKey='login'>
-          <Modal.Header closeButton>
-            <Modal.Title id='signup-modal'>
-              <Nav variant='pills'>
-                <Nav.Item>
-                  <Nav.Link eventKey='login'>Login</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey='signup'>Sign Up</Nav.Link>
-                </Nav.Item>
-              </Nav>
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Tab.Content>
-              <Tab.Pane eventKey='login'>
-                <LoginForm handleModalClose={() => setShowModal(false)} />
-              </Tab.Pane>
-              <Tab.Pane eventKey='signup'>
-                <SignUpForm handleModalClose={() => setShowModal(false)} />
-              </Tab.Pane>
-            </Tab.Content>
-          </Modal.Body>
-        </Tab.Container>
-      </Modal>
-			{/* This is needed for the validation functionality above */}
-			<div className='box column is-4 mt-5 ml-3 pt-3 pb-3 has-background-dark'>
-				<Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-					{/* show alert if server response is bad */}
-					<Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='warning'>
-						Something went wrong with your input!
-					</Alert>
-
-					<Form.Group>
-						<Form.Label htmlFor='traitOne'>TestOne: </Form.Label>
-						<Form.Control
-							type='text'
-							placeholder='Your first trait'
-							name='traitOne'
-							onChange={handleInputChange}
-							value={userFormData.traitOne}
-							required
-						/>
-						{/* {checkReq ('username')} */}
-					</Form.Group>
-					{/*   
-		  <Form.Group>
-			<Form.Label htmlFor='email'>Email: </Form.Label>
-			<Form.Control
-			  type='email'
-			  placeholder='Your email address'
-			  name='email'
-			  onChange={handleInputChange}
-			  value={userFormData.email}
-			  required
-			/>
-			{checkReq ('email')}
-		  </Form.Group>
-  
-		  <Form.Group>
-			<Form.Label htmlFor='password'>Password: </Form.Label>
-			<Form.Control
-			  type='password'
-			  placeholder='Your password'
-			  name='password'
-			  onChange={handleInputChange}
-			  value={userFormData.password}
-			  required
-			/>
-			 {checkReq ('password')}
-		  </Form.Group> */}
-					<Button
-						className='button is-small is-success mt-2'
-						disabled={!(userFormData.username && userFormData.email && userFormData.password)}
-						type='submit'
-						variant='success'>
-						Submit
-					</Button>
-				</Form>
+					<button onClick={() => handleHide(4, 'P')} className='column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light'>
+						<div id='Option2' className='Description'>
+							<h2>Prospecting</h2>
+							<ul>
+								<ol>Relaxed</ol>
+								<ol>Spontaneous</ol>
+								<ol>Flexible</ol>
+							</ul>
+						</div>
+					</button>
+				</div>
 			</div>
 		</>
 	);
