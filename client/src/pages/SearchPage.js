@@ -161,7 +161,7 @@ const SearchPage = () => {
               <div className="card-content p-0">
                 <div className="media">
                   <div className="media-content">
-                    <p className="title is-4 pl-6">{netData.title}</p>
+                    <p className="title is-4 pl-5">{netData.title}</p>
                   </div>
                 </div>
                 <div className="card-footer">
@@ -170,9 +170,9 @@ const SearchPage = () => {
                       View on <a href={netData.link} target="_blank" rel="noreferrer" noopener="true">Amazon</a>
                     </span>
                   </p>
-                  {Auth.loggedIn() ? (<p className="card-footer-item">
+                  {Auth.loggedIn() ? (<p className="card-footer-item" style={{padding:"10px"}}>
                     <button
-                      className='button is-medium'
+                      className='button is-medium save-button'
                       disabled={savedGiftIds?.some((savedId) => savedId === netData.giftId)}
                       onClick={() => handleSaveGift(netData.giftId)}>
                       {savedGiftIds?.some((savedId) => savedId === netData.giftId)
