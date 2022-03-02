@@ -172,10 +172,10 @@ const SearchPage = () => {
                   </p>
                   {Auth.loggedIn() ? (<p className="card-footer-item" style={{padding:"10px"}}>
                     <button
-                      className='button is-medium save-button'
-                      disabled={savedGiftIds?.some((savedId) => savedId === netData.giftId)}
-                      onClick={() => handleSaveGift(netData.giftId)}>
-                      {savedGiftIds?.some((savedId) => savedId === netData.giftId)
+                      className='button is-medium'
+                      disabled={savedGiftIds?.some((savedId) => savedId === netData.asin)}
+                      onClick={() => handleSaveGift(netData.asin)}>
+                      {savedGiftIds?.some((savedId) => savedId === netData.asin)
                         ? 'Save' : 'Already Saved'}
                     </button>
                   </p>

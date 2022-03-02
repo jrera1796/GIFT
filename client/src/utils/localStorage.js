@@ -28,3 +28,19 @@ export const removeGiftId = (giftId) => {
 
   return true;
 };
+
+
+export const removeRecipientId = (recipientId) => {
+  const savedRecipientIds = localStorage.getItem('saved_recipients')
+    ? JSON.parse(localStorage.getItem('saved_recipients'))
+    : null;
+
+  if (!savedRecipientIds) {
+    return false;
+  }
+
+  const updatedSavedRecipientIds = savedRecipientIds?.filter((savedRecipientId) => savedRecipientId !== recipientId);
+  localStorage.setItem('saved_recipients', JSON.stringify(updatedSavedRecipientIds));
+
+  return true;
+};
