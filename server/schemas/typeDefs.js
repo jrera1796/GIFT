@@ -25,7 +25,6 @@ const typeDefs = gql`
     description: String
     link: String
     image: String
-    price: String
   }
 
   type Auth {
@@ -39,7 +38,6 @@ const typeDefs = gql`
     description: String
     link: String
     image: String
-    price: String
   }
 
   type Query {

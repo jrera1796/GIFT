@@ -15,7 +15,6 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
-import Signup from './pages/Signup';
 import PersonalityTest from './pages/PersonalityTest';
 import SearchPage from './pages/SearchPage'
 
@@ -46,7 +45,7 @@ function App() {
 							<Route exact path="/" component={Home} />
 							<Route exact path="/dashboard" component={Dashboard} />
 							<Route exact path="/login" component={Login} />
-							<Route exact path="/signup" component={Signup} />
+							{/* <Route exact path="/signup" component={Signup} /> */}
 							<Route exact path="/search" component={SearchPage} />
 							<Route exact path="/test" component={PersonalityTest} />
 						</Switch>
@@ -60,39 +59,3 @@ function App() {
 
 export default App;
 
-// return (
-//     <ApolloProvider client={client}>
-//       <Router>
-//         <>
-//           <Navbar />
-//           <Switch>
-//             {/* <Route exact path="/" component={Gift} />
-//             <Route exact path="/Dashboard" component={SavedGifts} /> */}
-//             <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
-//           </Switch>
-//         </>
-//       </Router>
-//     </ApolloProvider>
-//   );
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;

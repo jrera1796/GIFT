@@ -47,7 +47,6 @@ export const SAVE_GIFT = gql`
         description
         link
         image
-        price
       }
     }
   }
@@ -64,7 +63,6 @@ export const REMOVE_GIFT = gql`
         description
         link
         image
-        price
       }
     }
   }
