@@ -17,16 +17,22 @@ const RecipientList = ({ username, recipients }) => {
 		);
 	}
 
-	const handleSubmit = async recipientId => {
-		recipientId.preventDefault();
-		await removeRecipient(recipientId);
+	const handleSubmit = async (recipientId,e) => {
+		e.preventDefault();
+		console.log(`recipientId ${recipientId}`)
+		try {
+			const { data } = await removeRecipient({ recipientId: { recipientId } });
+			console.log(data);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return (
 		<>
 			<div>
 				{user.recipients.map(recipients => (
-					<form onSubmit={handleSubmit} className="has-text-weight-bold">
+					<form className="has-text-weight-bold">
 						<div>
 							<h6>
 								{recipients.firstname} {recipients.lastname} {recipients._id}{' '}
@@ -34,7 +40,7 @@ const RecipientList = ({ username, recipients }) => {
 							<button
 								className="button is-danger"
 								data-testid="button"
-								type="submit"
+								onClick={() => handleSubmit(recipients._id)}
 							>
 								Delete
 							</button>
