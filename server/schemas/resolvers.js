@@ -22,15 +22,9 @@ const resolvers = {
 		},
 		recipients: async (parent, { _id }) => {
 			const params = _id ? { _id } : {};
-			console.log(params);
-			console.log('got here');
-
-			const test = await User.findOne(params).populate('recipients');
-			console.log('test ', test);
-			return test.recipients;
-		},
-		recipient: async (parent, { _id }) => {
-			return Recipient.findOne({ _id });
+			const result = await User.findOne(params)
+			.populate('recipients');
+			return result.recipients;
 		},
 	},
 	Mutation: {
@@ -69,6 +63,20 @@ const resolvers = {
 			}
 			throw new AuthenticationError('You need to be logged in!');
 		},
+
+		updateRecipient: async (parent, { recipientId }, context) => {
+			console.log('trying to updateRecipeint');
+			if (context.user) {
+				await Recipient.findByIdAndUpdate(
+					{ _id: recipientId },
+					{ $push: { recipients: recipient._id } },
+					{ new: true }
+				);
+				return recipient;
+			}
+			throw new AuthenticationError('You need to be logged in!');
+		},
+		
 		saveGift: async (parent, { recipientId, giftData }, context) => {
 			//save a gift
 			if (context.user) {

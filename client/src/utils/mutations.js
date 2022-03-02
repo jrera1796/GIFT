@@ -52,6 +52,17 @@ export const REMOVE_RECIPIENT = gql`
 	}
 `;
 
+export const UPDATE_RECIPIENT = gql `
+mutation updateRecipient($recipientId: String!, $firstname: String, $lastname: String, $traits: String) {
+  updateRecipient(recipientId: $recipientId, firstname: $firstname, lastname: $lastname, traits: $traits) {
+    _id
+     traits
+    lastname
+    firstname
+  }
+}
+`;
+
 export const SAVE_GIFT = gql`
 	mutation saveGift($recipientId: String!, $giftData: storeGift!) {
 		saveGift(recipientId: $recipientId, giftData: $giftData) {

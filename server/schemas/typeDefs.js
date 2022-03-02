@@ -51,14 +51,11 @@ const typeDefs = gql`
 	type Mutation {
 		loginUser(email: String!, password: String!): Auth
 		addUser(username: String!, email: String!, password: String!): Auth
-		addRecipient(
-			firstname: String!
-			lastname: String!
-			traits: String!
-		): Recipient
+		addRecipient(firstname: String!, lastname: String!, traits: String!): Recipient
+    updateRecipient(recipientId: String!, firstname: String, lastname: String, traits: String): Recipient
+    removeRecipient(recipientId: String!): Recipient
 		saveGift(recipientId: String!, giftData: storeGift!): Recipient
 		removeGift(recipientId: String!, giftId: String!): Recipient
-		removeRecipient(recipientId: String!): Recipient
 	}
 `;
 

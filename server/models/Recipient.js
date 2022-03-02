@@ -3,19 +3,19 @@ const giftSchema = require('./Gift');
 
 const recipientSchema = new Schema(
   {
-    traits: {
+    firstname: {
       type: String,
       required: true,
+      trim: true
     }, 
     lastname: {
       type: String,
       required: true,
       trim: true
     },
-    firstname: {
+    traits: {
       type: String,
       required: true,
-      trim: true
     },
     savedGifts: [giftSchema]
   },
