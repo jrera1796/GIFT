@@ -1,10 +1,15 @@
 import React from 'react';
 import 'bulma/css/bulma.css';
+import traitType from '../utils/personalityTypes';
 
 export default function PersonalityTest() {
 
 	let formData = ''
 	function handleHide(iterate, data) {
+		if( iterate === 3){
+			traitType(data);
+			console.log(data);
+		}
 		const question = document.getElementById(`questionID${iterate}`);
 		question.style = "display: none"; formData+=data;
 		iterate = iterate + 1
@@ -124,7 +129,7 @@ export default function PersonalityTest() {
 					</button>
 				</div>
 			</div>
-			{/* Question 3 */}
+			{/* Display Personality */}
 			<div style={{ display: "none" }} id="questionID5" className='box Personality-test-box'>
 				<h1>Your Results!</h1>
 				<div className='columns'>
@@ -133,6 +138,7 @@ export default function PersonalityTest() {
 							<h2>Traits</h2>
 							<ul>
 								<ol>{toString(formData)}</ol>
+						
 								
 							</ul>
 						</div>

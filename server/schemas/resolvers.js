@@ -48,7 +48,6 @@ const resolvers = {
 			return { token, user };
 		},
 		addRecipient: async (parent, args, context) => {
-			console.log('trying to addRecipeint');
 			if (context.user) {
 				const recipient = await Recipient.create({
 					...args,
@@ -61,22 +60,36 @@ const resolvers = {
 				);
 				return recipient;
 			}
-			throw new AuthenticationError('You need to be logged in!');
+			throw new AuthenticationError('Cannot Add Recipient!');
 		},
 
-		updateRecipient: async (parent, { recipientId }, context) => {
-			console.log('trying to updateRecipeint');
+		updateRecipient: async (parent, { args, recipientId }, context) => {
+			
 			if (context.user) {
-				const recipient = await Recipient.findByIdAndUpdate(
+				console.log({args});
+				const updateRecipient = await Recipient.findByIdAndUpdate(
 					{ _id: context.user._id },
-					{ $push: { recipients: recipientId } },
+					{ $addToSet: { recipients: args }},
 					{ new: true }
 				);
-				return recipient;
+				return updateRecipient;
 			}
-			throw new AuthenticationError('You need to be logged in!');
+			throw new AuthenticationError('Cannot Update Recipient!');
 		},
 		
+		removeRecipient: async (parent, { recipientId }, context) => {
+			if (context.user) {
+				const updateUser = await User.findByIdAndUpdate(
+					{ _id: context.user._id },
+					{ $pull: { recipients:  recipientId } },
+					{ new: true }
+				);
+				await Recipient.findByIdAndDelete({_id: recipientId});
+				return updateUser;
+			}
+			throw new AuthenticationError('Cannot Remove Recipient!');
+		},
+
 		saveGift: async (parent, { recipientId, giftData }, context) => {
 			//save a gift
 			if (context.user) {
@@ -98,18 +111,6 @@ const resolvers = {
 					{ new: true }
 				);
 				return updateRecipient;
-			}
-		},
-		removeRecipient: async (parent, { recipientId }, context) => {
-			if (context.user) {
-				const updateUser = await User.findByIdAndUpdate(
-				
-					{ _id: context.user._id },
-					{ $pull: { recipients:  recipientId } },
-					{ new: true }
-				);
-				await Recipient.findByIdAndDelete({_id: recipientId});
-				return updateUser;
 			}
 		},
 	},
