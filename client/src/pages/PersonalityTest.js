@@ -8,7 +8,7 @@ export default function PersonalityTest() {
 		const question = document.getElementById(`questionID${iterate}`);
 		question.style = "display: none"; formData+=data;
 		iterate = iterate + 1
-		if(iterate === 5){window.location.href = `/search?personality=${formData.split(',')}`;}
+		if(iterate === 6){window.location.href = `/search?personality=${formData.split(',')}`;}
 		const question2 = document.getElementById(`questionID${iterate}`)
 		question2.style = "display: block"
 		
@@ -119,6 +119,21 @@ export default function PersonalityTest() {
 								<ol>Relaxed</ol>
 								<ol>Spontaneous</ol>
 								<ol>Flexible</ol>
+							</ul>
+						</div>
+					</button>
+				</div>
+			</div>
+			{/* Question 3 */}
+			<div style={{ display: "none" }} id="questionID5" className='box Personality-test-box'>
+				<h1>Your Results!</h1>
+				<div className='columns'>
+					<button onClick={() => handleHide(5)} className='column is-full-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light'>
+						<div id='Option1' className='Description'>
+							<h2>Traits</h2>
+							<ul>
+								<ol>{toString(formData)}</ol>
+								
 							</ul>
 						</div>
 					</button>
