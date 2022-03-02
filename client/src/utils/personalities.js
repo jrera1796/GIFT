@@ -2,40 +2,43 @@ export default function checkType(string) {
   let data = [];
   switch (string) {
     case 'INFJ': // The Advocate
-      data = ['cooking/baking', 'gift_ideas_homemade'];
+      data = ['cooking/baking', 11260433011];
       return data;
     case 'INFP': // The Mediator
-      data = ['creative writing', 'gift_ideas_arts_crafts'];
+      data = ['creative writing', 2617942011];
       return data;
       case 'ENFP': // The Campaigner
-      data = ['cooking/baking', 'gift_ideas_homemade'];
+      data = ['instruments all', 11965861];
       return data;
     case 'ENFJ': // The Protagonist
-      data = ['creative writing', 'gift_ideas_arts_crafts'];
+      data = ['writing', 1084128];
       return data;
       case 'INTJ': // The Architect
-      data = ['cooking/baking', 'gift_ideas_homemade'];
+      data = ['sports', 3375301];
       return data;
     case 'INTP': // The Logician
-      data = ['creative writing', 'gift_ideas_arts_crafts'];
+      data = ['strategy games,', 165795011];
       return data;
       case 'ENTJ': // The Commander
-      data = ['cooking/baking', 'gift_ideas_homemade'];
+      data = ['How to business', 1000];
       return data;
     case 'ENTP': // The Debater
-      data = ['creative writing', 'gift_ideas_arts_crafts'];
+      data = ['canvas painting', 4991426011];
       return data;
-      case 'ISFP': // The Defender
-      data = ['creative writing', 'gift_ideas_arts_crafts'];
+      case 'ISFJ': // The Defender
+      data = ['Patio', 3238155011];
+      return data;
+      case 'ISFP': // The Adventurer
+      data = ['DIY', 2617942011];
       return data;
       case 'ESFJ': // The Consul
-      data = ['creative writing', 'gift_ideas_arts_crafts'];
+      data = ['cooking homemade tool', 2617942011];
       return data;
       case 'ESFP': // The Entertainer
-      data = ['creative writing', 'gift_ideas_arts_crafts'];
+      data = ['home improvement ideas', 1000];
       return data;
       case 'ISTJ': // The Logistician
-      data = ['creative writing', 'gift_ideas_arts_crafts'];
+      data = ['mind puzzles', 165795011];
       return data;
       case 'ISTP': // The Virtuoso
       data = ['creative writing', 'gift_ideas_arts_crafts'];

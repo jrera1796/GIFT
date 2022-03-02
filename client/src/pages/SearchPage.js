@@ -81,7 +81,7 @@ const SearchPage = () => {
     saveGiftIds(savedGiftIds); 
     let params = (new URL(document.location)).searchParams
     let personality = params.get('personality');
-
+    if(!personality){return}
     async function fetchData() {
       const typeData = await checkType(personality);
      
@@ -114,16 +114,31 @@ const SearchPage = () => {
               <select
                 className='text ml-2'
                 name='searchGift'
-                value={searchGiftCategory}
                 onChange={(e) => setSearchGiftCategory(e.target.value)}
                 type='select'
                 placeholder='Search by Category'
               >
                 <option value={'All Departments'}>Search by category</option>
-                {/* {categories.map((c) => (
-                  <option key={JSON.stringify(c)} value={c}>{JSON.stringify(c)}</option>
-                ))} */}
-                {/* Can't get this to display */}
+                <option value={2350150011}>Apps and Games</option>
+                <option value={2617942011}>Arts, Crafts and Sewing</option>
+                <option value={15690151}>Automotive</option>
+                <option value={165797011}>Baby</option>
+                <option value={11055981}>Beauty</option>
+                <option value={1000}>Books</option>
+                <option value={301668}>CDs and Vinyl</option>
+                <option value={7141124011}>Clothing, Shoes and Jewelry</option>
+                <option value={4991426011}>Collectibles and Fine Arts</option>
+                <option value={493964}>Electronics</option>
+                <option value={2864120011}>Gift Cards</option>
+                <option value={11260433011}>Handmade</option>
+                <option value={3760931}>Health and Personal Care</option>
+                <option value={1063498}>Home and Kitchen</option>
+                <option value={11965861}>Musical Instruments</option>
+                <option value={3238155011}>Patio, Lawn and Garden</option>
+                <option value={3375301}>Sports and Outdoors</option>
+                <option value={468240}>Tool and Home Improvement</option>
+                <option value={165795011}>Toys and Games</option>
+                <option value={11846801}>Video Games</option>
               </select>
             </div>
 
