@@ -11,7 +11,7 @@ export default function Dashboard() {
 	const [userFormData, setUserFormData] = useState({
 		firstname: 'first',
 		lastname: 'last',
-		traits: 'TEST',
+		traits: 'NULL',
 	});
 	const user = data?.me || {};
 	const { loading: loadingRec, data: dataRec } = useQuery(GET_RECIPIENTS, {
@@ -48,7 +48,7 @@ export default function Dashboard() {
 		} catch (err) {
 			console.log(err);
 		}
-		setUserFormData({ firstname: '', lastname: '', traits: '' });
+		setUserFormData({ firstname: '', lastname: '', traits: 'NULL' });
 	};
 
 	if (loading) {
@@ -94,18 +94,6 @@ export default function Dashboard() {
 						}
 					/>
 				</div>
-				<div>
-					<label>Trait:</label>
-					<input
-						className="input"
-						type="text"
-						name="traits"
-						value={userFormData.traits}
-						onChange={e =>
-							setUserFormData({ ...userFormData, traits: e.target.value })
-						}
-					/>
-				</div>
 				<br></br>
 				<button
 					className="button is-primary"
@@ -116,10 +104,7 @@ export default function Dashboard() {
 				</button>
 			</form>
 			<div className="col-12 col-lg-3 mb-3">
-				<RecipientList
-					username={user.username}
-					recipients={user.recipients}
-				/>
+				<RecipientList/>
 			</div>
 		</>
 	);

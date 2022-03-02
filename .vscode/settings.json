@@ -3,5 +3,6 @@
         "firstname",
         "giftname",
         "lastname"
-    ]
+    ],
+    "quokka.automaticRestart": true
 }

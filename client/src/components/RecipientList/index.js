@@ -1,31 +1,48 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import { GET_RECIPIENT } from '../../utils/queries';
+import { useQuery, useMutation } from '@apollo/client';
+import { REMOVE_RECIPIENT } from '../../utils/mutations';
+import { GET_USER } from '../../utils/queries';
 
-const RecipientList =  ({username, recipients }) => {
-	// const { loading, data } = useQuery(GET_RECIPIENT);
-	if (!recipients || !recipients) {
+const RecipientList = ({ username, recipients }) => {
+	const { loading, data } = useQuery(GET_USER);
+	const [removeRecipient, { error }] = useMutation(REMOVE_RECIPIENT);
+	const user = data?.me || {};
+
+	console.log(data);
+	if (!user.recipients || !user.recipients) {
 		return (
-			<p className="bg-dark text-light p-3">{username}, add some recipients!</p>
+			<p className="bg-dark text-light p-3">
+				{user.username}, add some recipients!
+			</p>
 		);
 	}
 
+	const handleSubmit = async recipientId => {
+		recipientId.preventDefault();
+		await removeRecipient(recipientId);
+	};
+
 	return (
-    <>
-		<div>
-			{recipients.map(recipients => (
-				<div>
-					<h6>{recipients.firstname} {recipients.lastname} </h6>
-					<button key={recipients._id}>
-						<Link to={`/profile/${recipients.username}`}>
-							{recipients.username}
-						</Link>
-					</button>
-				</div>
-			))}
-		</div>
-    </>
+		<>
+			<div>
+				{user.recipients.map(recipients => (
+					<form onSubmit={handleSubmit} className="has-text-weight-bold">
+						<div>
+							<h6>
+								{recipients.firstname} {recipients.lastname} {recipients._id}{' '}
+							</h6>
+							<button
+								className="button is-danger"
+								data-testid="button"
+								type="submit"
+							>
+								Delete
+							</button>
+						</div>
+					</form>
+				))}
+			</div>
+		</>
 	);
 };
 

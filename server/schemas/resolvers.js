@@ -7,28 +7,26 @@ const resolvers = {
 		//get the user
 		me: async (parent, args, context) => {
 			if (context.user) {
-				const userData = await User.findOne({ _id: context.user._id })
-					.select('-__v -password')
+				const userData = await User.findOne({ _id: context.user._id }).select(
+					'-__v -password'
+				);
 				return userData;
 			}
 			throw new AuthenticationError('User Not Logged In');
 		},
 		users: async () => {
-			return User.find()
-				.select('-__v -password')
+			return User.find().select('-__v -password');
 		},
 		user: async (parent, { username }) => {
-			return User.findOne({ username })
-				.select('-__v -password')
+			return User.findOne({ username }).select('-__v -password');
 		},
-		recipients: async (parent, { _id}) => {
+		recipients: async (parent, { _id }) => {
 			const params = _id ? { _id } : {};
 			console.log(params);
 			console.log('got here');
-			
-			const test = await User.findOne(params)
-			.populate('recipients');
-			console.log("test ", test);
+
+			const test = await User.findOne(params).populate('recipients');
+			console.log('test ', test);
 			return test.recipients;
 		},
 		recipient: async (parent, { _id }) => {
@@ -92,6 +90,17 @@ const resolvers = {
 					{ new: true }
 				);
 				return updateRecipient;
+			}
+		},
+		removeRecipient: async (parent, { recipientId }, context) => {
+			if (context.user) {
+				const deleteRecipient = await User.findByIdAndUpdate(
+					//const updateUser = await User.findOneAndUpdate(
+					{ _id: context.user._id },
+					{ $pull: { recipients: { recipientId } } },
+					{ new: true }
+				);
+				return deleteRecipient;
 			}
 		},
 	},

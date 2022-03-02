@@ -7,9 +7,6 @@ const Header = () => {
 		event.preventDefault();
 		Auth.logout();
 	};
-
-
-
 	return (
 		
 		<header>
