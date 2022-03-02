@@ -62,7 +62,7 @@ const SignupForm = () => {
   return (
     <>
       {/* This is needed for the validation functionality above */}
-      <div className='box column is-4 mt-5 ml-3 pt-3 pb-3 has-background-dark'>
+      <div className='box is-full mt-5 ml-3 pt-3 pb-3 has-background-dark'>
       <Form noValidate validated={validated} onSubmit={handleFormSubmit} className="has-text-white">
         {/* show alert if server response is bad */}
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='warning'>
