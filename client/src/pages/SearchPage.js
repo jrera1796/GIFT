@@ -1,39 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import searchProducts from '../utils/searchAPI';
 import Auth from '../utils/auth';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import 'bulma/css/bulma.css';
 import { saveGiftIds, getSavedGiftIds } from '../utils/savingGifts';
 import { useMutation } from '@apollo/client';
 import { SAVE_GIFT } from '../utils/mutations';
-
-const categories = [
-  { "Apps,Games": 2350150011 },
-  { "Arts, Crafts, Sewing": 2617942011 },
-  { "Beauty": 11055981 },
-  { "Books": 1000 },
-  { "CDs, Vinyl": 301668 },
-  { "Clothing, Shoes, Jewelry": 7141124011 },
-  { "Collectibles, Fine Arts": 4991426011 },
-  { "Digital Music": 624868011 },
-  { "Electronics": 493964 },
-  { "Gift Cards": 2864120011 },
-  { "Grocery, Gourmet Food": 16310211 },
-  { "Handmade": 11260433011 },
-  { "Health, Personal Care": 3760931 },
-  { "Home, Kitchen": 1063498 },
-  { "Industrial, Scientific": 16310161 },
-  { "Movies, TV": 2625374011 },
-  { "Musical Instruments": 11965861 },
-  { "Patio, Lawn, Garden": 3238155011 },
-  { "Pet Supplies": 2619534011 },
-  { "Software": 409488 },
-  { "Sports, Outdoors": 3375301 },
-  { "Tools, Home Improvement": 468240 },
-  { "Toys, Games": 165795011 },
-  { "Vehicles": 10677470011 },
-  { "Video Games": 11846801 }
-
-]
+import checkType from '../utils/personalities';
 
 const SearchPage = () => {
 
@@ -80,9 +54,13 @@ const SearchPage = () => {
       setShowResults(true);
       setSearchedData(giftData);
       setSearchGift('');
+<<<<<<< Updated upstream
       setSearchGiftCategory(1000)
 
 
+=======
+      setSearchGiftCategory('All Departments')
+>>>>>>> Stashed changes
     }
     catch (error) {
       console.log(error)
@@ -109,15 +87,14 @@ const SearchPage = () => {
     let personality = params.get('personality');
 
     async function fetchData() {
-      if (personality === 'INFJ') {
+      const typeData = await checkType(personality);
+     
         setToggleLoading(true); loadingScreen();
-        const prepopulateData = await searchProducts('Advocacy', 1000);
+        const prepopulateData = await searchProducts(typeData[0], typeData[1]);
         console.log(searchedData)
         setSearchedData(prepopulateData);
         setShowResults(true);
-      } else {
-        console.log('Not' + params)
-      }
+      
     } fetchData()
    
   }, []);
@@ -146,10 +123,10 @@ const SearchPage = () => {
                 type='select'
                 placeholder='Search by Category'
               >
-                <option value={1000}>Search by category</option>
-                {categories.map((c) => (
+                <option value={'All Departments'}>Search by category</option>
+                {/* {categories.map((c) => (
                   <option key={JSON.stringify(c)} value={c}>{JSON.stringify(c)}</option>
-                ))}
+                ))} */}
                 {/* Can't get this to display */}
               </select>
             </div>
@@ -179,7 +156,7 @@ const SearchPage = () => {
                 <div className="card-footer">
                   <p className="card-footer-item">
                     <span>
-                      View on <a href={netData.link}>Amazon</a>
+                      View on <a href={netData.link} target="_blank" rel="noreferrer" noopener="true">Amazon</a>
                     </span>
                   </p>
                   {Auth.loggedIn() ? (<p className="card-footer-item">
@@ -204,7 +181,7 @@ const SearchPage = () => {
       ) : (
         <>
           {toggleLoading ? (
-            <div className="loader">I'm Loading</div>
+            <FontAwesomeIcon className='is-3' icon={faSpinner} spin></FontAwesomeIcon>
           ) : (
             <></>
           )}
