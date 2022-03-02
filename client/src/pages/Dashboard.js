@@ -104,7 +104,7 @@ export default function Dashboard() {
 				</button>
 			</form>
 			<div className="col-12 col-lg-3 mb-3">
-				<RecipientList/>
+				<RecipientList />
 			</div>
 		</>
 	);

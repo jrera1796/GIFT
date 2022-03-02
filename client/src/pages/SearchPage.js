@@ -4,7 +4,7 @@ import Auth from '../utils/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import 'bulma/css/bulma.css';
-import { saveGiftIds, getSavedGiftIds } from '../utils/savingGifts';
+import { saveGiftIds, getSavedGiftIds } from '../utils/localStorage';
 import { useMutation } from '@apollo/client';
 import { SAVE_GIFT } from '../utils/mutations';
 import checkType from '../utils/personalities';
