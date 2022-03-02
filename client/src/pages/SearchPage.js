@@ -54,13 +54,9 @@ const SearchPage = () => {
       setShowResults(true);
       setSearchedData(giftData);
       setSearchGift('');
-<<<<<<< Updated upstream
       setSearchGiftCategory(1000)
 
 
-=======
-      setSearchGiftCategory('All Departments')
->>>>>>> Stashed changes
     }
     catch (error) {
       console.log(error)
