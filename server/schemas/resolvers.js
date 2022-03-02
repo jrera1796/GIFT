@@ -102,8 +102,7 @@ const resolvers = {
 		},
 		removeRecipient: async (parent, { recipientId }, context) => {
 			if (context.user) {
-				const deleteRecipient = await User.findByIdAndUpdate(
-					//const updateUser = await User.findOneAndUpdate(
+				const deleteRecipient = await User.findOneAndUpdate(
 					{ _id: context.user._id },
 					{ $pull: { recipients: { recipientId } } },
 					{ new: true }

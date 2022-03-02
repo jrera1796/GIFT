@@ -44,10 +44,14 @@ export const REMOVE_RECIPIENT = gql`
 	mutation removeRecipient($recipientId: String!) {
 		removeRecipient(recipientId: $recipientId) {
 			_id
-			traits
-			lastname
-			firstname
-			giftCount
+			username
+			email
+			recipients {
+				_id
+				traits
+				firstname
+				lastname
+			}
 		}
 	}
 `;
