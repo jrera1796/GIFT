@@ -58,7 +58,7 @@ const typeDefs = gql`
 		): Recipient
 		saveGift(recipientId: String!, giftData: storeGift!): Recipient
 		removeGift(recipientId: String!, giftId: String!): Recipient
-		removeRecipient(recipientId: String!): Recipient
+		removeRecipient(recipientId: String!): User
 	}
 `;
 
