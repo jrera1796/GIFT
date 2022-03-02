@@ -2,14 +2,14 @@ import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { REMOVE_RECIPIENT } from '../../utils/mutations';
 import { GET_USER } from '../../utils/queries';
+import {removeRecipientId} from '../../utils/localStorage';
 
 const RecipientList = ({ username, recipients }) => {
 	const { loading, data } = useQuery(GET_USER);
 	const [removeRecipient, { error }] = useMutation(REMOVE_RECIPIENT);
 	const user = data?.me || {};
 
-	console.log(data);
-	if (!user.recipients || !user.recipients) {
+	if (!user.recipients) {
 		return (
 			<p className="bg-dark text-light p-3">
 				{user.username}, add some recipients!
@@ -17,30 +17,32 @@ const RecipientList = ({ username, recipients }) => {
 		);
 	}
 
-	const handleSubmit = async (recipientId,e) => {
-		e.preventDefault();
+	const handleSubmit = async (recipientId) => {
 		console.log(`recipientId ${recipientId}`)
 		try {
-			const { data } = await removeRecipient({ recipientId: { recipientId } });
+			const { data } = await removeRecipient({ variables: { recipientId }, });
 			console.log(data);
+			removeRecipientId(recipientId);
 		} catch (error) {
 			console.log(error);
 		}
 	};
-
+	if (loading) {
+		return <h2>Wait, Loading...</h2>
+	  }
 	return (
 		<>
 			<div>
-				{user.recipients.map(recipients => (
+				{user.recipients.map(recArr => (
 					<form className="has-text-weight-bold">
 						<div>
 							<h6>
-								{recipients.firstname} {recipients.lastname} {recipients._id}{' '}
+								{recArr.firstname} {recArr.lastname} {recArr._id}{' '}
 							</h6>
 							<button
 								className="button is-danger"
 								data-testid="button"
-								onClick={() => handleSubmit(recipients._id)}
+								onClick={() => handleSubmit(recArr._id)}
 							>
 								Delete
 							</button>

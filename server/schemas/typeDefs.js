@@ -52,8 +52,8 @@ const typeDefs = gql`
 		loginUser(email: String!, password: String!): Auth
 		addUser(username: String!, email: String!, password: String!): Auth
 		addRecipient(firstname: String!, lastname: String!, traits: String!): Recipient
-    updateRecipient(recipientId: String!, firstname: String, lastname: String, traits: String): Recipient
-    removeRecipient(recipientId: String!): Recipient
+    updateRecipient(recipientId: ID!, firstname: String, lastname: String, traits: String): Recipient
+    removeRecipient(recipientId: ID!): User
 		saveGift(recipientId: String!, giftData: storeGift!): Recipient
 		removeGift(recipientId: String!, giftId: String!): Recipient
 	}

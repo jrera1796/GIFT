@@ -41,7 +41,7 @@ export const ADD_RECIPIENT = gql`
 `;
 
 export const REMOVE_RECIPIENT = gql`
-	mutation removeRecipient($recipientId: String!) {
+	mutation removeRecipient($recipientId: ID!) {
 		removeRecipient(recipientId: $recipientId) {
 			_id
 			username
@@ -57,7 +57,7 @@ export const REMOVE_RECIPIENT = gql`
 `;
 
 export const UPDATE_RECIPIENT = gql `
-mutation updateRecipient($recipientId: String!, $firstname: String, $lastname: String, $traits: String) {
+mutation updateRecipient($recipientId: ID!, $firstname: String, $lastname: String, $traits: String) {
   updateRecipient(recipientId: $recipientId, firstname: $firstname, lastname: $lastname, traits: $traits) {
     _id
      traits

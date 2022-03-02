@@ -67,9 +67,9 @@ const resolvers = {
 		updateRecipient: async (parent, { recipientId }, context) => {
 			console.log('trying to updateRecipeint');
 			if (context.user) {
-				await Recipient.findByIdAndUpdate(
-					{ _id: recipientId },
-					{ $push: { recipients: recipient._id } },
+				const recipient = await Recipient.findByIdAndUpdate(
+					{ _id: context.user._id },
+					{ $push: { recipients: recipientId } },
 					{ new: true }
 				);
 				return recipient;
@@ -102,12 +102,14 @@ const resolvers = {
 		},
 		removeRecipient: async (parent, { recipientId }, context) => {
 			if (context.user) {
-				const deleteRecipient = await User.findOneAndUpdate(
+				const updateUser = await User.findByIdAndUpdate(
+				
 					{ _id: context.user._id },
-					{ $pull: { recipients: { recipientId } } },
+					{ $pull: { recipients:  recipientId } },
 					{ new: true }
 				);
-				return deleteRecipient;
+				await Recipient.findByIdAndDelete({_id: recipientId});
+				return updateUser;
 			}
 		},
 	},
