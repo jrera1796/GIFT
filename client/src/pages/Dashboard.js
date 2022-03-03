@@ -47,7 +47,7 @@ export default function Dashboard() {
 		e.preventDefault();
 		try {
 			const { data } = await addRecipient({ variables: { ...userFormData } });
-			window.location.href = `/test?id=${data.addRecipient._id}`;
+			window.location.href = `/test?id=${data.addRecipient._id}&first=${userFormData.firstname}&last=${userFormData.lastname}`;
 		} catch (err) {
 			console.log(err);
 		}

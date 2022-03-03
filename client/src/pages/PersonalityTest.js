@@ -1,15 +1,22 @@
 import React, { useState, Routes } from 'react';
 import 'bulma/css/bulma.css';
+import { useMutation } from '@apollo/client';
 import personalityTypes from '../utils/personalityTypes';
-import { useSearchParams } from 'react-router-dom';
 import { UPDATE_RECIPIENT } from '../utils/mutations';
 
 export default function PersonalityTest() {
 	const [traits, setTraits] = useState([]);
 	const [traitType, setTraitType] = useState();
+
+	const [updateRecipient, { error }] = useMutation(UPDATE_RECIPIENT);
+
 	const queryParams = new URLSearchParams(window.location.search);
 	const id = queryParams.get('id');
+	const firstname = queryParams.get('first');
+	const lastname = queryParams.get('last');
+
 	let formData = '';
+
 	const handleHide = async (iterate, data) => {
 		const question = document.getElementById(`questionID${iterate}`);
 		question.style = 'display: none';
@@ -25,8 +32,13 @@ export default function PersonalityTest() {
 		if (iterate === 6) {
 			window.location.href = `/search?personality=${traitType}`;
 			try {
-				const { data } = await UPDATE_RECIPIENT({
-					variables: { recipientId: id, traits: traitType },
+				const { data } = await updateRecipient({
+					variables: {
+						recipientId: id,
+						traits: traitType,
+						firstname: firstname,
+						lastname: lastname,
+					},
 				});
 				console.log(data);
 			} catch (err) {
@@ -35,7 +47,6 @@ export default function PersonalityTest() {
 		}
 		const question2 = document.getElementById(`questionID${iterate}`);
 		question2.style = 'display: block';
-
 	};
 
 	return (
