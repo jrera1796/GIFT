@@ -43,11 +43,11 @@ function App() {
 					<div className="container">
 						<Switch>
 							<Route exact path="/" component={Home} />
-							<Route exact path="/dashboard" component={Dashboard} />
+							<Route path="/dashboard" component={Dashboard} />
 							<Route exact path="/login" component={Login} />
 							{/* <Route exact path="/signup" component={Signup} /> */}
-							<Route exact path="/search" component={SearchPage} />
-							<Route exact path="/test" component={PersonalityTest} />
+							<Route path="/search" component={SearchPage} />
+							<Route path="/test" component={PersonalityTest} />
 						</Switch>
 					</div>
 					<Footer />
