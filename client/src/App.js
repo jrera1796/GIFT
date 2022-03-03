@@ -41,14 +41,14 @@ function App() {
 				<div className="flex-column justify-flex-start min-100-vh">
 					<Header />
 					<div className="container">
-						<Switch>
+						
 							<Route exact path="/" component={Home} />
 							<Route exact path="/dashboard" component={Dashboard} />
 							<Route exact path="/login" component={Login} />
 							{/* <Route exact path="/signup" component={Signup} /> */}
-							<Route exact path="/search" component={SearchPage} />
+							<Route path="/search" component={SearchPage} />
 							<Route exact path="/test" component={PersonalityTest} />
-						</Switch>
+						
 					</div>
 					<Footer />
 				</div>
