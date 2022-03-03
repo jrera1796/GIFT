@@ -26,6 +26,9 @@ const resolvers = {
 			.populate('recipients');
 			return result.recipients;
 		},
+		recipient: async (parent, {_id}) => {
+			return Recipient.findOne({_id});
+		}
 	},
 	Mutation: {
 		loginUser: async (parent, { email, password }) => {

@@ -21,10 +21,9 @@ const typeDefs = gql`
 	type Gift {
 		_id: ID
 		giftId: String!
-		giftname: String
-		description: String
-		link: String
+		title: String
 		image: String
+		link: String
 	}
 
 	type Auth {
@@ -34,10 +33,9 @@ const typeDefs = gql`
 
 	input storeGift {
 		giftId: String!
-		giftname: String
-		description: String
-		link: String
+		title: String
 		image: String
+		link: String
 	}
 
 	type Query {
@@ -52,7 +50,7 @@ const typeDefs = gql`
 		loginUser(email: String!, password: String!): Auth
 		addUser(username: String!, email: String!, password: String!): Auth
 		addRecipient(firstname: String!, lastname: String!, traits: String!): Recipient
-    updateRecipient(recipientId: ID!, firstname: String, lastname: String, traits: String): Recipient
+    	updateRecipient(recipientId: ID!, firstname: String, lastname: String, traits: String): Recipient
     	removeRecipient(recipientId: ID!): User
 		saveGift(recipientId: String!, giftData: storeGift!): Recipient
 		removeGift(recipientId: String!, giftId: String!): Recipient

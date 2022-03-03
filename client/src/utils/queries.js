@@ -43,3 +43,20 @@ export const GET_RECIPIENTS = gql`
 		}
 	}
 `;
+
+export const GET_RECIPIENT = gql`
+	query recipient($_id: ID) {
+		recipient(_id: $_id) {
+			_id
+			firstname
+			lastname
+			traits
+			savedGifts {
+				giftId
+				title
+				image
+				link
+			}
+		}
+	}
+`;
