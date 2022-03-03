@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import RecipientList from '../components/RecipientList';
 import { useQuery, useMutation } from '@apollo/client';
+
 import { ADD_RECIPIENT } from '../utils/mutations';
 import { GET_USER, GET_RECIPIENTS } from '../utils/queries';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faIdCard } from '@fortawesome/free-solid-svg-icons';
 
@@ -44,6 +47,7 @@ export default function Dashboard() {
 		e.preventDefault();
 		try {
 			const { data } = await addRecipient({ variables: { ...userFormData } });
+			window.location.href = `/test`;
 			console.log(data);
 		} catch (err) {
 			console.log(err);
@@ -100,6 +104,7 @@ export default function Dashboard() {
 					data-testid="button"
 					type="submit"
 				>
+					<Link to={{ pathname: '/test', state: data }} />
 					Submit
 				</button>
 			</form>
