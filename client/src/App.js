@@ -46,7 +46,7 @@ function App() {
 							<Route path="/dashboard" component={Dashboard} />
 							<Route exact path="/login" component={Login} />
 							{/* <Route exact path="/signup" component={Signup} /> */}
-							<Route path="/search" component={SearchPage} />
+							<Route path="/search/:personality" component={SearchPage} />
 							<Route path="/test" component={PersonalityTest} />
 						</Switch>
 					</div>

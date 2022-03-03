@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useParams } from 'react';
 import searchProducts from '../utils/searchAPI';
 import Auth from '../utils/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -76,11 +76,10 @@ const SearchPage = () => {
   }
 
 
-
+  let {personality} = useParams()
   useEffect(() => {
     saveGiftIds(savedGiftIds); 
-    let params = (new URL(document.location)).searchParams
-    let personality = params.get('personality');
+    
     if(!personality){return}
     async function fetchData() {
       const typeData = await checkType(personality);
