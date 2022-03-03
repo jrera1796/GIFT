@@ -16,20 +16,23 @@ import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import PersonalityTest from './pages/PersonalityTest';
-import SearchPage from './pages/SearchPage'
+import SearchPage from './pages/SearchPage';
 
 import 'bulma/css/bulma.css';
 
 const httpLink = createHttpLink({ uri: '/graphql' }); //graphQL endpoint
 
-const authLink = setContext((_, { headers }) => { //middleware to JWTtoken per/req - authorization header
-	const token = localStorage.getItem('id_token'); //get auth token from localStorage 
-	return { //return headers to context for httpLink to read
-		headers: { ...headers, authorization: token ? `Bearer ${token}` : '' }
+const authLink = setContext((_, { headers }) => {
+	//middleware to JWTtoken per/req - authorization header
+	const token = localStorage.getItem('id_token'); //get auth token from localStorage
+	return {
+		//return headers to context for httpLink to read
+		headers: { ...headers, authorization: token ? `Bearer ${token}` : '' },
 	};
 });
 
-const client = new ApolloClient({ //client to execute authLink middleware per/req to GraphQL
+const client = new ApolloClient({
+	//client to execute authLink middleware per/req to GraphQL
 	link: authLink.concat(httpLink),
 	cache: new InMemoryCache(),
 });
@@ -47,7 +50,8 @@ function App() {
 							<Route exact path="/login" component={Login} />
 							{/* <Route exact path="/signup" component={Signup} /> */}
 							<Route exact path="/search" component={SearchPage} />
-							<Route exact path="/test" component={PersonalityTest} />
+							<Route exact path="/test"component={PersonalityTest}
+							/>
 						</Switch>
 					</div>
 					<Footer />
@@ -58,4 +62,3 @@ function App() {
 }
 
 export default App;
-

@@ -1,22 +1,42 @@
-import React, {useState} from 'react';
+import React, { useState, Routes } from 'react';
 import 'bulma/css/bulma.css';
 import personalityTypes from '../utils/personalityTypes';
+import { useSearchParams } from 'react-router-dom';
+import { UPDATE_RECIPIENT } from '../utils/mutations';
 
 export default function PersonalityTest() {
-const [traits, setTraits] = useState([]);
-const [traitType, setTraitType] = useState();
-	let formData = ''
-	function handleHide(iterate, data) {
+	const [traits, setTraits] = useState([]);
+	const [traitType, setTraitType] = useState();
+	const queryParams = new URLSearchParams(window.location.search);
+	const id = queryParams.get('id');
+	let formData = '';
+	const handleHide = async (iterate, data) => {
 		const question = document.getElementById(`questionID${iterate}`);
-		question.style = "display: none"; 
-		if(iterate <= 4){formData+=data;}
-		iterate = iterate + 1
-		if(iterate === 5){const traitData = personalityTypes(formData); setTraits(traitData); setTraitType(formData)};
-		if(iterate === 6){window.location.href = `/search?personality=${traitType}`;}
-		const question2 = document.getElementById(`questionID${iterate}`)
-		question2.style = "display: block";
-		
-	}
+		question.style = 'display: none';
+		if (iterate <= 4) {
+			formData += data;
+		}
+		iterate = iterate + 1;
+		if (iterate === 5) {
+			const traitData = personalityTypes(formData);
+			setTraits(traitData);
+			setTraitType(formData);
+		}
+		if (iterate === 6) {
+			window.location.href = `/search?personality=${traitType}`;
+			try {
+				const { data } = await UPDATE_RECIPIENT({
+					variables: { recipientId: id, traits: traitType },
+				});
+				console.log(data);
+			} catch (err) {
+				console.log(err);
+			}
+		}
+		const question2 = document.getElementById(`questionID${iterate}`);
+		question2.style = 'display: block';
+
+	};
 
 	return (
 		<>
@@ -175,10 +195,14 @@ const [traitType, setTraitType] = useState();
 				className="box Personality-test-box"
 			>
 				<h1>Your Results!</h1>
-				<div className='columns'>
-					<button onClick={() => handleHide(5)} className='column is-full-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light'>
-						<div id='Option1' className='Description'>
-							<h2>Your Trait is {traits[0]}</h2><br></br>
+				<div className="columns">
+					<button
+						onClick={() => handleHide(5)}
+						className="column is-full-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
+					>
+						<div id="Option1" className="Description">
+							<h2>Your Trait is {traits[0]}</h2>
+							<br></br>
 							<h4>{traits[1]}</h4>
 							<div>Click on me to see your recommended ideas!</div>
 						</div>

@@ -30,6 +30,8 @@ const RecipientList = ({ username, recipients }) => {
 	if (loading) {
 		return <h2>Wait, Loading...</h2>
 	  }
+
+	  console.log(user.recipients)
 	return (
 		<>
 			<div>
