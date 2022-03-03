@@ -63,13 +63,12 @@ const resolvers = {
 			throw new AuthenticationError('Cannot Add Recipient!');
 		},
 
-		updateRecipient: async (parent, { args, recipientId }, context) => {
-			
+		updateRecipient: async (parent, args , context) => {
 			if (context.user) {
-				console.log({args});
+				console.log(args);
 				const updateRecipient = await Recipient.findByIdAndUpdate(
-					{ _id: context.user._id },
-					{ $addToSet: { recipients: args }},
+					{ _id: args.recipientId },
+					{ $set: {firstname: args.firstname, lastname: args.lastname, traits: args.traits }},
 					{ new: true }
 				);
 				return updateRecipient;
