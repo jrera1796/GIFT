@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useParams } from 'react';
+import React, { useState, useEffect} from 'react';
+import { useParams } from 'react-router-dom';
 import searchProducts from '../utils/searchAPI';
 import Auth from '../utils/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
