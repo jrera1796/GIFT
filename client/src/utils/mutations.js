@@ -68,16 +68,15 @@ mutation updateRecipient($recipientId: ID!, $firstname: String, $lastname: Strin
 `;
 
 export const SAVE_GIFT = gql`
-	mutation saveGift($recipientId: String!, $giftData: storeGift!) {
+	mutation saveGift($recipientId: ID, $giftData: storeGift) {
 		saveGift(recipientId: $recipientId, giftData: $giftData) {
 			_id
 			lastname
 			savedGifts {
 				giftId
-				giftname
-				description
-				link
+				title
 				image
+				link
 			}
 		}
 	}
@@ -90,10 +89,9 @@ export const REMOVE_GIFT = gql`
 			lastname
 			savedGifts {
 				giftId
-				giftname
-				description
-				link
+				title
 				image
+				link
 			}
 		}
 	}

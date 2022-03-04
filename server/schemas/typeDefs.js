@@ -20,7 +20,7 @@ const typeDefs = gql`
 
 	type Gift {
 		_id: ID
-		giftId: String!
+		giftId: String
 		title: String
 		image: String
 		link: String
@@ -32,7 +32,7 @@ const typeDefs = gql`
 	}
 
 	input storeGift {
-		giftId: String!
+		giftId: String
 		title: String
 		image: String
 		link: String
@@ -52,7 +52,7 @@ const typeDefs = gql`
 		addRecipient(firstname: String!, lastname: String!, traits: String!): Recipient
     	updateRecipient(recipientId: ID!, firstname: String, lastname: String, traits: String): Recipient
     	removeRecipient(recipientId: ID!): User
-		saveGift(recipientId: String!, giftData: storeGift!): Recipient
+		saveGift(recipientId: ID, giftData: storeGift): Recipient
 		removeGift(recipientId: String!, giftId: String!): Recipient
 	}
 `;
