@@ -45,7 +45,7 @@ export const GET_RECIPIENTS = gql`
 `;
 
 export const GET_RECIPIENT = gql`
-	query recipient($_id: ID) {
+	query recipient($_id: ID!) {
 		recipient(_id: $_id) {
 			_id
 			firstname

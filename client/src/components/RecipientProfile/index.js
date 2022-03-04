@@ -3,7 +3,9 @@ import { GET_RECIPIENT } from '../../utils/queries'
 import { useQuery } from '@apollo/client';
 
 
-const RecipientProfile = (recipientID) => {
+const RecipientProfile = () => {
+  let params = (new URL(document.location)).searchParams
+  let recipientID = params.get('id'); // No luck with conditional render
   const { loading, data } = useQuery(GET_RECIPIENT, {
     variables: {
       _id: recipientID
@@ -22,9 +24,11 @@ const RecipientProfile = (recipientID) => {
     return (
       <p className="bg-dark text-light p-3">
         {recipient.firstname}, Doesn't have any gifts yet.
-        <button>
-          Find Gifts!
-        </button>
+        <a href={`/search&personality=${recipient.traits}&id=${recipient._id}`}>
+          <button className='button is-medium is-warning'>
+            Find Gifts!
+          </button>
+        </a>
       </p>
     )
   }
