@@ -1,27 +1,69 @@
-import React from 'react';
+import React, { useState, Routes } from 'react';
 import 'bulma/css/bulma.css';
+import { useMutation } from '@apollo/client';
+import personalityTypes from '../utils/personalityTypes';
+import { UPDATE_RECIPIENT } from '../utils/mutations';
 
 export default function PersonalityTest() {
+	const [traits, setTraits] = useState([]);
+	const [traitType, setTraitType] = useState();
 
-	let formData = ''
-	function handleHide(iterate, data) {
+	const [updateRecipient, { error }] = useMutation(UPDATE_RECIPIENT);
+
+	const queryParams = new URLSearchParams(window.location.search);
+	const id = queryParams.get('id');
+	const firstname = queryParams.get('first');
+	const lastname = queryParams.get('last');
+
+	let formData = '';
+
+	const handleHide = async (iterate, data) => {
 		const question = document.getElementById(`questionID${iterate}`);
-		question.style = "display: none"; formData+=data;
-		iterate = iterate + 1
-		if(iterate === 6){window.location.href = `/search?personality=${formData.split(',')}`;}
-		const question2 = document.getElementById(`questionID${iterate}`)
-		question2.style = "display: block"
-		
-	}
+		question.style = 'display: none';
+		if (iterate <= 4) {
+			formData += data;
+		}
+		iterate = iterate + 1;
+		if (iterate === 5) {
+			const traitData = personalityTypes(formData);
+			setTraits(traitData);
+			setTraitType(formData);
+		}
+		if (iterate === 6) {
+			window.location.href = `/search?personality=${traitType}`;
+			try {
+				const { data } = await updateRecipient({
+					variables: {
+						recipientId: id,
+						traits: traitType,
+						firstname: firstname,
+						lastname: lastname,
+					},
+				});
+				console.log(data);
+			} catch (err) {
+				console.log(err);
+			}
+		}
+		const question2 = document.getElementById(`questionID${iterate}`);
+		question2.style = 'display: block';
+	};
 
 	return (
 		<>
 			{/* Question 1 */}
-			<div style={{ display: "block" }} id="questionID1" className='box Personality-test-box'>
+			<div
+				style={{ display: 'block' }}
+				id="questionID1"
+				className="box Personality-test-box"
+			>
 				<h1>Is your recipient introverted (I) or extroverted (E)?</h1>
-				<div className='columns'>
-					<button onClick={() => handleHide(1, 'I')} className='column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light'>
-						<div id='Option1' className='Description'>
+				<div className="columns">
+					<button
+						onClick={() => handleHide(1, 'I')}
+						className="column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
+					>
+						<div id="Option1" className="Description">
 							<h2>Introverted</h2>
 							<ul>
 								<ol>Private</ol>
@@ -31,8 +73,11 @@ export default function PersonalityTest() {
 						</div>
 					</button>
 
-					<button onClick={() => handleHide(1, 'E')} className='column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light'>
-						<div id='Option2' className='Description'>
+					<button
+						onClick={() => handleHide(1, 'E')}
+						className="column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
+					>
+						<div id="Option2" className="Description">
 							<h2>Extroverted</h2>
 							<ul>
 								<ol>Social</ol>
@@ -44,11 +89,18 @@ export default function PersonalityTest() {
 				</div>
 			</div>
 			{/* Question 2 */}
-			<div style={{ display: "none" }} id="questionID2" className='box Personality-test-box'>
+			<div
+				style={{ display: 'none' }}
+				id="questionID2"
+				className="box Personality-test-box"
+			>
 				<h1>Is your recipient intutitive (N) or observant (S)?</h1>
-				<div className='columns'>
-					<button onClick={() => handleHide(2, 'N')} className='column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light'>
-						<div id='Option1' className='Description'>
+				<div className="columns">
+					<button
+						onClick={() => handleHide(2, 'N')}
+						className="column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
+					>
+						<div id="Option1" className="Description">
 							<h2>Intutitive</h2>
 							<ul>
 								<ol>Imaginative</ol>
@@ -58,8 +110,11 @@ export default function PersonalityTest() {
 						</div>
 					</button>
 
-					<button onClick={() => handleHide(2, 'S')} className='column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light'>
-						<div id='Option2' className='Description'>
+					<button
+						onClick={() => handleHide(2, 'S')}
+						className="column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
+					>
+						<div id="Option2" className="Description">
 							<h2>Observant</h2>
 							<ul>
 								<ol>Practical</ol>
@@ -71,11 +126,18 @@ export default function PersonalityTest() {
 				</div>
 			</div>
 			{/* Question 3 */}
-			<div style={{ display: "none" }} id="questionID3" className='box Personality-test-box'>
+			<div
+				style={{ display: 'none' }}
+				id="questionID3"
+				className="box Personality-test-box"
+			>
 				<h1>Is your recipient feeling (F) or thinking (T)?</h1>
-				<div className='columns'>
-					<button onClick={() => handleHide(3, 'F')} className='column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light'>
-						<div id='Option1' className='Description'>
+				<div className="columns">
+					<button
+						onClick={() => handleHide(3, 'F')}
+						className="column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
+					>
+						<div id="Option1" className="Description">
 							<h2>Feeling</h2>
 							<ul>
 								<ol>Empathetic</ol>
@@ -85,8 +147,11 @@ export default function PersonalityTest() {
 						</div>
 					</button>
 
-					<button onClick={() => handleHide(3, 'T')} className='column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light'>
-						<div id='Option2' className='Description'>
+					<button
+						onClick={() => handleHide(3, 'T')}
+						className="column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
+					>
+						<div id="Option2" className="Description">
 							<h2>Thinking</h2>
 							<ul>
 								<ol>Logical</ol>
@@ -98,11 +163,18 @@ export default function PersonalityTest() {
 				</div>
 			</div>
 			{/* Question 4 */}
-			<div style={{ display: "none" }} id="questionID4" className='box Personality-test-box'>
+			<div
+				style={{ display: 'none' }}
+				id="questionID4"
+				className="box Personality-test-box"
+			>
 				<h1>Is your recipient judging (J) or prospecting (P)?</h1>
-				<div className='columns'>
-					<button onClick={() => handleHide(4, 'J')} className='column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light'>
-						<div id='Option1' className='Description'>
+				<div className="columns">
+					<button
+						onClick={() => handleHide(4, 'J')}
+						className="column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
+					>
+						<div id="Option1" className="Description">
 							<h2>Judging</h2>
 							<ul>
 								<ol>Decisive</ol>
@@ -112,8 +184,11 @@ export default function PersonalityTest() {
 						</div>
 					</button>
 
-					<button onClick={() => handleHide(4, 'P')} className='column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light'>
-						<div id='Option2' className='Description'>
+					<button
+						onClick={() => handleHide(4, 'P')}
+						className="column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
+					>
+						<div id="Option2" className="Description">
 							<h2>Prospecting</h2>
 							<ul>
 								<ol>Relaxed</ol>
@@ -124,17 +199,23 @@ export default function PersonalityTest() {
 					</button>
 				</div>
 			</div>
-			{/* Question 3 */}
-			<div style={{ display: "none" }} id="questionID5" className='box Personality-test-box'>
+			{/* Display Personality */}
+			<div
+				style={{ display: 'none' }}
+				id="questionID5"
+				className="box Personality-test-box"
+			>
 				<h1>Your Results!</h1>
-				<div className='columns'>
-					<button onClick={() => handleHide(5)} className='column is-full-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light'>
-						<div id='Option1' className='Description'>
-							<h2>Traits</h2>
-							<ul>
-								<ol>{toString(formData)}</ol>
-								
-							</ul>
+				<div className="columns">
+					<button
+						onClick={() => handleHide(5)}
+						className="column is-full-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
+					>
+						<div id="Option1" className="Description">
+							<h2>Your Trait is {traits[0]}</h2>
+							<br></br>
+							<h4>{traits[1]}</h4>
+							<div>Click on me to see your recommended ideas!</div>
 						</div>
 					</button>
 				</div>

@@ -11,6 +11,7 @@ export const GET_USER = gql`
 				_id
 				lastname
 				firstname
+				traits
 			}
 		}
 	}
@@ -39,6 +40,23 @@ export const GET_RECIPIENTS = gql`
 			traits
 			lastname
 			firstname
+		}
+	}
+`;
+
+export const GET_RECIPIENT = gql`
+	query recipient($_id: ID) {
+		recipient(_id: $_id) {
+			_id
+			firstname
+			lastname
+			traits
+			savedGifts {
+				giftId
+				title
+				image
+				link
+			}
 		}
 	}
 `;

@@ -64,7 +64,7 @@ const SearchPage = () => {
   };
 
   const handleSaveGift = async (giftId) => {
-    const giftToSave = searchedData.find((gift) => gift.giftId === giftId);
+    const giftToSave = searchedData.find((gift) => gift.asin === giftId);
     console.log(giftToSave);
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) { return false; }
@@ -173,9 +173,9 @@ const SearchPage = () => {
                   {Auth.loggedIn() ? (<p className="card-footer-item" style={{padding:"10px"}}>
                     <button
                       className='button is-medium'
-                      disabled={savedGiftIds?.some((savedId) => savedId === netData.asin)}
-                      onClick={() => handleSaveGift(netData.asin)}>
-                      {savedGiftIds?.some((savedId) => savedId === netData.asin)
+                      disabled={savedGiftIds?.some((savedId) => savedId === netData.giftId)}
+                      onClick={() => handleSaveGift(netData.giftId)}>
+                      {savedGiftIds?.some((savedId) => savedId === netData.giftId)
                         ? 'Save' : 'Already Saved'}
                     </button>
                   </p>

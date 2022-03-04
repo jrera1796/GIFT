@@ -26,6 +26,7 @@ const Hero = () => {
       <button className="carousel-button next" data-carousel-button="next" onClick={() => { updateIndex(activeIndex + 1) }}></button>
       <img alt={array[activeIndex]} src={require(`../../assets/images/${array[activeIndex]}.jpeg`)}></img>
     </div>
+  
   )
 }
 

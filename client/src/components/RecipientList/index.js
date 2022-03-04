@@ -30,6 +30,8 @@ const RecipientList = ({ username, recipients }) => {
 	if (loading) {
 		return <h2>Wait, Loading...</h2>
 	  }
+
+	  console.log(user.recipients)
 	return (
 		<>
 			<div>
@@ -37,7 +39,7 @@ const RecipientList = ({ username, recipients }) => {
 					<form className="has-text-weight-bold">
 						<div>
 							<h6>
-								{recArr.firstname} {recArr.lastname} {recArr._id}{' '}
+								{recArr.firstname} {recArr.lastname} {recArr._id} {recArr.traits}{' '}
 							</h6>
 							<button
 								className="button is-danger"
