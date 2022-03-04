@@ -68,6 +68,8 @@ export default function Dashboard() {
 	}
 	return (
 		<>
+		<div className='Hero'>
+			<div className='hero-body'>
 			<h2 className="bg-dark text-secondary p-3 display-inline-block is-size-4">
 				<FontAwesomeIcon icon={faIdCard} size="2x"></FontAwesomeIcon> Hello{' '}
 				{`${user.username}`}!
@@ -107,8 +109,10 @@ export default function Dashboard() {
 					Submit
 				</button>
 			</form>
-			<div className="col-12 col-lg-3 mb-3">
+			<div className="col-12 col-lg-3 mb-3 recipient-list">
 				<RecipientList />
+			</div>
+			</div>
 			</div>
 		</>
 	);
