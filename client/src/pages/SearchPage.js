@@ -31,7 +31,7 @@ const SearchPage = () => {
   const [savedGiftIds, setSavedGiftIds] = useState(getSavedGiftIds());
   const [saveGift] = useMutation(SAVE_GIFT);
 
-  // useEffect(() => { return () => saveGiftIds(savedGiftIds); });
+  useEffect(() => { return () => saveGiftIds(savedGiftIds); });
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -40,23 +40,14 @@ const SearchPage = () => {
       setShowResults(false)
       setToggleLoading(true); loadingScreen()
       const data = await searchProducts(searchGift, searchGiftCategory);
-      console.log(data);
+      console.log('Data: ', data);
 
-      const giftData = data.map((gift) => ({
-        giftId: gift.asin,
-        title: gift.title || ['No author to display'],
-        image: gift.image || '',
-        link: gift.link,
-      }));
 
-      console.log(giftData)
 
       setShowResults(true);
-      setSearchedData(giftData);
+      setSearchedData(data);
       setSearchGift('');
       setSearchGiftCategory(1000)
-
-
     }
     catch (error) {
       console.log(error)
@@ -64,13 +55,18 @@ const SearchPage = () => {
   };
 
   const handleSaveGift = async (giftId) => {
-    const giftToSave = searchedData.find((gift) => gift.asin === giftId);
-    console.log(giftToSave);
+    console.log('giftId: ', giftId)
+    const giftToSave = searchedData.find((gift) => gift.giftId === giftId);
+    console.log('giftToSave ', giftToSave);
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) { return false; }
     try {
-      const { resData } = await saveGift({ variables: { giftData: { ...giftToSave } } });
-      console.log(resData);
+
+      const { resData } = await saveGift({ 
+        variables: {
+          recipientId: "62200b9d5a4ee822181b2cf3",
+          giftData: giftToSave  }});
+      console.log("Recipient Result ", resData);
       setSavedGiftIds([...savedGiftIds, giftToSave.giftId]);
     } catch (e) { console.log('Cannot Save Gift'); }
   }
@@ -78,7 +74,6 @@ const SearchPage = () => {
 
 
   useEffect(() => {
-    saveGiftIds(savedGiftIds); 
     let params = (new URL(document.location)).searchParams
     let personality = params.get('personality');
     if(!personality){return}
@@ -88,7 +83,13 @@ const SearchPage = () => {
         setToggleLoading(true); loadingScreen();
         const prepopulateData = await searchProducts(typeData[0], typeData[1]);
         console.log(searchedData)
-        setSearchedData(prepopulateData);
+        const giftData = prepopulateData.map((gift) => ({
+          giftId: gift.asin,
+          title: gift.title || ['No Title'],
+          image: gift.image || 'No Image',
+          link: gift.link,
+        }));
+        setSearchedData(giftData);
         setShowResults(true);
       
     } fetchData()
@@ -151,32 +152,32 @@ const SearchPage = () => {
       </div>
       {showResults ? (
         <div className='container card-grid results'>
-          {searchedData.map((netData) => (
-            <div key={netData.asin} className="card card-max-height">
+          {searchedData.map((gift) => (
+            <div key={gift.giftId} className="card card-max-height">
               <div className="card-image">
                 <figure className="image is-half">
-                  <img src={netData.image} alt={netData.asin} />
+                  <img src={gift.image} alt={gift.giftId} />
                 </figure>
               </div>
               <div className="card-content p-0">
                 <div className="media">
                   <div className="media-content">
-                    <p className="title is-4 pl-5">{netData.title}</p>
+                    <p className="title is-4 pl-6">{gift.title}</p>
                   </div>
                 </div>
                 <div className="card-footer">
                   <p className="card-footer-item" style={{padding:"10px"}}>
                     <span>
-                      View on <a href={netData.link} target="_blank" rel="noreferrer" noopener="true">Amazon</a>
+                      View on <a href={gift.link} target="_blank" rel="noreferrer" noopener="true">Amazon</a>
                     </span>
                   </p>
                   {Auth.loggedIn() ? (<p className="card-footer-item" style={{padding:"10px"}}>
                     <button
                       className='button is-medium'
-                      disabled={savedGiftIds?.some((savedId) => savedId === netData.giftId)}
-                      onClick={() => handleSaveGift(netData.giftId)}>
-                      {savedGiftIds?.some((savedId) => savedId === netData.giftId)
-                        ? 'Save' : 'Already Saved'}
+                      disabled={savedGiftIds?.some((savedId) => savedId === gift.giftId)}
+                      onClick={() => handleSaveGift(gift.giftId)}>
+                      {savedGiftIds?.some((savedId) => savedId === gift.giftId)
+                        ? 'Already Saved' : 'Click To Save'}
                     </button>
                   </p>
                   ) : (

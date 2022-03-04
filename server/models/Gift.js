@@ -5,23 +5,15 @@ const giftSchema = new Schema({ //user save gifts for recipient
 
   giftId: {
     type: String,
-    required: true,
   },
-  giftname: {
+  title: {
     type: String
-  },
-  description: {
-    type: String,
-    trim: true,
-  },
-  link: {
-    type: String,
   },
   image: {
     type: String,
   },
-  price: {
-    type: String
+  link: {
+    type: String,
   }
 });
 
