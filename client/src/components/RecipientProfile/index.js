@@ -1,24 +1,78 @@
 import React from 'react'
-import { GET_RECIPIENTS } from '../../utils/queries'
+import { GET_RECIPIENT } from '../../utils/queries'
 import { useQuery } from '@apollo/client';
 
-const recipientID = "622087685230516c500caba8"
 
-const RecipientProfile = () => {
-const {loading, data} = useQuery(GET_RECIPIENTS, {
-  variable: {_id: recipientID}
-});
+const RecipientProfile = (recipientID) => {
+  const { loading, data } = useQuery(GET_RECIPIENT, {
+    variables: {
+      _id: recipientID
+    }
+  });
+  const recipient = data?.recipient || {};
 
-const recData = data?.recipients || {};
+  console.log(loading, '\n Line Break', '\n Line Break', recipient)
+  if (loading) {
+    return (
+      <div>Loading</div>
+    )
+  }
+
+  if (!recipient.savedGifts) {
+    return (
+      <p className="bg-dark text-light p-3">
+        {recipient.firstname}, Doesn't have any gifts yet.
+        <button>
+          Find Gifts!
+        </button>
+      </p>
+    )
+  }
+
+  return (
+    <>
+      <div>{recipient.firstname}</div>
+      <div className='container card-grid results'>
+        {recipient.savedGifts.map((giftList) => (
+          <div key={giftList.giftId} className="card card-max-height">
+            <div className="card-image">
+              <figure className="image is-half">
+                <img src={giftList.image} alt={giftList.giftId} />
+              </figure>
+            </div>
+            <div className="card-content p-0">
+              <div className="media">
+                <div className="media-content">
+                  <p className="title is-4 pl-6"></p>
+                </div>
+              </div>
+              <div className="card-footer">
+                <p className="card-footer-item" style={{ padding: "10px" }}>
+                  <a href={giftList.link} target="_blank" rel="noreferrer" noopener="true">
+                    <button className='button is-link is-medium'>
+                      Buy Now
+                    </button>
+                  </a>
+                </p>
+                <p className="card-footer-item">
+                  <button
+                    className='button is-danger is-medium'
+                    onClick={() => console.log("deleted")}>
+                    Delete Gift
+                  </button>
+                </p>
+
+              </div>
+            </div>
+          </div>
+        )
+        )
+        }
+      </div>
+    </>
 
 
-console.log(loading, '\n Line Break',data,'\n Line Break', recData)
-return (<div>
-
-  <h1>{recData._id}</h1>
-
-</div>
-)
+  )
 }
 
 export default RecipientProfile;
