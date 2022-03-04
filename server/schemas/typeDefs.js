@@ -52,7 +52,7 @@ const typeDefs = gql`
 		addRecipient(firstname: String!, lastname: String!, traits: String!): Recipient
     	updateRecipient(recipientId: ID!, firstname: String, lastname: String, traits: String): Recipient
     	removeRecipient(recipientId: ID!): User
-		saveGift(recipientId: String, giftData: storeGift): Recipient
+		saveGift(recipientId: ID, giftData: storeGift): Recipient
 		removeGift(recipientId: String!, giftId: String!): Recipient
 	}
 `;

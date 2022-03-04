@@ -61,8 +61,11 @@ const SearchPage = () => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) { return false; }
     try {
-      const pId = "62200b9d5a4ee822181b2cf3";
-      const { resData } = await saveGift({ variables: { pId, giftData: { ...giftToSave } } });
+
+      const { resData } = await saveGift({ 
+        variables: {
+          recipientId: "62200b9d5a4ee822181b2cf3",
+          giftData: giftToSave  }});
       console.log("Recipient Result ", resData);
       setSavedGiftIds([...savedGiftIds, giftToSave.giftId]);
     } catch (e) { console.log('Cannot Save Gift'); }
