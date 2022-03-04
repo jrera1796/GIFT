@@ -9,7 +9,7 @@ export default function Home() {
       <div>
       <br /> <br />
       <image src='../asset/images/question.jpeg' />
-      <h3 >GIFT: Gift Imagine For Them <br /> 
+      <h3 className='intro-message'>GIFT: Gift Imagine For Them <br /> 
       Don't know what to get for your love ones, friends or co-workers?
       Let GIFT help you figured out what to get for them.
       Sign-up for our app, take a simple personality test and let GIFT find the gifts that suits your recipients.

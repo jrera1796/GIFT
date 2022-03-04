@@ -10,7 +10,7 @@ const Header = () => {
 	return (
 		
 		<header>
-			<nav className="topnav">
+			<nav className="topnav is-flex-direction-row">
 				<a className="active" href="/"> GIFT
 					{' '}
 				</a>
