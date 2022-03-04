@@ -40,10 +40,6 @@ const SearchPage = () => {
       setShowResults(false)
       setToggleLoading(true); loadingScreen()
       const data = await searchProducts(searchGift, searchGiftCategory);
-      console.log('Data: ', data);
-
-
-
       setShowResults(true);
       setSearchedData(data);
       setSearchGift('');
@@ -61,7 +57,6 @@ const SearchPage = () => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) { return false; }
     try {
-
       const { resData } = await saveGift({ 
         variables: {
           recipientId: "62200b9d5a4ee822181b2cf3",
@@ -71,34 +66,28 @@ const SearchPage = () => {
     } catch (e) { console.log('Cannot Save Gift'); }
   }
 
-
-
   useEffect(() => {
     let params = (new URL(document.location)).searchParams
     let personality = params.get('personality');
     if(!personality){return}
     async function fetchData() {
       const typeData = await checkType(personality);
-     
-        setToggleLoading(true); loadingScreen();
-        const prepopulateData = await searchProducts(typeData[0], typeData[1]);
-        console.log(searchedData)
-        const giftData = prepopulateData.map((gift) => ({
-          giftId: gift.asin,
-          title: gift.title || ['No Title'],
-          image: gift.image || 'No Image',
-          link: gift.link,
-        }));
-        setSearchedData(giftData);
-        setShowResults(true);
-      
+      setToggleLoading(true); loadingScreen();
+      const prepopulateData = await searchProducts(typeData[0], typeData[1]);
+      console.log(searchedData)
+      const giftData = prepopulateData.map((gift) => ({
+        giftId: gift.asin,
+        title: gift.title || ['No Title'],
+        image: gift.image || 'No Image',
+        link: gift.link,
+      }));
+      setSearchedData(giftData);
+      setShowResults(true); 
     } fetchData()
-   
   }, []);
 
 
   return (
-
     <div>
       <div>
         <form onSubmit={handleFormSubmit}>
@@ -184,10 +173,8 @@ const SearchPage = () => {
                     <></>
                   )}
                 </div>
-
               </div>
             </div>
-
           ))}
         </div>
       ) : (
