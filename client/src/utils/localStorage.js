@@ -1,4 +1,5 @@
 export const getSavedGiftIds = () => {
+  console.log('In getSavedGiftIds');
   const savedGiftIds = localStorage.getItem('saved_gifts')
     ? JSON.parse(localStorage.getItem('saved_gifts'))
     : [];
@@ -7,6 +8,7 @@ export const getSavedGiftIds = () => {
 };
 
 export const saveGiftIds = (giftIdArr) => {
+  console.log('In saveGiftIds');
   if (giftIdArr.length) {
     localStorage.setItem('saved_gifts', JSON.stringify(giftIdArr));
   } else {
