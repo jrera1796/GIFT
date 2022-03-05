@@ -3,20 +3,19 @@ import React, { useEffect, useState } from "react";
 const Hero = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const array = [
-    { img: "present1", a: "Gift Ideas For Them!", b: "" },
-    { img: "present2", a: "Description", b: "Line Break", c: "has-text-danger" },
-    { img: "present3", a: "Description", b: "Line Break" },
-    { img: "present4", a: "Description", b: "Line Break" },
-    { img: "present5", a: "Description", b: "Line Break" },
-    { img: "present6", a: "Description", b: "Line Break" },
-    { img: "valentines1", a: "Description", b: "Line Break", c: "is-size-2 has-text-success"},
-    { img: "christmas1", a: "Description", b: "Line Break" },
-    { img: "restaurant1", a: "Description", b: "Line Break" },
-    { img: "flutes", a: "Description", b: "Line Break" },
-    { img: "roses", a: "Description", b: "Line Break" },
-    { img: "rings", a: "Description", b: "Line Break" },
-    { img: "baby", a: "Baby Shower gifts anyone?", b: "Line Break" },
-    { img: "balloons", a: "Gifts for your next Graduation!", b: "" }
+    { img: "present1", a: "", b: "" },
+    { img: "present2", a: "What To Give???", b: "", c: "has-text-danger" },
+    { img: "present4", a: "", b: "Feeling That Holiday's Gift's Blues..." },
+    { img: "present5", a: "", b: "And Slapping A Bow On Just About Anything," },
+    { img: "present6", a: "", b: "Or Not Sure What To Get For A Simple Gesture Of Thank You," },
+    { img: "valentines1", a: "", b: "STOP!!! Let GIFT helps you find the perfect present", c: "is-size-3 has-text-success"},
+    { img: "flutes", a: "", b: "For Your Celebration," },
+    { img: "christmas1", a: "", b: "Christmas," },
+    { img: "roses", a: "", b: "Love," },
+    { img: "rings", a: "", b: "And Weddings." },
+    { img: "baby", a: "Baby Shower Gifts Anyone?", b: "" },
+    { img: "balloons", a: "Or The Next Graduation!", b: "" },
+    { img: "restaurant1", a: "Let Gift Handles Your Problem While You Enjoy Your Meal.", b: "" }
   ];
 
   function updateIndex(newIndex) {
