@@ -24,7 +24,9 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: var(--Secondary);
+  /* background-color: var(--Secondary); */
+  background-image: url(./assets/images/gift-background.jpeg);
+  background-size: cover;
 }
 /* Nav */
 .topnav {
@@ -37,10 +39,45 @@ body {
 
 }
 
+.hero-outer{
+  justify-content: space-between;
+}
+
+.hero-outer:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.hero-column{
+  float: left;
+  width: 20%;
+}
+
+.hero-column-2{
+  float: left;
+  width: 60%;
+}
+
+/* side GIFT title text flex box */
+.text-container{
+  height: max-content !important;
+}
+
+.gift-box{
+  box-shadow: none !important;
+  background-color: inherit !important;
+  justify-content:inherit !important;
+  color: white !important;
+}
 
 .intro-message{
-  margin: 0px 16px;
+  /* background-color: rgb(141, 182, 176) !important; */
+  color: white !important;
+  background-color: transparent !important;
+  margin: 0px 16px !important;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+  box-shadow: none !important;
 }
 
 body, #app, #app>div {
@@ -118,10 +155,10 @@ footer{
   color: white;
   text-align: center;
 }
+  
 
 .container{
   color: rgb(47, 13, 238);
-  
 }
 
 /* Search grid */
@@ -198,9 +235,21 @@ footer{
 
 /* Personality Test Page */
 .Personality-test-box h1{
-  font-size: 1.2rem;
+  font-size: 1.7rem;
   font-weight: bold;
   padding-bottom: 10px;
+}
+
+.Description{
+  font-size: 1.3rem;
+}
+
+.login-box{
+  box-shadow: none !important;
+}
+
+.personality-main-container{
+  background-image: url(assets/images/ribbon.jpg);
 }
 
 /* Mobile Responsive */
@@ -219,7 +268,7 @@ footer{
   }
 }
 
-@media only screen and (min-width: 520px) and (max-width: 778px) {
+@media only screen and (max-width: 778px) {
     .card-max-height{
     margin: 25px;
     flex:2 0 35%;
@@ -231,4 +280,10 @@ footer{
     .save-button {
       font-size: 0.7rem !important;
   }
+    .hero-column{
+      display: none !important;
+    }
+    .hero-column-2{
+      width: 100% !important;
+    }
 }
