@@ -14,7 +14,7 @@ export default function checkType(string) {
       data = ['writing', 1084128];
       return data;
       case 'INTJ': // The Architect
-      data = ['sports', 3375301];
+      data = ['', 3375301];
       return data;
     case 'INTP': // The Logician
       data = ['strategy games,', 165795011];

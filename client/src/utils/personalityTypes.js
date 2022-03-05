@@ -54,7 +54,7 @@ export default function personalityTypes(string) {
         'ISTJs are responsible organizers who is driven to create and enforce order within a system or institution. They tend to have a procedure for everything they do and embodied neatness in every aspect of their life.'];
         return data;
         case 'ISTP': // The Virtuoso
-        data = ['ISTP', 
+        data = ['The Virtuoso', 
         'An artisans with an understanding of mechanics and an interest in troubleshooting. This person approaches their surroundings with a flexible logic and practical solutions to the problems at hand.'];
         return data;
         case 'ESTJ': // The Executive
