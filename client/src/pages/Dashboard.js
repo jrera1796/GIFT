@@ -5,7 +5,6 @@ import { useQuery, useMutation } from '@apollo/client';
 
 import { ADD_RECIPIENT } from '../utils/mutations';
 import { GET_USER, GET_RECIPIENTS } from '../utils/queries';
-import RecipientProfile from '../components/RecipientProfile';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faIdCard } from '@fortawesome/free-solid-svg-icons';
 
@@ -111,7 +110,6 @@ export default function Dashboard() {
 			</form>
 			<div className="col-12 col-lg-3 mb-3 recipient-list">
 				<RecipientList />
-				<RecipientProfile />
 			</div>
 			</div>
 			</div>

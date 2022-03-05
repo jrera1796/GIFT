@@ -37,6 +37,24 @@ const LoginForm = () => {
     
   };
 
+  const checkReq = (inputReq) => { 
+    switch (inputReq) {
+      case 'email':
+        if (userFormData.email.length <= 0) {
+          return (<Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>);
+        }
+        break;
+      case 'password':
+        if (userFormData.password.length <= 0) {
+          return (<Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>);
+        }
+        break;
+      default:
+        break;
+    }
+
+  }
+
   return (
     <div className='box is-full mt-5 ml-3 pt-3 pb-3 has-background-dark ' >
       
@@ -54,7 +72,7 @@ const LoginForm = () => {
             value={userFormData.email}
             required
           />
-          <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
+           {checkReq ('email')}
         </Form.Group>
 
         <Form.Group>
@@ -67,7 +85,7 @@ const LoginForm = () => {
             value={userFormData.password}
             required
           />
-          <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
+          {checkReq ('password')}
         </Form.Group>
         <Button
           className='button is-small is-success mt-2'
