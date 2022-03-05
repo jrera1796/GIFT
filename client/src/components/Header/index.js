@@ -16,7 +16,7 @@ const Header = () => {
 				</a>
 				{Auth.loggedIn() ? (
 					<>
-						<div className="nav-options has-text-weight-bold">
+						<div className="nav-options has-text-weight-bold level-right">
 							<Link to="/test" className="ml-3 mr-3">Personality Test</Link>
 							<Link to="/dashboard" className="ml-3 mr-3">Dashboard</Link>
 							<Link to="/search" className="ml-3 mr-3">GiftSearch</Link>

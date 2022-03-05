@@ -32,6 +32,8 @@ const SearchPage = () => {
   const [savedGiftIds, setSavedGiftIds] = useState(getSavedGiftIds());
   const [saveGift] = useMutation(SAVE_GIFT);
   
+  let params = (new URL(document.location)).searchParams
+    let checkID = params.get('id');
 
   useEffect(() => { return () => saveGiftIds(savedGiftIds); });
 
@@ -162,7 +164,7 @@ const SearchPage = () => {
                       View on <a href={gift.link} target="_blank" rel="noreferrer" noopener="true">Amazon</a>
                     </span>
                   </p>
-                  {Auth.loggedIn() ? (<p className="card-footer-item" style={{padding:"10px"}}>
+                  {Auth.loggedIn() && checkID ? (<p className="card-footer-item" style={{padding:"10px"}}>
                     <button
                       className='button is-medium'
                       disabled={savedGiftIds?.some((savedId) => savedId === gift.giftId)}

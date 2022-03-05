@@ -34,17 +34,54 @@ const Hero = () => {
   })
 
   return (
-    <div className="carousel" data-carousel>
-      <button className="carousel-button prev" data-carousel-button="prev" onClick={() => { updateIndex(activeIndex - 1) }}></button>
-      <button className="carousel-button next" data-carousel-button="next" onClick={() => { updateIndex(activeIndex + 1) }}></button>
-      <img alt={array[activeIndex].img} src={require(`../../assets/images/${array[activeIndex].img}.jpeg`)}></img>
-      <div className="overlay">
-        <div className={array[activeIndex].c || "overlay-text" }>
-          {array[activeIndex].a}
-          <br></br>{array[activeIndex].b}
+    <div className="hero-outer">
+
+        <div className="hero-column">
+            <div className='text-container'>   
+              <div className='box level gift-box'>
+                <h1 className='is-size-2'>G</h1>
+                <p> ift</p>
+              </div>
+              <div className='box level gift-box'>
+                <h1 className='is-size-2'>I</h1>
+                <p> deas</p>
+              </div>
+              <div className='box level gift-box'>
+                <h1 className='is-size-2'>F</h1>
+                <p> or</p>
+              </div>
+              <div className='box level gift-box'>
+                <h1 className='is-size-2'>T</h1>
+                <p> hem</p>
+              </div>      
+            </div>
         </div>
-      </div>
-    </div>
+
+        <div className="hero-column-2">
+            
+            <div className="carousel" data-carousel>
+              <button className="carousel-button prev" data-carousel-button="prev" onClick={() => { updateIndex(activeIndex - 1) }}></button>
+              <button className="carousel-button next" data-carousel-button="next" onClick={() => { updateIndex(activeIndex + 1) }}></button>
+              <img alt={array[activeIndex].img} src={require(`../../assets/images/${array[activeIndex].img}.jpeg`)}></img>
+                <div className="overlay">
+                    <div className={array[activeIndex].c || "overlay-text" }>
+                      {array[activeIndex].a}
+                      <br></br>{array[activeIndex].b}
+                    </div>
+                </div>
+            </div>
+              <div>
+                  <br />
+                    <h3 className='intro-message box'>GIFT: Gift Imagine For Them <br /> 
+                        Don't know what to get for your love ones, friends or co-workers?
+                        Let GIFT help you figured out what to get for them.
+                        Sign-up for our app, take a simple personality test and let GIFT find the gifts that suits your recipients.
+                    </h3>
+              </div>
+            </div>
+
+
+        </div>
 
   )
 }

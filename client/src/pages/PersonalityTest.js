@@ -55,9 +55,9 @@ export default function PersonalityTest() {
 			<div
 				style={{ display: 'block' }}
 				id="questionID1"
-				className="box Personality-test-box"
-			>
-				<h1>Is your recipient introverted (I) or extroverted (E)?</h1>
+				className="box Personality-test-box">
+			
+				<h1 className='has-text-centered'>Is your recipient introverted (I) or extroverted (E)?</h1>
 				<div className="columns">
 					<button
 						onClick={() => handleHide(1, 'I')}

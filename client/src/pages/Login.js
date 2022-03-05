@@ -4,7 +4,7 @@ import SignupForm from '../components/SignupForm';
 
 
 export default function Login() {
-	const [toggle, setToggle] = useState()
+	const [toggle, setToggle] = useState(true)
   return (
 	<div className='columns mt-3 is-full is-centered'>
 		{toggle?(
