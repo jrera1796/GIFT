@@ -10,8 +10,8 @@ const Header = () => {
 	return (
 		
 		<header>
-			<nav className="topnav is-flex-direction-row">
-				<a className="active" href="/"> GIFT
+			<nav className="topnav is-flex-direction-column">
+				<a className="active has-text-centered has-text-weight-bold is-size-4 gift-nav-bar" href="/"> GIFT
 					{' '}
 				</a>
 				{Auth.loggedIn() ? (
