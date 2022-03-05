@@ -1,5 +1,9 @@
+<<<<<<< Updated upstream
 import { React, useState } from 'react';
 
+=======
+import React, {useState} from 'react';
+>>>>>>> Stashed changes
 import { useQuery, useMutation } from '@apollo/client';
 import { REMOVE_RECIPIENT } from '../../utils/mutations';
 
@@ -20,7 +24,14 @@ const RecipientList = ({ username, recipients }) => {
 		);
 	}
 
-	const handleSubmit = async recipientId => {
+	function redirectPage(val, i){
+		setRecipID(val)
+		if(i === 0){window.location.href = `/test?&id=${recipID}`}
+		window.location.href = `/search?id=${recipID}`
+	}
+
+	const handleSubmit = async (recipientId) => {
+		console.log(`recipientId ${recipientId}`)
 		try {
 			const { data } = await removeRecipient({ variables: { recipientId } });
 			console.log(data);
@@ -48,6 +59,20 @@ const RecipientList = ({ username, recipients }) => {
 								{recArr.traits}{' '}
 							</h6>
 							<RecipientProfile parentToChild={recArr._id} />
+							<button
+								className="button is-success"
+								data-testid="button"
+								onClick={() => redirectPage(recArr._id, 0)}
+							>
+								Retake Test
+							</button>
+							<button
+								className="button is-warning"
+								data-testid="button"
+								onClick={() => redirectPage(recArr._id)}
+							>
+								Add More Gifts
+							</button>
 							<button
 								className="button is-danger"
 								data-testid="button"
