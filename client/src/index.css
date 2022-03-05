@@ -155,6 +155,7 @@ footer{
   margin: 0;
   padding: 0;
   list-style: none;
+  position: relative;
 }
 .carousel-button {
   position: absolute;
@@ -173,14 +174,6 @@ footer{
   /* background-color: rgba(0, 0, 0, .1); */
 }
 
-/* .carousel-button:hover{
-  color: white;
-  background-color: rgba(0, 0, 0, .05);
-} */
-
-/* .carousel-button:focus{
-  outline: 1px solid black;
-} */
 .carousel-button.prev{
   left: 1rem;;
 }
@@ -190,6 +183,17 @@ footer{
 
 .pad-2{
   padding: 2% !important;
+}
+/* Hero Text Overlay */
+.overlay {
+  position: absolute;
+  top: 40%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+}
+.overlay-text {
+  font-size: larger;
+  color: white;
 }
 
 /* Personality Test Page */

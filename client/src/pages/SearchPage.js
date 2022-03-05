@@ -26,10 +26,12 @@ const SearchPage = () => {
   const [searchGift, setSearchGift] = useState('cat'); //keyword
   const [searchGiftCategory, setSearchGiftCategory] = useState(1000); //category
   const [searchedData, setSearchedData] = useState([]); //result
+  const [id, setId] = useState();
 
   //create state to hold saved giftId values
   const [savedGiftIds, setSavedGiftIds] = useState(getSavedGiftIds());
   const [saveGift] = useMutation(SAVE_GIFT);
+  
 
   useEffect(() => { return () => saveGiftIds(savedGiftIds); });
 
@@ -40,10 +42,6 @@ const SearchPage = () => {
       setShowResults(false)
       setToggleLoading(true); loadingScreen()
       const data = await searchProducts(searchGift, searchGiftCategory);
-      console.log('Data: ', data);
-
-
-
       setShowResults(true);
       setSearchedData(data);
       setSearchGift('');
@@ -61,44 +59,39 @@ const SearchPage = () => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) { return false; }
     try {
-
       const { resData } = await saveGift({ 
         variables: {
-          recipientId: "62200b9d5a4ee822181b2cf3",
+          recipientId: id,
           giftData: giftToSave  }});
       console.log("Recipient Result ", resData);
       setSavedGiftIds([...savedGiftIds, giftToSave.giftId]);
     } catch (e) { console.log('Cannot Save Gift'); }
   }
 
-
-
   useEffect(() => {
     let params = (new URL(document.location)).searchParams
     let personality = params.get('personality');
+    let rec_id = params.get('id');
+    setId(rec_id);
     if(!personality){return}
     async function fetchData() {
       const typeData = await checkType(personality);
-     
-        setToggleLoading(true); loadingScreen();
-        const prepopulateData = await searchProducts(typeData[0], typeData[1]);
-        console.log(searchedData)
-        const giftData = prepopulateData.map((gift) => ({
-          giftId: gift.asin,
-          title: gift.title || ['No Title'],
-          image: gift.image || 'No Image',
-          link: gift.link,
-        }));
-        setSearchedData(giftData);
-        setShowResults(true);
-      
+      setToggleLoading(true); loadingScreen();
+      const prepopulateData = await searchProducts(typeData[0], typeData[1]);
+      console.log(searchedData)
+      const giftData = prepopulateData.map((gift) => ({
+        giftId: gift.asin,
+        title: gift.title || ['No Title'],
+        image: gift.image || 'No Image',
+        link: gift.link,
+      }));
+      setSearchedData(giftData);
+      setShowResults(true); 
     } fetchData()
-   
   }, []);
 
 
   return (
-
     <div>
       <div>
         <form onSubmit={handleFormSubmit}>
@@ -184,10 +177,8 @@ const SearchPage = () => {
                     <></>
                   )}
                 </div>
-
               </div>
             </div>
-
           ))}
         </div>
       ) : (

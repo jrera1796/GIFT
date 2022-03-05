@@ -30,7 +30,7 @@ export default function PersonalityTest() {
 			setTraitType(formData);
 		}
 		if (iterate === 6) {
-			window.location.href = `/search?personality=${traitType}`;
+			window.location.href = `/search?personality=${traitType}&id=${id}`;
 			try {
 				const { data } = await updateRecipient({
 					variables: {
