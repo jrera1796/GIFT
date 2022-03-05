@@ -12,17 +12,17 @@ const RecipientProfile = recId => {
       _id: recipientID,
     },
   });
+
+  console.log('data: ', data)
   const recipient = data?.recipient || {};
-  console.log(recipient);
+  console.log('recipient: ', recipient);
 
   const [removeGift] = useMutation(REMOVE_GIFT);
 
   const handleDeleteGift = async (giftId) => {
     try {
       const { data } = await removeGift({ variables: { 
-        _id: recipientID, 
-        savedGifts: { giftId }}});
-      console.log(data);
+        _id: recipient._id, giftId }});
       removeGiftId(giftId);
     } catch (err) { console.error(err); }
   };

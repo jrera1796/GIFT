@@ -53,9 +53,7 @@ const SearchPage = () => {
   };
 
   const handleSaveGift = async (giftId) => {
-    console.log('giftId: ', giftId)
     const giftToSave = searchedData.find((gift) => gift.giftId === giftId);
-    console.log('giftToSave ', giftToSave);
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) { return false; }
     try {
