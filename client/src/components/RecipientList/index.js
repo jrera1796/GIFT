@@ -37,8 +37,9 @@ const RecipientList = ({ username, recipients }) => {
 			<div>
 				{user.recipients.map(recArr => (
 					<form className="has-text-weight-bold">
-						<div className="box mt-4 mb-4">
-							<h6 className="has has-text-link has-text-weight-bold">
+						<div
+							key={recArr._id}>
+							<h6>
 								{recArr.firstname} {recArr.lastname} {recArr._id} {recArr.traits}{' '}
 							</h6>
 							<button

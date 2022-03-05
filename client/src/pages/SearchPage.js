@@ -26,10 +26,12 @@ const SearchPage = () => {
   const [searchGift, setSearchGift] = useState('cat'); //keyword
   const [searchGiftCategory, setSearchGiftCategory] = useState(1000); //category
   const [searchedData, setSearchedData] = useState([]); //result
+  const [id, setId] = useState();
 
   //create state to hold saved giftId values
   const [savedGiftIds, setSavedGiftIds] = useState(getSavedGiftIds());
   const [saveGift] = useMutation(SAVE_GIFT);
+  
 
   useEffect(() => { return () => saveGiftIds(savedGiftIds); });
 
@@ -59,7 +61,7 @@ const SearchPage = () => {
     try {
       const { resData } = await saveGift({ 
         variables: {
-          recipientId: "62200b9d5a4ee822181b2cf3",
+          recipientId: id,
           giftData: giftToSave  }});
       console.log("Recipient Result ", resData);
       setSavedGiftIds([...savedGiftIds, giftToSave.giftId]);
@@ -69,6 +71,8 @@ const SearchPage = () => {
   useEffect(() => {
     let params = (new URL(document.location)).searchParams
     let personality = params.get('personality');
+    let rec_id = params.get('id');
+    setId(rec_id);
     if(!personality){return}
     async function fetchData() {
       const typeData = await checkType(personality);
