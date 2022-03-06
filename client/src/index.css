@@ -53,6 +53,8 @@ body {
 .hero-outer{
   justify-content: space-between;
   background-image: url(./assets/images/bordergift-m.jpg);
+  background-size: contain;
+  background-position: center;
   padding-bottom: 20% !important;
 
 }
