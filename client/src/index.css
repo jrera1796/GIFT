@@ -25,8 +25,8 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   /* background-color: var(--Secondary); */
-  background-image: url(./assets/images/borderGift.jpg);
-  background-size: cover;
+  /* background-image: url(./assets/images/borderGift.jpg);
+  background-size: cover; */
 }
 /* Nav */
 .topnav {
@@ -211,9 +211,6 @@ footer{
   /* background-color: rgba(0, 0, 0, .1); */
 }
 
-.carousel img{
-
-}
 
 .carousel-button.prev{
   left: 1rem;;
@@ -259,6 +256,14 @@ footer{
 
   }
 } */
+
+.dashboard-main-container{
+  height: max-content !important;
+  background-image: url(./assets/images/wood.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 
 @media only screen and (max-width: 1220px) {
   .card-max-height{

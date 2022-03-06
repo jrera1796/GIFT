@@ -24,7 +24,7 @@ const Header = () => {
 					</>
 				) : (
 					<>
-						<div className="nav-options has-text-weight-bold">
+						<div className="nav-options has-text-weight-bold level-right">
 							<Link to="/search" className="ml-3 mr-3">GiftSearch</Link>
 							<Link to="/login" className="ml-3 mr-3">Login/Signup</Link>
 

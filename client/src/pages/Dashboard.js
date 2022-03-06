@@ -67,7 +67,7 @@ export default function Dashboard() {
 	}
 	return (
 		<>
-		<div className='Hero'>
+		<div className='Hero dashboard-main-container pb-5'>
 			<div className='hero-body'>
 			<h2 className="bg-dark text-secondary p-3 display-inline-block is-size-4">
 				<FontAwesomeIcon icon={faIdCard} size="2x"></FontAwesomeIcon> Hello{' '}
