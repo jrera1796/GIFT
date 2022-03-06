@@ -374,6 +374,9 @@ footer{
     .intro-message{
       font-size: 0.8rem !important;
     }
+    .hero-outer{
+      background-image: none;
+    }
 
     body {
       

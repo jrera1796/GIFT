@@ -18,7 +18,7 @@ const Header = () => {
 					<>
 						<div className="nav-options has-text-weight-bold level-right">
 							<Link to="/dashboard" className="has-text-white ml-3 mr-3">Dashboard</Link>
-							<Link to="/search" className=" has-text-whiteml-3 mr-3">GiftSearch</Link>
+							<Link to="/search" className=" has-text-white ml-3 mr-3">GiftSearch</Link>
 							<a href="/" onClick={logout} className="has-text-white ml-3 mr-3">Logout</a>
 						</div>
 					</>
