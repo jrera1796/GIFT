@@ -4,11 +4,9 @@ const Footer = () => {
   return (
     <footer className="w-100 mt-auto bg-secondary p-4">
       <div className="container columns">
-        <div className='column has-text-white'>
-          &copy;{new Date().getFullYear()}
-        </div>
-        <div className='column'>
-
+        <div className='column is-8 is-0-mobile has-text-white'></div>
+        <div className='column is-1 has-text-white'>&copy;{new Date().getFullYear()}</div>
+        <div className='column is-4 is-full-mobile has-text-white'>
           <a href="https://github.com/kcheykim" target="_blank" rel='noreferrer' noopener><button
             className="button btn is-info"
             data-testid="button"
@@ -41,8 +39,8 @@ const Footer = () => {
             Ching Leung
           </button></a>
 
-          </div>
         </div>
+      </div>
 
     </footer>
   );

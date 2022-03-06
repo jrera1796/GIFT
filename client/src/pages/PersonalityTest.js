@@ -1,4 +1,4 @@
-import React, { useState, Routes } from 'react';
+import React, { useState } from 'react';
 import 'bulma/css/bulma.css';
 import { useMutation } from '@apollo/client';
 import personalityTypes from '../utils/personalityTypes';
@@ -50,7 +50,9 @@ export default function PersonalityTest() {
 	};
 
 	return (
-		<>
+		<div className='dashboard-main-container is-centered columns'>
+			
+			<div className='column is-8' style={{ paddingTop: '4%' }}>
 			{/* Question 1 */}
 			<div
 				style={{ display: 'block' }}
@@ -58,10 +60,10 @@ export default function PersonalityTest() {
 				className="box Personality-test-box">
 			
 				<h1 className='has-text-centered'>Is your recipient introverted (I) or extroverted (E)?</h1>
-				<div className="columns">
+				<div className="columns is-justify-content-space-evenly">
 					<button
 						onClick={() => handleHide(1, 'I')}
-						className="column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
+						className="column is-5-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
 					>
 						<div id="Option1" className="Description">
 							<h2>Introverted</h2>
@@ -75,7 +77,7 @@ export default function PersonalityTest() {
 
 					<button
 						onClick={() => handleHide(1, 'E')}
-						className="column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
+						className="column is-5-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
 					>
 						<div id="Option2" className="Description">
 							<h2>Extroverted</h2>
@@ -94,11 +96,11 @@ export default function PersonalityTest() {
 				id="questionID2"
 				className="box Personality-test-box"
 			>
-				<h1>Is your recipient intutitive (N) or observant (S)?</h1>
-				<div className="columns">
+				<h1 className='has-text-centered'>Is your recipient intutitive (N) or observant (S)?</h1>
+				<div className="columns is-justify-content-space-evenly">
 					<button
 						onClick={() => handleHide(2, 'N')}
-						className="column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
+						className="column is-5-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
 					>
 						<div id="Option1" className="Description">
 							<h2>Intutitive</h2>
@@ -112,7 +114,7 @@ export default function PersonalityTest() {
 
 					<button
 						onClick={() => handleHide(2, 'S')}
-						className="column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
+						className="column is-5-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
 					>
 						<div id="Option2" className="Description">
 							<h2>Observant</h2>
@@ -131,11 +133,11 @@ export default function PersonalityTest() {
 				id="questionID3"
 				className="box Personality-test-box"
 			>
-				<h1>Is your recipient feeling (F) or thinking (T)?</h1>
-				<div className="columns">
+				<h1 className='has-text-centered'>Is your recipient feeling (F) or thinking (T)?</h1>
+				<div className="columns is-justify-content-space-evenly">
 					<button
 						onClick={() => handleHide(3, 'F')}
-						className="column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
+						className="column is-5-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
 					>
 						<div id="Option1" className="Description">
 							<h2>Feeling</h2>
@@ -149,7 +151,7 @@ export default function PersonalityTest() {
 
 					<button
 						onClick={() => handleHide(3, 'T')}
-						className="column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
+						className="column is-5-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
 					>
 						<div id="Option2" className="Description">
 							<h2>Thinking</h2>
@@ -168,11 +170,11 @@ export default function PersonalityTest() {
 				id="questionID4"
 				className="box Personality-test-box"
 			>
-				<h1>Is your recipient judging (J) or prospecting (P)?</h1>
-				<div className="columns">
+				<h1 className='has-text-centered'>Is your recipient judging (J) or prospecting (P)?</h1>
+				<div className="columns is-justify-content-space-evenly">
 					<button
 						onClick={() => handleHide(4, 'J')}
-						className="column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
+						className="column is-5-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
 					>
 						<div id="Option1" className="Description">
 							<h2>Judging</h2>
@@ -186,7 +188,7 @@ export default function PersonalityTest() {
 
 					<button
 						onClick={() => handleHide(4, 'P')}
-						className="column is-half-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
+						className="column is-5-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
 					>
 						<div id="Option2" className="Description">
 							<h2>Prospecting</h2>
@@ -205,8 +207,8 @@ export default function PersonalityTest() {
 				id="questionID5"
 				className="box Personality-test-box"
 			>
-				<h1>Your Results!</h1>
-				<div className="columns">
+				<h1 className='has-text-centered'>Your Results!</h1>
+				<div className="columns is-justify-content-space-evenly">
 					<button
 						onClick={() => handleHide(5)}
 						className="column is-full-desktop is-full-mobile mt-5 pt-3 pb-3 has-background-light"
@@ -220,6 +222,7 @@ export default function PersonalityTest() {
 					</button>
 				</div>
 			</div>
-		</>
+			</div>
+		</div>
 	);
 }
