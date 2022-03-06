@@ -92,7 +92,7 @@ const SearchPage = () => {
 
 
   return (
-    <div>
+    <div className='searchPage-main-container'>
       <div>
         <form onSubmit={handleFormSubmit}>
           <div className='field is-flex-direction-row'>
@@ -149,10 +149,10 @@ const SearchPage = () => {
             <div key={gift.giftId} className="card card-max-height">
               <div className="card-image">
                 <figure className="image is-half">
-                  <img src={gift.image} alt={gift.giftId} />
+                  <img src={gift.image} alt={gift.giftId} className="searchPage-image" />
                 </figure>
               </div>
-              <div className="card-content p-0">
+              <div className="card-content p-0 card-info">
                 <div className="media">
                   <div className="media-content">
                     <p className="title is-4 pl-6">{gift.title}</p>
@@ -184,7 +184,7 @@ const SearchPage = () => {
       ) : (
         <>
           {toggleLoading ? (
-            <FontAwesomeIcon className='is-3' icon={faSpinner} spin></FontAwesomeIcon>
+            <FontAwesomeIcon className='is-3 spinner' icon={faSpinner} spin></FontAwesomeIcon>
           ) : (
             <></>
           )}

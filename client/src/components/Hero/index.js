@@ -67,13 +67,15 @@ const Hero = () => {
             </div>
               <div>
                   <br />
-                    <div  className="box has-background-dark"><h3 className=' has-text-weight-semibold is-size-5 intro-message box'> 
+                    <div  className="box has-background-dark intro-message-container">
+                      <h3 className='intro-message box'> 
                         We know how difficult it can be to come up with the perfect gift for your friends or family. That's why our team decided to create 'GIFT'.
                         <br></br>You can search for gift ideas on our search page, or sign up and gain access to our personality test to help you find the right gift!
                         <br></br>
                         <br></br>Our gift ideas are inspired by <a className="has-text-white" href="https://en.wikipedia.org/wiki/Myers%E2%80%93Briggs_Type_Indicator">Myer Briggs Type Indicator</a>
                         <br></br>Everyone has a combination of characteristics that determine which type of person they are. This results in 16 possible types, and 16 different gift ideas. Future developments to this website will expand the gift ideas to include even more ideas!
-                    </h3></div>
+                      </h3>
+                    </div>
               </div>
             </div>
 
