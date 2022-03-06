@@ -108,7 +108,7 @@ const SignupForm = () => {
            {checkReq ('password')}
         </Form.Group>
         <Button
-          className='button is-small is-success mt-2'
+          className='button is-success mt-2'
           disabled={!(userFormData.username && userFormData.email && userFormData.password)}
           type='submit'
           variant='success'>

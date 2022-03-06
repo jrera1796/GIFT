@@ -82,7 +82,8 @@ body {
   box-shadow: none !important;
   background-color: inherit !important;
   justify-content:inherit !important;
-  color: white !important;
+  color: blue !important;
+  font-size: 25px !important;
 }
 
 .intro-message{
@@ -255,10 +256,6 @@ footer{
   color: white;
 }
 
-/* .Personality-main-container{
-  background-image: url(./assets/images/wood.png);
-} */
-
 /* Personality Test Page */
 .Personality-test-box h1{
   font-size: 1.7rem;
@@ -284,7 +281,7 @@ footer{
 
 /* Individual Page Main Container */
 .home-main-container{
-  background-image: url(./assets/images/borderGift.jpg);
+
   position: relative;
 
 }
