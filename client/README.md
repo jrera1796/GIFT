@@ -18,14 +18,8 @@ As hangouts are limited due to Covid, I would like to send some gifts to friends
 * Mongoose
 * MongoDB
 * Heroku
-* AWS-S3
+* Rainforest API
 * JWT
-
-## Challenge
-* Mapping between recipient, personality test and search gift structure.
-* GraphQL - queries,mutations for updating/deleting data
-* Git merge conflict - breaks the app immediately with a black screen.
-
 
 ## Table of Contents
 * [Installation](#installation)
@@ -49,6 +43,11 @@ Screenshot: <br/>
 ## Challenges
 This project took us some time at mapping our models for how everything could be linked together. At the begining, we were not able to figure how we summerize the personality traits result from the answers the users provided. We also went back and forth at how the gift should be traced by the sender.
 
+* Mapping between recipient, personality test and search gift structure.
+* GraphQL - queries,mutations for updating/deleting data
+* Git merge conflict - breaks the app immediately with a black screen.
+
+
 ## Contributing
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
 If you want to contribute, please contact one of the collaborators.
@@ -61,3 +60,4 @@ If you want to contribute, please contact one of the collaborators.
 
 ## WebSite
 https://gift-p3.herokuapp.com/<br />
+![GIFT](../client/src/assets/images/GIFT.png?raw=true)<br />
