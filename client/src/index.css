@@ -25,7 +25,7 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   /* background-color: var(--Secondary); */
-  background-image: url(./assets/images/gift-background.jpeg);
+  background-image: url(./assets/images/borderGift.jpg);
   background-size: cover;
 }
 /* Nav */
