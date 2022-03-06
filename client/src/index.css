@@ -211,6 +211,10 @@ footer{
   /* background-color: rgba(0, 0, 0, .1); */
 }
 
+.carousel img{
+
+}
+
 .carousel-button.prev{
   left: 1rem;;
 }
@@ -248,17 +252,13 @@ footer{
   box-shadow: none !important;
 }
 
-.personality-main-container{
-  background-image: url(assets/images/ribbon.jpg);
-}
-
 /* Mobile Responsive */
-@media only screen and (max-width: 768px) {
+/* @media only screen and (max-width: 768px) {
   body {
     background-color: lightblue;
 
   }
-}
+} */
 
 @media only screen and (max-width: 1220px) {
   .card-max-height{
@@ -285,5 +285,21 @@ footer{
     }
     .hero-column-2{
       width: 100% !important;
+    }
+    .carousel > img {
+      display: block;
+      width: 70%;
+      height: 80%;
+      margin-left: 15%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    body {
+      
+      background-attachment: fixed;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
     }
 }
