@@ -41,10 +41,6 @@ const Footer = () => {
           </button></a>
           </div>
         </div>
-        {/* <div className='is-4 has-text-white footer-button'>
-
-
-        </div> */}
 
 
     </footer>
