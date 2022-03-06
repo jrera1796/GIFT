@@ -28,6 +28,8 @@ body {
   /* background-image: url(./assets/images/borderGift.jpg);
   background-size: cover; */
 }
+
+
 /* Nav */
 .topnav {
   line-height: 3;
@@ -147,7 +149,7 @@ footer{
   position: fixed;
   left: 0;
   bottom: 0;
-  height: 100px;
+  /* height: 100px; */
   width: 100%;
   background-color: var(--Primary);
   font-weight: bolder;
@@ -155,12 +157,19 @@ footer{
   color: white;
   text-align: center;
 }
-  
+
+.flex-row{
+  display: flex;
+  flex-direction: column;
+}
 
 .container{
   color: rgb(47, 13, 238);
 }
-
+.btn{
+  background-color: #FF8C69 !important;
+  margin: 1% !important;
+}
 /* Search grid */
 .card-grid{
   display: grid;
@@ -225,8 +234,8 @@ footer{
 /* Hero Text Overlay */
 .overlay {
   position: absolute;
-  top: 40%;
-  left: 20%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
 }
 .overlay-text {
