@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# GIFT
+GIFT is an application that provides users ideas for gifts. Users can search for gifts by category. If user is signed in, it allows the user to add recipients and take a personality test to get a personality trait. The user then can see what gifts are suggested for that personality test result. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### This page is licensed under (click badge for license page): 
+[![license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Available Scripts
+## User Story
+As hangouts are limited due to Covid, I would like to send some gifts to friends that I haven’t met for years. When I open GIFT, I can search for some gift ideas. When I signed up, I can login to my dashboard and create my recipient list. When I select the recipient, I will be redirected to the personality test page. When I finished the test and click on the result, I will get to the search gift page.
 
-In the project directory, you can run:
+## Built With
+* React
+* HTML
+* CSS/Bulma
+* JavaScript
+* Node.js
+* Express
+* GraphQL
+* Mongoose
+* MongoDB
+* Heroku
+* AWS-S3
+* JWT
 
-### `npm start`
+## Challenge
+* Mapping between recipient, personality test and search gift structure.
+* GraphQL - queries,mutations for updating/deleting data
+* Git merge conflict - breaks the app immediately with a black screen.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Table of Contents
+* [Installation](#installation)
+* [Usage](#usage)
+* [Challenges](#challenges) 
+* [Collaborators](#collaborators)
+* [Website](#website)
 
-### `npm test`
+## Installation
+To install this application, clone the repository.<br/>
+Run `npm install`.<br/>
+Create an .env.staging file.<br/>
+In the file, add your database information and AWS access code. <br/>
+Run `npm run develop`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Usage
+Screenshot: <br/>
+![screenshot](./client/src/assets/images/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Challenges
+This project took us some time at mapping our models for how everything could be linked together. At the begining, we were not able to figure how we summerize the personality traits result from the answers the users provided. We also went back and forth at how the gift should be traced by the sender.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Contributing
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
+If you want to contribute, please contact one of the collaborators.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Collaborators
+[Kosal Cheykim GitHub](https://github.com/kcheykim) -- [kosalcheykim@gmail.com](mailto:kosalcheykim@gmail.com)<br/>
+[Kurtis Hight GitHub](https://github.com/mockcomic) -- [hightkurtis@gmail.com](mailto:hightkurtis@gmail.com)<br/>
+[Jose Rivera GitHub](https://github.com/jrera1796) -- [riverajose1796@gmail.com](mailto:riverajose1796@gmail.com)<br/>
+[Ching Leung GitHub](https://github.com/ricky0320) -- [ricxx0320@gmail.com](mailto:ricxx0320@gmail.com)
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## WebSite
+https://gift-p3.herokuapp.com/<br />
