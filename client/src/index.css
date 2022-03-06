@@ -165,9 +165,12 @@ footer{
   width: 100%;
   background-color: var(--Primary);
   font-weight: bolder;
-  font-size: 1.25rem;
+  font-size: 1.2rem !important;
   color: white;
-  text-align: center;
+}
+
+footer h5{
+  justify-content: center !important;
 }
 
 .flex-row{
@@ -181,6 +184,7 @@ footer{
 .btn{
   background-color: #FF8C69 !important;
   margin: 1% !important;
+  font-size: 1rem !important;
 }
 /* Search grid */
 .card-grid{
@@ -301,6 +305,10 @@ footer{
   min-height: 100vh !important;
 }
 
+.footer-container{
+  width: 100% !important; 
+}
+
 .dash-board-form{
   padding-left: 8rem;
   padding-right: 8rem;
@@ -378,5 +386,12 @@ footer{
       background-position: center center;
       background-repeat: no-repeat;
       background-size: cover;
+    }
+    .btn{
+      padding: 1% !important;
+      margin: 0.6% !important;
+    }
+    footer a{
+      font-size: 0.6rem !important;
     }
 }
