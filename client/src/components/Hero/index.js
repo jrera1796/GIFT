@@ -10,7 +10,7 @@ const Hero = () => {
     { img: "flutes", a: "Gifts for Celebrations", b: "", c:"has-background-light is-size-3 has-text-black"},
     { img: "valentines1", a: "Gifts for Valentines Day", b: "", c: "has-background-light is-size-3 has-text-black"},
     { img: "christmas1", a: "Gifts for Christmas", b: "", c:"has-background-light is-size-3 has-text-black"},
-    { img: "roses", a: "Gifts your loved ones", b: "", c:"has-background-light is-size-3 has-text-black"},
+    { img: "roses", a: "Gifts for your loved ones", b: "", c:"has-background-light is-size-3 has-text-black"},
   ];
 
   function updateIndex(newIndex) {
@@ -33,19 +33,19 @@ const Hero = () => {
 
         <div className="hero-column">
             <div className='text-container'>   
-              <div className='box level gift-box'>
+              <div className='box has-text-white level gift-box'>
                 <h1 className='is-size-2'>G</h1>
                 <p> ift</p>
               </div>
-              <div className='box level gift-box'>
+              <div className='box has-text-white level gift-box'>
                 <h1 className='is-size-2'>I</h1>
                 <p> deas</p>
               </div>
-              <div className='box level gift-box'>
+              <div className='box has-text-white level gift-box'>
                 <h1 className='is-size-2'>F</h1>
                 <p> or</p>
               </div>
-              <div className='box level gift-box'>
+              <div className='box has-text-white level gift-box'>
                 <h1 className='is-size-2'>T</h1>
                 <p> hem</p>
               </div>      
