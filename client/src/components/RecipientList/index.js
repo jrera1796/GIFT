@@ -41,11 +41,11 @@ const RecipientList = ({ username, recipients }) => {
 		<>
 			<div>
 				{user.recipients.map(recArr => (
-					<form className="has-text-weight-bold">
-						<div key={recArr._id}>
-							<h6>
-								{recArr.firstname} {recArr.lastname} {recArr._id}{' '}
-								{recArr.traits}{' '}
+					<form className="has-text-weight-bold has-text-white">
+						<div key={recArr._id} className="box has-background-dark receipient-list-box mb-5">
+							<h6 className='is-size-5 has-text-weight-bold has-text-white'>
+								{recArr.firstname} {recArr.lastname} {'with '}
+								{recArr.traits}{' trait'}
 							</h6>
 							<RecipientProfile parentToChild={recArr._id} />
 							<button
