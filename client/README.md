@@ -1,5 +1,5 @@
-# GIFT
-GIFT is an application that provides users ideas for gifts. Users can search for gifts by category. If user is signed in, it allows the user to add recipients and take a personality test to get a personality trait. The user then can see what gifts are suggested for that personality test result. 
+# GIFT - Gift Ideas For Them
+GIFT is an application that provides users ideas for gifts. Users can search for gifts by category. If user is signed in, it allows the user to add recipients and take a personality test to get a personality trait. The user then can see what gifts are suggested for that personality test result. Let GIFT help you find the next gift for the people you care about.
 
 #### This page is licensed under (click badge for license page): 
 [![license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -37,8 +37,7 @@ Run `npm run develop`
 
 
 ## Usage
-Screenshot: <br/>
-![screenshot](./client/src/assets/images/)
+Use this application to help you take the guessing out of giving gifts. The app will ask you to input your recipient information, take a personality test, and return recommended gifts results by updating the recipient with the match personality code. You can save recipient, delete recipient, save gifts and delete gifts. 
 
 ## Challenges
 This project took us some time at mapping our models for how everything could be linked together. At the begining, we were not able to figure how we summerize the personality traits result from the answers the users provided. We also went back and forth at how the gift should be traced by the sender.
