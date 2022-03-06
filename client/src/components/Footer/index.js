@@ -7,9 +7,9 @@ const Footer = () => {
 
         <div className='is-1 has-text-white'>
           <h5 className='has-text-centered'>&copy;{new Date().getFullYear()}</h5>
-          <div className='has-text-centered'>
+          <div className='has-text-centered footer-btn'>
           <a href="https://github.com/kcheykim" target="_blank" rel='noreferrer' noopener><button
-            className="button btn is-info footer-btn"
+            className="button btn is-info"
             data-testid="button"
             type="submit"
           >
@@ -17,7 +17,7 @@ const Footer = () => {
           </button></a>
 
           <a href="https://github.com/mockcomic" target="_blank" rel='noreferrer' noopener><button
-            className="button btn is-info footer-btn"
+            className="button btn is-info"
             data-testid="button"
             type="submit"
           >
@@ -25,7 +25,7 @@ const Footer = () => {
           </button></a>
 
           <a href="https://github.com/jrera1796" target="_blank" rel='noreferrer' noopener><button
-            className="button btn is-info footer-btn"
+            className="button btn is-info"
             data-testid="button"
             type="submit"
           >
@@ -33,7 +33,7 @@ const Footer = () => {
           </button></a>
 
           <a href="https://github.com/ricky0320" target="_blank" rel='noreferrer' noopener><button
-            className="button btn is-info footer-btn"
+            className="button btn is-info"
             data-testid="button"
             type="submit"
           >

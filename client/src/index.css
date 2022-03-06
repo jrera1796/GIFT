@@ -169,10 +169,6 @@ footer{
   color: white;
 }
 
-footer h5{
-  justify-content: center !important;
-}
-
 .flex-row{
   display: flex;
   flex-direction: column;
@@ -391,7 +387,7 @@ footer h5{
       padding: 1% !important;
       margin: 0.6% !important;
     }
-    footer a{
+    .btn{
       font-size: 0.6rem !important;
     }
 }
