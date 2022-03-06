@@ -59,4 +59,4 @@ If you want to contribute, please contact one of the collaborators.
 
 ## WebSite
 https://gift-p3.herokuapp.com/<br />
-![GIFT](../client/src/assets/images/GIFT.png?raw=true)<br />
+![GIFT](./client/src/assets/images/GIFT.png?raw=true)<br />
