@@ -48,7 +48,7 @@ const RecipientProfile = recId => {
 
 	return (
 		<>
-			<div>{recipient.firstname}</div>
+			
 			<div className="container card-grid results">
 				{recipient.savedGifts.map(giftList => (
 					<div key={giftList.giftId} className="card card-max-height">
@@ -66,7 +66,7 @@ const RecipientProfile = recId => {
 							<div className="card-footer">
 								<p className="card-footer-item" style={{ padding: '10px' }}>
 									<button
-										className="button is-link is-medium"
+										className="button is-link is-small"
 										onClick={() => window.open(giftList.link, '_blank')}
 									>
 										Buy Now
@@ -74,7 +74,7 @@ const RecipientProfile = recId => {
 								</p>
 								<p className="card-footer-item">
 									<button
-										className="button is-danger is-medium"
+										className="button is-danger is-small"
 										onClick={() => handleDeleteGift(giftList.giftId)}
 									>
 										Delete Gift

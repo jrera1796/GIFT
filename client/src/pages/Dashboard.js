@@ -67,13 +67,19 @@ export default function Dashboard() {
 	}
 	return (
 		<>
+		
 		<div className='Hero dashboard-main-container pb-5'>
 			<div className='hero-body'>
-			<h2 className="bg-dark text-secondary p-3 display-inline-block is-size-4">
+			<h2 className="bg-dark has-text-white p-3 display-inline-block is-size-3">
 				<FontAwesomeIcon icon={faIdCard} size="2x"></FontAwesomeIcon> Hello{' '}
 				{`${user.username}`}!
+
+			<div className='has-test-white is-size-6 has-text-centered'>
+				Please enter the recipient's information:
+			</div>
+
 			</h2>
-			<form onSubmit={handleSubmit} className="has-text-weight-bold">
+			<form onSubmit={handleSubmit} className="has-text-weight-bold has-text-white dash-board-form mb-4">
 				<div>
 					<label>First Name:</label>
 					<input
