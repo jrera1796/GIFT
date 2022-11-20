@@ -1,6 +1,6 @@
 [build]
-command ="npm install && npm run build && npm start"
-publish="public"
+command ="npm install && npm run build"
+publish="build"
 base="/"
 
 [[redirects]]
