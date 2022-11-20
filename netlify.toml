@@ -1,7 +1,7 @@
 [build]
-command ="npm start"
-publish="public"
-base=""
+command ="npm run build"
+publish="build"
+base="client"
 
 [[redirects]]
 from ="*"
