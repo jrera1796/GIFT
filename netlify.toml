@@ -1,7 +1,7 @@
 [build]
-command =""
-publish=""
-base="/"
+command ="npm run build"
+publish="public"
+base=""
 
 [[redirects]]
 from ="*"
