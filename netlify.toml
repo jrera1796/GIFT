@@ -1,5 +1,5 @@
 [build]
-command ="npm run develop"
+command ="npm start"
 publish="public"
 base=""
 
