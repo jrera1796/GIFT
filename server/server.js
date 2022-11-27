@@ -1,4 +1,11 @@
-const express = require('express');
+import { expressMiddleware } from '@apollo/server/express4';
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
+import express from 'express';
+import http from 'http';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+
+// const express = require('express');
 const {ApolloServer} = require('apollo-server-express');
 const path = require('path');
 
@@ -9,16 +16,26 @@ const db = require('./config/connection');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+const httpServer = http.createServer(app);
+
 const startServer = async () => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
     context: authMiddleware,
   });
   await server.start();
   server.applyMiddleware({ app });
   console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
 };
+
+app.use(
+  '/graphql',
+  cors({ origin: ['https://gift-yve8.vercel.app', 'https://studio.apollographql.com'] }),
+  json(),
+  expressMiddleware(server),
+);
 
 startServer()
 
