@@ -12,6 +12,11 @@ module.exports = {
     if (req.headers.authorization) {
       token = token.split(' ').pop().trim();
     }
+    
+    //Bypassing header options for GraphQL
+    if(req.method === "OPTIONS"){
+      return res.sendStatus('200')
+    }
 
     if (!token) {
       return req;
