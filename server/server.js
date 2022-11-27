@@ -3,7 +3,7 @@ import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHt
 import express from 'express';
 import http from 'http';
 import cors from 'cors';
-import bodyParser from 'body-parser';
+import json from 'body-parser';
 
 // const express = require('express');
 const {ApolloServer} = require('apollo-server-express');
