@@ -32,7 +32,7 @@ const startServer = async () => {
 
 app.use(
   '/graphql',
-  cors({ origin: ['https://gift-yve8.vercel.app', 'https://studio.apollographql.com'] }),
+  cors({ origin: ['https://gift-yve8.vercel.app/login', 'https://studio.apollographql.com'] }),
   json(),
   expressMiddleware(server),
 );
