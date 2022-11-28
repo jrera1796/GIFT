@@ -78,7 +78,7 @@ startServer()
 
 app.use(
   '/graphql',
-  cors({ origin: ['https://www.your-app.example', 'https://studio.apollographql.com'] }),
+  cors(),
   json(),
   expressMiddleware(server),
 );
