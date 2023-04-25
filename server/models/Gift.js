@@ -1,5 +1,6 @@
 //import GraphQLDecimal from 'graphql-type-decimal';
-const { Schema } = require('mongoose');
+import pkg from 'mongoose';
+const { Schema } = pkg;
 
 const giftSchema = new Schema({ //user save gifts for recipient
 
@@ -17,4 +18,4 @@ const giftSchema = new Schema({ //user save gifts for recipient
   }
 });
 
-module.exports = giftSchema;
+export default giftSchema;

@@ -1,5 +1,6 @@
-const { Schema, model } = require('mongoose');
-const giftSchema = require('./Gift');
+import pkg from 'mongoose';
+const { Schema, model } = pkg;
+import giftSchema from './Gift.js';
 
 const recipientSchema = new Schema(
   {
@@ -32,4 +33,4 @@ recipientSchema.virtual('giftCount').get(function() {
 
 const Recipient = model('Recipient', recipientSchema);
 
-module.exports = Recipient;
+export default Recipient;

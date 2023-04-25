@@ -1,4 +1,4 @@
-const User = require('./User');
-const Recipient = require('./Recipient');
+import User from './User.js'
+import Recipient from './Recipient.js'
 
-module.exports = { User, Recipient };
+export default { User, Recipient };

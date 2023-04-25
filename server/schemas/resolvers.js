@@ -1,6 +1,11 @@
-const { AuthenticationError } = require('apollo-server-express'); //import auth
-const { User, Recipient } = require('../models'); //import User model
-const { signToken } = require('../utils/auth'); //import sign token form auth
+// import { AuthenticationError } from '@apollo/server'
+import { GraphQLError } from 'graphql'; // Code above has deprecated
+
+import User from '../models/User.js'
+import Recipient from '../models/Recipient.js'
+import {signToken} from '../utils/auth.js';
+
+
 
 const resolvers = {
 	Query: {
@@ -12,7 +17,7 @@ const resolvers = {
 				);
 				return userData;
 			}
-			throw new AuthenticationError('User Not Logged In');
+			throw new GraphQLError('User Not Logged In');
 		},
 		users: async () => {
 			return User.find().select('-__v -password');
@@ -35,11 +40,11 @@ const resolvers = {
 			//authenticate a user to login
 			const user = await User.findOne({ email });
 			if (!user) {
-				throw new AuthenticationError('User Not Found');
+				throw new GraphQLError('User Not Found');
 			}
 			const matchPw = await user.isCorrectPassword(password);
 			if (!matchPw) {
-				throw new AuthenticationError('Incorrect Password');
+				throw new GraphQLError('Incorrect Password');
 			}
 			const token = signToken(user);
 			return { token, user };
@@ -63,7 +68,7 @@ const resolvers = {
 				);
 				return recipient;
 			}
-			throw new AuthenticationError('Cannot Add Recipient!');
+			throw new GraphQLError('Cannot Add Recipient!');
 		},
 
 		updateRecipient: async (parent, args , context) => {
@@ -76,7 +81,7 @@ const resolvers = {
 				);
 				return updateRecipient;
 			}
-			throw new AuthenticationError('Cannot Update Recipient!');
+			throw new GraphQLError('Cannot Update Recipient!');
 		},
 		
 		removeRecipient: async (parent, { recipientId }, context) => {
@@ -89,7 +94,7 @@ const resolvers = {
 				await Recipient.findByIdAndDelete({_id: recipientId});
 				return updateUser;
 			}
-			throw new AuthenticationError('Cannot Remove Recipient!');
+			throw new GraphQLError('Cannot Remove Recipient!');
 		},
 
 		saveGift: async (parent, { recipientId, giftData }, context) => {
@@ -102,7 +107,7 @@ const resolvers = {
 				);
 				return updateRecipient;
 			}
-			throw new AuthenticationError('Please Log In.');
+			throw new GraphQLError('Please Log In.');
 		},
 		removeGift: async (parent, { recipientId, giftId }, context) => {
 			//remove a gift
@@ -118,4 +123,4 @@ const resolvers = {
 	},
 };
 
-module.exports = resolvers;
+export default resolvers

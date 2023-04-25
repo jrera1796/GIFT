@@ -1,6 +1,6 @@
-const { Schema, model } = require('mongoose');
-const bcrypt = require('bcrypt');
-const giftSchema = require('./Gift'); //import schema from Gift
+import pkg from 'mongoose';
+const { Schema, model } = pkg;
+import bcrypt from 'bcrypt'
 
 const userSchema = new Schema(
   {
@@ -51,4 +51,4 @@ userSchema.virtual('recipientCount').get(function() {
 
 const User = model('User', userSchema);
 
-module.exports = User;
+export default User;
