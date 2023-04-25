@@ -14,6 +14,7 @@ const { json } = pkg;
 
 const app = express();
 const httpServer = http.createServer(app);
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -23,6 +24,7 @@ const server = new ApolloServer({
 
 app.use(cors());
 app.use(json());
+app.use(authMiddleware);
 
 server.applyMiddleware({ app, path: '/graphql' });
 
@@ -33,13 +35,10 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-await server.listen({ port: 4000 });
-console.log(`🚀 Server ready at http://localhost:4000/graphql`);
+httpServer.listen(4000, () => {
+  console.log(`🚀 Server ready at http://localhost:4000/graphql`);
+});
 
 db.once('open', () => {
   console.log('MongoDB database connection established successfully');
-});
-
-httpServer.listen(4000, () => {
-  console.log(`🚀 Server ready at http://localhost:4000/graphql`);
 });
